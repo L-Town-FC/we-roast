@@ -1,11 +1,17 @@
 import React from "react"
-import { Link } from "gatsby"
-import Header from "../components/header"
 
-export default () => (
-  <div style={{ color: `teal` }}>
-    <Link to="/">Home</Link>
-    <Header headerText="Contact" />
-    <p>Send us a message!</p>
-  </div>
+import Layout from "../components/layout"
+import Image from "../components/image"
+import SEO from "../components/seo"
+
+const Contact = () => (
+  <Layout>
+    <SEO title="Contact" />
+    <h1>Contact Page</h1>
+    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+      <Image />
+    </div>
+  </Layout>
 )
+
+export default Contact

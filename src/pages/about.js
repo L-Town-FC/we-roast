@@ -1,10 +1,17 @@
 import React from "react"
-import Header from "../components/header"
 
-export default () => (
-  <div style={{ color: `teal` }}>
-    <Header headerText="About Gatsby" />
-    <Header headerText="It's pretty cool" />
-    <p>Such wow. Very React.</p>
-  </div>
+import Layout from "../components/layout"
+import Image from "../components/image"
+import SEO from "../components/seo"
+
+const About = () => (
+  <Layout>
+    <SEO title="About" />
+    <h1>About Page</h1>
+    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+      <Image />
+    </div>
+  </Layout>
 )
+
+export default About
