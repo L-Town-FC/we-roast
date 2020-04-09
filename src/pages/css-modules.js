@@ -2,6 +2,8 @@ import styles from "./css-modules.module.css"
 import React from "react"
 
 import Layout from "../components/layout"
+import SEO from "../components/seo"
+
 
 const User = props => (
   <div className={styles.user}>
@@ -15,6 +17,7 @@ const User = props => (
 
 const Modules = () => (
   <Layout>
+    <SEO title="css-modules" />
     <h1>About CSS Modules</h1>
     <p>CSS Modules are cool</p>
     <User
