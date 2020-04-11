@@ -6,8 +6,8 @@ import SEO from "../components/seo"
 
 const Conversation = () => (
   <Layout>
-    <SEO title="About" />
-    <h1>About Page</h1>
+    <SEO title="Conversation" />
+    <h1>Conversation Page</h1>
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image imageName="hot-coffee"/>
     </div>
