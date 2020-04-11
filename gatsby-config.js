@@ -10,21 +10,29 @@ module.exports = {
     title: "We Roast",
     menuLinks: [
       {
-        name: "home",
+        name: "premium coffee",
         link: "/",
       },
       {
-        name: "about",
+        name: "about us",
         link: "/about",
       },
       {
-        name: "contact",
-        link: "/contact",
+        name: "conversation",
+        link: "/conversation",
       },
       {
-        name: "css-modules",
-        link: "/css-modules",
-      }
+        name: "content",
+        link: "/content",
+      },
+      {
+        name: "blog",
+        link: "/blog",
+      },
+      {
+        name: "login",
+        link: "/login",
+      },
     ],
     author: "L-Town-FC",
     description: "Its roasted",
@@ -55,5 +63,13 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+
+    // this plugin is for styling
+    // {
+    //   resolve: `gatsby-plugin-typography`,
+    //   options: {
+    //     pathToConfigModule: `src/utils/typography`,
+    //   },
+    //},
   ],
 }
