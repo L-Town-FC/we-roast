@@ -1,17 +1,37 @@
 import React from "react"
-
+import { graphql, useStaticQuery } from "gatsby"
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import Img from "gatsby-image"
 
-const Blog = () => (
-  <Layout>
-    <SEO title="Blog" />
-    <h1>Blog</h1>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image imageName="hot-coffee"/>
-    </div>
-  </Layout>
-)
+const Blog = () => {
+  const data = useStaticQuery(graphql`
+  query BlogImages{
+    images: allFile(filter: {relativeDirectory: {eq: "brew"}}){
+      nodes{
+        id
+        childImageSharp{
+          fixed(width: 200){
+            ...GatsbyImageSharpFixed
+          }
+          fluid{
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  }
+  `)
+  console.log(data);
+  return (
+    <Layout>
+      <SEO title="Blog" />
+      <h1>Blog Page</h1>
+      <div className="beans-gallary">
+        {data.images.nodes.map(image  => (<Img fluid={image.childImageSharp.fluid}/>))}
+      </div>
+    </Layout>
+  )
+}
 
 export default Blog

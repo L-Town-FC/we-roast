@@ -5,7 +5,7 @@ import React from "react"
 const Header = ({ siteTitle, menuLinks }) => (
   <header
     style={{
-      background: `black`,
+      background: `#362d26`,
       marginBottom: `1.45rem`,
     }}
   >
@@ -55,7 +55,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  siteTitle: ``,
+  siteTitle: `WE ROAST`,
 }
 
 export default Header
