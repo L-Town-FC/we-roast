@@ -19,10 +19,10 @@ const Header = ({ siteTitle, menuLinks }) => (
       <h1 style={{ margin: 0 }}>
         <Link
           to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`
-          }}
+          // style={{
+          //   color: `white`,
+          //   textDecoration: `none`
+          // }}
         >
           {siteTitle}
         </Link>
@@ -38,7 +38,7 @@ const Header = ({ siteTitle, menuLinks }) => (
                   padding: `1rem`,
                 }}
               >
-                <Link style={{ color: `white` }} to={link.link}>
+                <Link to={link.link}>
                   {link.name}
                 </Link>
               </li>
@@ -55,7 +55,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  siteTitle: `WE ROAST`,
+  siteTitle: ``,
 }
 
 export default Header
