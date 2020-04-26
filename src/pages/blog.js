@@ -22,7 +22,6 @@ const Blog = () => {
     }
   }
   `)
-  console.log(data);
   return (
     <Layout>
       <SEO title="Blog" />

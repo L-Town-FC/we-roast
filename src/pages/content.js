@@ -22,7 +22,6 @@ const Content = () => {
     }
   }
   `)
-  console.log(data);
   return (
     <Layout>
       <SEO title="Content" />
