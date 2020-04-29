@@ -13,6 +13,19 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     }
 }
 
+// Implement the Gatsby API “onCreatePage”. This is
+// called after every page is created.
+exports.onCreatePage = async ({ page, actions }) => {
+    const { createPage } = actions
+    // page.matchPath is a special key that's used for matching pages
+    // only on the client.
+    if (page.path.match(/^\/app/)) {
+        page.matchPath = "/app/*"
+        // Update the page.
+        createPage(page)
+    }
+}
+
 exports.createPages = async ({ graphql, actions }) => {
     // **Note:** The graphql function call returns a Promise
     // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
@@ -31,13 +44,13 @@ exports.createPages = async ({ graphql, actions }) => {
         }
     `)
     //console.log(JSON.stringify(result, null, 4))
-    result.data.allMarkdownRemark.edges.forEach(({ node}) => {
+    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
         createPage({
             path: node.fields.slug,
             component: path.resolve(`./src/templates/blog-post.js`),
             context: {
-                slug: node.fields.slug
-            }
+                slug: node.fields.slug,
+            },
         })
     })
 }
