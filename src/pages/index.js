@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import { css } from "@emotion/core"
 import { rhythm } from "../utils/typography"
-import { getUser, isLoggedIn } from "../services/auth"
+import { getProfile, isAuthenticated } from "../services/auth"
 
 
 import Layout from "../components/layout"
@@ -12,7 +12,7 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <h1>Hi {isLoggedIn() ? getUser().name : "world"}!</h1>
+      <h1>Hi {isAuthenticated() ? getProfile().name : "world"}!</h1>
       <p>
         At WE ROAST, we enjoy the highest quality coffee, sourced from around
         the world!{" "}

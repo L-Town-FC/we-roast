@@ -1,14 +1,14 @@
 import { Link, navigate } from "gatsby"
-import { getUser, isLoggedIn, logout } from "../services/auth"
+import { getProfile, isAuthenticated, logout } from "../services/auth"
 import PropTypes from "prop-types"
 import React from "react"
 
 const Header = ({ siteTitle, menuLinks }) => {
     let greetingMessage = ""
-    if (isLoggedIn()) {
-        greetingMessage = `Hello ${getUser().name}`
+    if (isAuthenticated()) {
+        greetingMessage = `Hello ${getProfile().name}`
     } else {
-        greetingMessage = "You are not logged in"
+        greetingMessage = "login"
     }
     return (
         <header
@@ -49,28 +49,23 @@ const Header = ({ siteTitle, menuLinks }) => {
                                     <Link to={link.link}>{link.name}</Link>
                                 </li>
                             ))}
-                            {isLoggedIn() ? (
-                                <li
-                                    href="/"
-                                    onClick={event => {
-                                        event.preventDefault()
-                                        logout(() => navigate(`/app/login`))
-                                    }}
-                                    style={{
-                                        listStyleType: `none`,
-                                        padding: `1rem`,
-                                    }}
-                                >
-                                    Logout
-                                </li>
-                            ) : null}
                             <li
                                 style={{
                                     listStyleType: `none`,
                                     padding: `1rem`,
                                 }}
                             >
-                                {greetingMessage}
+                                {isAuthenticated() ? (
+                                    <img
+                                        src={getProfile().picture}
+                                        onClick={e => {
+                                            navigate("/app/profile")
+                                            e.preventDefault()
+                                        }}
+                                    />
+                                ) : (
+                                    <Link to="/app/profile">{greetingMessage}</Link>
+                                )}
                             </li>
                         </ul>
                     </nav>

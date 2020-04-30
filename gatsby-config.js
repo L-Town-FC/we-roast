@@ -29,14 +29,6 @@ module.exports = {
         name: "blog",
         link: "/blog",
       },
-      // {
-      //   name: "login",
-      //   link: "/app/login",
-      // },
-      {
-        name: "Profile",
-        link: "/app/profile",
-      },
     ],
     author: "L-Town-FC",
     description: "Its roasted",
