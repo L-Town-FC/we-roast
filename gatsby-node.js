@@ -56,7 +56,7 @@ exports.createPages = async ({ graphql, actions }) => {
 }
 
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
-    if (stage === "build-html") {
+    if (["build-html", "develop-html"].includes(stage)) {
         /*
          * During the build step, `auth0-js` will break because it relies on
          * browser-specific APIs. Fortunately, we don’t need it during the build.

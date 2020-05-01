@@ -55,17 +55,7 @@ const Header = ({ siteTitle, menuLinks }) => {
                                     padding: `1rem`,
                                 }}
                             >
-                                {isAuthenticated() ? (
-                                    <img
-                                        src={getProfile().picture}
-                                        onClick={e => {
-                                            navigate("/app/profile")
-                                            e.preventDefault()
-                                        }}
-                                    />
-                                ) : (
-                                    <Link to="/app/profile">{greetingMessage}</Link>
-                                )}
+                                <Link to="/app/profile">{greetingMessage}</Link>
                             </li>
                         </ul>
                     </nav>

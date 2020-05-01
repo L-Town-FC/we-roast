@@ -4,7 +4,10 @@ import { navigate } from "gatsby"
 
 export const isBrowser = () => typeof window !== "undefined"
 
-export const auth = isBrowser
+console.log(typeof window)
+
+// this fails on build 
+const auth = isBrowser
     ? new auth0.WebAuth({
           domain: process.env.AUTH0_DOMAIN,
           clientID: process.env.AUTH0_CLIENTID,

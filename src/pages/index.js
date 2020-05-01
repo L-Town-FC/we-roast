@@ -3,6 +3,8 @@ import { Link, graphql } from "gatsby"
 import { css } from "@emotion/core"
 import { rhythm } from "../utils/typography"
 import { getProfile, isAuthenticated } from "../services/auth"
+import { Button } from 'antd'
+
 
 
 import Layout from "../components/layout"
@@ -18,6 +20,7 @@ const IndexPage = ({ data }) => {
         the world!{" "}
       </p>
       <p>Now go build something great.</p>
+      <Button type="primary">Primary</Button>
       <div>
         <h1
           css={css`
