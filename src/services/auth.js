@@ -4,10 +4,8 @@ import { navigate } from "gatsby"
 
 export const isBrowser = () => typeof window !== "undefined"
 
-console.log(typeof window)
-
 // this fails on build 
-const auth = isBrowser
+const auth = isBrowser()
     ? new auth0.WebAuth({
           domain: process.env.AUTH0_DOMAIN,
           clientID: process.env.AUTH0_CLIENTID,
@@ -28,21 +26,20 @@ const tokens = {
 let user = {}
 
 export const isAuthenticated = () => {
-    if (!isBrowser) {
+    if (!isBrowser()) {
         return
     }
     return localStorage.getItem("isLoggedIn") === "true"
 }
 
 export const login = () => {
-    if (!isBrowser) {
+    if (!isBrowser()) {
         return
     }
     auth.authorize()
 }
 
 const setSession = (cb = () => {}) => (err, authResult) => {
-    console.log("in set sess")
 
     if (err) {
         navigate("/")
@@ -57,13 +54,13 @@ const setSession = (cb = () => {}) => (err, authResult) => {
         tokens.expiresAt = expiresAt
         user = authResult.idTokenPayload
         localStorage.setItem("isLoggedIn", true)
-        navigate("/app/profile")
+        navigate("/")
         cb()
     }
 }
 
 export const handleAuthentication = () => {
-    if (!isBrowser) {
+    if (!isBrowser()) {
         return
     }
     auth.parseHash(setSession())
@@ -80,5 +77,8 @@ export const silentAuth = callback => {
 
 export const logout = () => {
     localStorage.setItem("isLoggedIn", false)
-    auth.logout()
+    auth.logout({
+        returnTo: process.env.AUTH0_LOGOUT,
+        client_id: process.env.AUTH0_CLIENTID
+      })
 }
