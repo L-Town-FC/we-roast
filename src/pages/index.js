@@ -1,7 +1,4 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-import { css } from "@emotion/core"
-import { rhythm } from "../utils/typography"
 import { getProfile, isAuthenticated } from "../services/auth"
 import { Button } from 'antd'
 

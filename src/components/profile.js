@@ -22,7 +22,7 @@ const Profile = () => (
         >
             Log Out
         </a>
-        <img src="https://source.unsplash.com/featured/?coffee" alt="" />
+        <img src="https://source.unsplash.com/featured/?coffee" alt="random coffe image" />
     </div>
 )
 

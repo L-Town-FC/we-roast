@@ -2,6 +2,10 @@ import { Link, navigate } from "gatsby"
 import { getProfile, isAuthenticated, logout } from "../services/auth"
 import PropTypes from "prop-types"
 import React from "react"
+import { Menu } from 'antd';
+import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
+
+const { SubMenu } = Menu;
 
 const Header = ({ siteTitle, menuLinks }) => {
     let greetingMessage = ""

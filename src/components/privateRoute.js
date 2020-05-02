@@ -1,6 +1,5 @@
-import React, { Component } from "react"
-import { navigate } from "gatsby"
-import { isAuthenticated, login, getProfile } from "../services/auth"
+import React from "react"
+import { isAuthenticated, login } from "../services/auth"
 
 const PrivateRoute = ({ component: Component, location, ...rest }) => {
     if (!isAuthenticated()) {

@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
+import NavBar from "../components/navbar"
 
 const Content = () => {
   const data = useStaticQuery(graphql`
@@ -26,6 +27,7 @@ const Content = () => {
     <Layout>
       <SEO title="Content" />
       <h1>Content Page</h1>
+      <p>Stuff goes here</p>
       <div className="beans-gallary">
         {data.images.nodes.map(image  => (<Img fluid={image.childImageSharp.fluid}/>))}
       </div>
