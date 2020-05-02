@@ -2,6 +2,8 @@ import "./src/styles/global.css"
 import React from "react"
 import { silentAuth } from "./src/services/auth"
 
+import Layout from "./src/components/layout"
+
 class SessionCheck extends React.Component {
     constructor(props) {
         super(props)
@@ -28,7 +30,13 @@ class SessionCheck extends React.Component {
 }
 
 export const wrapRootElement = ({ element }) => {
-    return <SessionCheck>{element}</SessionCheck>
+    return (
+        <SessionCheck>
+            <Layout>
+                {element}
+            </Layout>
+        </SessionCheck>
+    )
 }
 
 // export const onServiceWorkerUpdateReady = () => {

@@ -9,7 +9,7 @@ import SEO from "../components/seo"
 
 const IndexPage = ({ data }) => {
   return (
-    <Layout>
+    <>
       <SEO title="Home" />
       <h1>Hi {isAuthenticated() ? getProfile().name : "world"}!</h1>
       <p>
@@ -21,7 +21,7 @@ const IndexPage = ({ data }) => {
       <div> 
         <img src="https://source.unsplash.com/featured/?coffee" alt="" />
       </div>
-    </Layout>
+    </>
   )
 }
 

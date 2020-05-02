@@ -1,14 +1,8 @@
 import React from "react"
 import { Link, navigate } from "gatsby"
 import { Menu, Switch } from "antd"
-import {
-    MailOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
-    CoffeeOutlined
-} from "@ant-design/icons"
-
-const { SubMenu } = Menu
+import { UserOutlined, CoffeeOutlined } from "@ant-design/icons"
+import { getProfile, isAuthenticated, logout } from "../services/auth"
 
 class navbar extends React.Component {
     constructor(props) {
@@ -17,7 +11,8 @@ class navbar extends React.Component {
             loading: true,
             theme: "light",
             current: props.currentKey,
-            menuLinks: props.menuLinks
+            menuLinks: props.menuLinks,
+            siteTitle: props.siteTitle,
         }
     }
 
@@ -35,30 +30,64 @@ class navbar extends React.Component {
         })
     }
 
+    // greetingMessage = ""
+    // if (isAuthenticated()) {
+    //     greetingMessage = `Hello ${getProfile().name}`
+    // } else {
+    //     greetingMessage = "login"
+    // }
+
     render() {
         return (
-            <>
-                <Switch
-                    checked={this.state.theme === "dark"}
-                    onChange={this.changeTheme}
-                    checkedChildren="Dark"
-                    unCheckedChildren="Light"
-                />
+            <div>
+                <div
+                    style={{
+                        position: "relative",
+                        display: "flex",
+                        justifyContent: "center",
+                    }}
+                >
+                    <h1>
+                        <Link to="/">{this.state.siteTitle}</Link>
+                    </h1>
+                    <Switch
+                        checked={this.state.theme === "dark"}
+                        onChange={this.changeTheme}
+                        checkedChildren="Dark"
+                        unCheckedChildren="Light"
+                        style={{
+                            position: "relative",
+                            display: "flex",
+                            justifyContent: "flex-end",
+                        }}
+                    />
+                </div>
                 <br />
-                <br />
+                {/* <br /> */}
                 <Menu
                     theme={this.state.theme}
                     onClick={this.handleClick}
                     selectedKeys={[this.state.current]}
                     mode="horizontal"
+                    style={{
+                        position: "relative",
+                        display: "flex",
+                        justifyContent: "center",
+                    }}
                 >
-                    {this.state.menuLinks.map( menuItem => (
-                        <Menu.Item key={menuItem.link} icon={<CoffeeOutlined />}>
+                    {this.state.menuLinks.map(menuItem => (
+                        <Menu.Item
+                            key={menuItem.link}
+                            icon={<CoffeeOutlined />}
+                        >
                             {menuItem.name}
                         </Menu.Item>
                     ))}
+                    <Menu.Item key="/app/profile" icon={<UserOutlined />}>
+                        Profile
+                    </Menu.Item>
                 </Menu>
-            </>
+            </div>
         )
     }
 }

@@ -43,7 +43,7 @@ const Blog = () => {
         }
     `)
     return (
-        <Layout>
+        <>
             <SEO title="Blog" />
             <h1>Blog Page</h1>
             <div>
@@ -90,7 +90,7 @@ const Blog = () => {
                     <Img fluid={image.childImageSharp.fluid} />
                 ))}
             </div>
-        </Layout>
+        </>
     )
 }
 

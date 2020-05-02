@@ -28,9 +28,9 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header menuLinks={data.site.siteMetadata.menuLinks} siteTitle={data.site.siteMetadata.title} />
-      <NavBar menuLinks={data.site.siteMetadata.menuLinks} currentKey="premium coffee" />
+    <div>
+      {/* <Header menuLinks={data.site.siteMetadata.menuLinks} siteTitle={data.site.siteMetadata.title} /> */}
+      <NavBar menuLinks={data.site.siteMetadata.menuLinks} siteTitle={data.site.siteMetadata.title} currentKey="premium coffee" />
       <div
         style={{
           margin: `0 auto`,
@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
       </div>
-    </>
+    </div>
   )
 }
 
