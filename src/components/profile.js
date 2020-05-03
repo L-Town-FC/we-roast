@@ -7,21 +7,14 @@ const Profile = () => (
     <div>
         <SEO title="Profile" />
         <h1>Your profile</h1>
-        <img src={getProfile().picture} />
-        <ul>
-            <li>Name: {getProfile().name}</li>
-            <li>Nickname: {getProfile().nickname}</li>
-            <li>E-mail: {getProfile().email}</li>
-        </ul>
-        <a
-            href="#logout"
-            onClick={e => {
-                logout()
-                e.preventDefault()
-            }}
-        >
-            Log Out
-        </a>
+        <div style={{display:"flex", flexDirection:"row"}}>
+            <img src={getProfile().picture} alt="profilePicture"/>
+            <ul>
+                <li>Name: {getProfile().name}</li>
+                <li>Nickname: {getProfile().nickname}</li>
+                <li>E-mail: {getProfile().email}</li>
+            </ul>
+        </div>
         <Button
             type="primary"
             onClick={e => {

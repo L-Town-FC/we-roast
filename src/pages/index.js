@@ -6,7 +6,7 @@ const IndexPage = ({ data }) => {
   return (
     <>
       <SEO title="Home" />
-      <h1>Hi {isAuthenticated() ? getProfile().name : "world"}!</h1>
+      <h3>Hi {isAuthenticated() ? getProfile().name : "world"}!</h3>
       <p>
         At WE ROAST, we enjoy the highest quality coffee, sourced from around
         the world!

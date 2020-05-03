@@ -2,7 +2,6 @@ import React from "react"
 import { Link, navigate } from "gatsby"
 import { Menu, Switch } from "antd"
 import { UserOutlined, CoffeeOutlined } from "@ant-design/icons"
-import { getProfile, isAuthenticated, logout } from "../services/auth"
 
 class navbar extends React.Component {
     constructor(props) {
