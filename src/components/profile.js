@@ -1,17 +1,17 @@
 import React from "react"
 import { getProfile, logout } from "../services/auth"
 import SEO from "./seo"
-
+import { Button } from "antd"
 
 const Profile = () => (
     <div>
         <SEO title="Profile" />
         <h1>Your profile</h1>
+        <img src={getProfile().picture} />
         <ul>
             <li>Name: {getProfile().name}</li>
             <li>Nickname: {getProfile().nickname}</li>
             <li>E-mail: {getProfile().email}</li>
-            <img src={getProfile().picture} />
         </ul>
         <a
             href="#logout"
@@ -22,7 +22,19 @@ const Profile = () => (
         >
             Log Out
         </a>
-        <img src="https://source.unsplash.com/featured/?coffee" alt="random coffe image" />
+        <Button
+            type="primary"
+            onClick={e => {
+                logout()
+                e.preventDefault()
+            }}
+        >
+            Loggout
+        </Button>
+        <img
+            src="https://source.unsplash.com/featured/?coffee"
+            alt="randomCoffee"
+        />
     </div>
 )
 

@@ -40,6 +40,7 @@ const Layout = ({ children }) => {
       >
         <main>{children}</main>
         <footer>
+          Created by Mollo LLC
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>

@@ -1,9 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
-import NavBar from "../components/navbar"
 
 const Content = () => {
   const data = useStaticQuery(graphql`

@@ -1,0 +1,14 @@
+.site-layout-content {
+    background: #fff;
+    padding: 24px;
+    min-height: 280px;
+}
+
+img {
+    border-radius: 50%;
+}
+
+li {
+    list-style-type: none;
+    padding: 1rem;
+}

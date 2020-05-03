@@ -2,7 +2,6 @@ import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import { css } from "@emotion/core"
 import { rhythm } from "../utils/typography"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 
@@ -45,7 +44,6 @@ const Blog = () => {
     return (
         <>
             <SEO title="Blog" />
-            <h1>Blog Page</h1>
             <div>
                 <h1
                     css={css`
