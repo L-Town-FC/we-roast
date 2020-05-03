@@ -1,15 +1,11 @@
 import React from "react"
-
-import Image from "../components/image"
 import SEO from "../components/seo"
 
 const About = () => (
   <>
     <SEO title="About" />
-    <h1>About Page</h1>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image imageName="hot-coffee"/>
-    </div>
+    <h3>About Page</h3>
+    <img src="https://source.unsplash.com/featured/?coffee" alt="randomCoffee" />
   </>
 )
 

@@ -34,6 +34,7 @@ const Layout = ({ children }) => {
                 menuLinks={data.site.siteMetadata.menuLinks}
                 siteTitle={data.site.siteMetadata.title}
                 currentKey="premium coffee"
+                theme="light"
             />
             <div
                 style={{
@@ -50,6 +51,7 @@ const Layout = ({ children }) => {
                     <a href="https://www.gatsbyjs.org">Gatsby</a>
                     {` `}
                     and
+                    {` `}
                     <a href="https://3x.ant.design/">Ant Design</a>
                     <br />
                     <Button

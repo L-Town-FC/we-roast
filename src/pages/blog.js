@@ -4,6 +4,7 @@ import { css } from "@emotion/core"
 import { rhythm } from "../utils/typography"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
+import { Card } from "antd"
 
 const Blog = () => {
     const data = useStaticQuery(graphql`
@@ -44,15 +45,8 @@ const Blog = () => {
     return (
         <>
             <SEO title="Blog" />
+            <Card title="Blogs" hoverable="true">
             <div>
-                <h1
-                    css={css`
-                        display: inline-block;
-                        border-bottom: 1px solid;
-                    `}
-                >
-                    Blogs
-                </h1>
                 <h4>{data.blogs.totalCount} Posts</h4>
                 {data.blogs.edges.map(({ node }) => (
                     <div key={node.id}>
@@ -82,7 +76,7 @@ const Blog = () => {
                     </div>
                 ))}
             </div>
-            <div></div>
+            </Card>
             <div className="beans-gallary">
                 {data.images.nodes.map(image => (
                     <Img fluid={image.childImageSharp.fluid} />

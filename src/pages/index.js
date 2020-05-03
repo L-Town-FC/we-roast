@@ -13,7 +13,7 @@ const IndexPage = ({ data }) => {
       </p>
       <p>Now go build something great.</p>
       <div> 
-        <img src="https://source.unsplash.com/featured/?coffee" alt="" />
+        <img src="https://source.unsplash.com/featured/?coffee" alt="randomCoffee" />
       </div>
     </>
   )

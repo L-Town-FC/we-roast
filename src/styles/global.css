@@ -9,6 +9,14 @@
     flex-direction:row;
 }
 
+div {
+    width: 100%;
+}
+
+iframe {
+    width: 100%;
+}
+
 h1,
 h2 {
     text-align: center;

@@ -31,8 +31,8 @@ const AntdLayout = ({ children }) => {
                     currentKey="premium coffee"
                 />
             </Header>
-            <Content style={{ padding: "0 50px" }}>
-                <div className="site-layout-content">{children}</div>
+            <Content>
+                <div>{children}</div>
             </Content>
             <Footer style={{ textAlign: "center" }}>
                 Created by Mollo LLC

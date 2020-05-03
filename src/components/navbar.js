@@ -8,7 +8,7 @@ class navbar extends React.Component {
         super(props)
         this.state = {
             loading: true,
-            theme: "light",
+            theme: props.theme,
             current: props.currentKey,
             menuLinks: props.menuLinks,
             siteTitle: props.siteTitle,
