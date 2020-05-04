@@ -45,11 +45,14 @@ const Blog = () => {
     return (
         <>
             <SEO title="Blog" />
-            <Card title="Blogs" hoverable="true">
-            <div>
-                <h4>{data.blogs.totalCount} Posts</h4>
-                {data.blogs.edges.map(({ node }) => (
-                    <div key={node.id}>
+            <h4>{data.blogs.totalCount} Posts</h4>
+            {data.blogs.edges.map(({ node }) => (
+                <>
+                    <Card
+                        title={node.frontmatter.title}
+                        hoverable="true"
+                        key={node.id}
+                    >
                         <Link
                             to={node.fields.slug}
                             css={css`
@@ -73,10 +76,10 @@ const Blog = () => {
                             </h3>
                             <p>{node.excerpt}</p>
                         </Link>
-                    </div>
-                ))}
-            </div>
-            </Card>
+                    </Card>
+                    <br />
+                </>
+            ))}
             <div className="beans-gallary">
                 {data.images.nodes.map(image => (
                     <Img fluid={image.childImageSharp.fluid} />
