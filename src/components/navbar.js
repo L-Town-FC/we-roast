@@ -39,6 +39,7 @@ class navbar extends React.Component {
     render() {
         return (
             <div>
+                <br />
                 <div
                     style={{
                         position: "relative",

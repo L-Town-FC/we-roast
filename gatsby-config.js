@@ -10,16 +10,16 @@ module.exports = {
         title: "We Roast",
         menuLinks: [
             {
-                name: "premium coffee",
+                name: "Home",
                 link: "/",
             },
             {
-                name: "about us",
+                name: "about",
                 link: "/about",
             },
             {
-                name: "conversation",
-                link: "/conversation",
+                name: "conservation",
+                link: "/conservation",
             },
             {
                 name: "content",
