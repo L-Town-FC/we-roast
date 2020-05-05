@@ -35,6 +35,7 @@ body {
     --textTitle: white;
     --textLink: yellow;
     --hr: hsla(0, 0%, 100%, 0.2);
+    --h1: rgb(255,255,255);
   }
 
 h1,

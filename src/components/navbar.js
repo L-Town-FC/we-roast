@@ -9,7 +9,7 @@ class navbar extends React.Component {
         super(props)
         this.state = {
             loading: true,
-            theme: props.theme,
+            theme: localStorage.getItem("theme"),
             current: props.currentKey,
             menuLinks: props.menuLinks,
             siteTitle: props.siteTitle,
@@ -52,17 +52,25 @@ class navbar extends React.Component {
                         <Link to="/">{this.state.siteTitle}</Link>
                     </h1>
                     <ThemeToggler>
-                        {({ theme, toggleTheme }) => (
-                            <Switch
-                                checked={theme === "dark"}
-                                onChange={e => {
-                                    this.changeTheme(e)
-                                    toggleTheme( this.state.theme === "dark" ? 'light': 'dark')
-                                }}
-                                checkedChildren="Dark"
-                                unCheckedChildren="Light"
-                            />
-                        )}
+                        {({ theme, toggleTheme }) => {
+                            theme = this.state.theme
+                            localStorage.setItem("theme", theme)
+                            // toggleTheme(this.state.theme)
+                            console.log(theme)
+                            return (
+                                <Switch
+                                    checked={theme === "dark"}
+                                    onChange={e => {
+                                        this.changeTheme(e)
+                                        toggleTheme(
+                                            theme === "dark" ? "light" : "dark"
+                                        )
+                                    }}
+                                    checkedChildren="Dark"
+                                    unCheckedChildren="Light"
+                                />
+                            )
+                        }}
                     </ThemeToggler>
                 </div>
                 <br />
