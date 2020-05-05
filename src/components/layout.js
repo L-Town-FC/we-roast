@@ -29,7 +29,13 @@ const Layout = ({ children }) => {
     `)
 
     return (
-        <div>
+        <div
+        style={{
+            backgroundColor: 'var(--bg)',
+            color: 'var(--textNormal)',
+            transition: 'color 0.2s ease-out, background 0.2s ease-out',
+          }}
+        >
             <NavBar
                 menuLinks={data.site.siteMetadata.menuLinks}
                 siteTitle={data.site.siteMetadata.title}

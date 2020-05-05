@@ -26,10 +26,6 @@ const Content = () => {
     <>
       <SEO title="Content" />
       <h1>Content Page</h1>
-      <p>Check us out on the gram @<a href="https://www.instagram.com/weroast.coffee/">we-roast</a></p>
-      <Background>
-        <p>Testing</p>
-      </Background>
       <div className="beans-gallary">
         {data.images.nodes.map(image  => (<Img fluid={image.childImageSharp.fluid}/>))}
       </div>

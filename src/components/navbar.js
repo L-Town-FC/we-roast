@@ -2,6 +2,7 @@ import React from "react"
 import { Link, navigate } from "gatsby"
 import { Menu, Switch } from "antd"
 import { UserOutlined, CoffeeOutlined } from "@ant-design/icons"
+import { ThemeToggler } from "gatsby-plugin-dark-mode"
 
 class navbar extends React.Component {
     constructor(props) {
@@ -50,17 +51,19 @@ class navbar extends React.Component {
                     <h1>
                         <Link to="/">{this.state.siteTitle}</Link>
                     </h1>
-                    <Switch
-                        checked={this.state.theme === "dark"}
-                        onChange={this.changeTheme}
-                        checkedChildren="Dark"
-                        unCheckedChildren="Light"
-                        style={{
-                            position: "relative",
-                            display: "flex",
-                            justifyContent: "flex-end",
-                        }}
-                    />
+                    <ThemeToggler>
+                        {({ theme, toggleTheme }) => (
+                            <Switch
+                                checked={theme === "dark"}
+                                onChange={e => {
+                                    this.changeTheme(e)
+                                    toggleTheme( this.state.theme === "dark" ? 'light': 'dark')
+                                }}
+                                checkedChildren="Dark"
+                                unCheckedChildren="Light"
+                            />
+                        )}
+                    </ThemeToggler>
                 </div>
                 <br />
                 {/* <br /> */}

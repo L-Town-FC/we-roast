@@ -34,6 +34,7 @@ module.exports = {
         description: "Its roasted",
     },
     plugins: [
+        `gatsby-plugin-dark-mode`,
         {
             resolve: "gatsby-plugin-antd",
             options: {
