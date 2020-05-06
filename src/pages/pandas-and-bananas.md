@@ -1,5 +1,6 @@
 ---
 title: "Pandas and Bananas"
+author: "Ted Sullivan"
 date: "2017-08-21"
 ---
 
