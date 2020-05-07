@@ -25,7 +25,7 @@ const Content = () => {
   return (
     <>
       <SEO title="Content" />
-      <h1>Content Page</h1>
+      <h1 style={{ color: "var(--titleNormal)" }}>Content Page</h1>
       <div className="beans-gallary">
         {data.images.nodes.map(image  => (<Img fluid={image.childImageSharp.fluid} key={image.id} />))}
       </div>

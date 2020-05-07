@@ -43,6 +43,10 @@ h2 {
     text-align: center;
 }
 
+h1.dark {
+ --textNormal: rgba(255, 255, 255, 0.88);
+}
+
 img {
     border-radius: 50%;
     display: flex;

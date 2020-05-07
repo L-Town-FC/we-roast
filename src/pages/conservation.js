@@ -5,7 +5,7 @@ import SEO from "../components/seo"
 const Conversation = () => (
   <>
     <SEO title="Conversation" />
-    <h3>Conservation Efforts</h3>
+    <h3 style={{ color: "var(--titleNormal)" }}>Conservation Efforts</h3>
     <img src="https://source.unsplash.com/featured/?coffee" alt="randomCoffee" />
   </>
 )

@@ -45,7 +45,7 @@ const Blog = () => {
     return (
         <>
             <SEO title="Blog" />
-            <h4>{data.blogs.totalCount} Posts</h4>
+            <h4 style={{ color: "var(--titleNormal)" }}>{data.blogs.totalCount} Posts</h4>
             {data.blogs.edges.map(({ node }) => (
                 <>
                     <Card

@@ -3,6 +3,7 @@ import { Link, navigate } from "gatsby"
 import { Menu, Switch } from "antd"
 import { UserOutlined, CoffeeOutlined } from "@ant-design/icons"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
+import logo from "../../static/wr-logo.png"
 
 class navbar extends React.Component {
     constructor(props) {
@@ -48,9 +49,10 @@ class navbar extends React.Component {
                         justifyContent: "center",
                     }}
                 >
-                    <h1>
+                    <img src={logo} style={{ borderRadius: 0 }} alt="logo" />
+                    {/* <h1>
                         <Link to="/">{this.state.siteTitle}</Link>
-                    </h1>
+                    </h1> */}
                     <ThemeToggler>
                         {({ theme, toggleTheme }) => {
                             theme = this.state.theme
