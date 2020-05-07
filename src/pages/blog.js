@@ -45,20 +45,23 @@ const Blog = () => {
     return (
         <>
             <SEO title="Blog" />
-            <h4 style={{ color: "var(--titleNormal)" }}>{data.blogs.totalCount} Posts</h4>
+            <h4 style={{ color: "var(--titleNormal)" }}>
+                {data.blogs.totalCount} Posts
+            </h4>
             {data.blogs.edges.map(({ node }) => (
                 <>
-                    <Card
-                        title={node.frontmatter.title}
-                        hoverable="true"
-                        key={node.id}
+                    <Link
+                        to={node.fields.slug}
+                        css={css`
+                            text-decoration: none;
+                            color: inherit;
+                        `}
                     >
-                        <Link
-                            to={node.fields.slug}
-                            css={css`
-                                text-decoration: none;
-                                color: inherit;
-                            `}
+                        <Card
+                            title={node.frontmatter.title}
+                            hoverable="true"
+                            key={node.id}
+                            onClick={e => console.log(e)}
                         >
                             <h3
                                 css={css`
@@ -75,8 +78,8 @@ const Blog = () => {
                                 </span>
                             </h3>
                             <p>{node.excerpt}</p>
-                        </Link>
-                    </Card>
+                        </Card>
+                    </Link>
                     <br />
                 </>
             ))}

@@ -11,7 +11,7 @@ export default ({ data }) => {
             <SEO title={post.frontmatter.title} description={post.excerpt} />
             <div style={{padding: 15}}>
                 <Img fluid={featuredImgFluid} style={{padding:10}}/>
-                <h1>{post.frontmatter.title}</h1>
+                <h1 style={{ color: "var(--titleNormal)" }}>{post.frontmatter.title}</h1>
                 <div dangerouslySetInnerHTML={{ __html: post.html }} />
             </div>
         </>
