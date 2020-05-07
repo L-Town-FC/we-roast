@@ -9,6 +9,12 @@
     flex-direction:row;
 }
 
+.logo {
+    width: 25%;
+    height: 25%;
+    border-radius: 0;
+}
+
 div {
     width: 100%;
 }

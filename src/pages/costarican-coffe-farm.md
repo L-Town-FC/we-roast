@@ -1,5 +1,6 @@
 ---
 title: "Costarican Coffee Farm"
+author: "Ramzi Albilbisi"
 date: "2020-02-21"
 featuredImage: ../images/blogImages/views.jpg
 ---

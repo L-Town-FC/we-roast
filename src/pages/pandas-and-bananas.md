@@ -1,5 +1,6 @@
 ---
 title: "Pandas and Bananas"
+author: "Andrew Mollohan"
 date: "2017-08-21"
 featuredImage: ../images/blogImages/views.jpg
 ---
