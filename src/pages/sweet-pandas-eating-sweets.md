@@ -1,6 +1,8 @@
 ---
 title: "Sweet Pandas Eating Sweets"
+author: "Ted Sullivan"
 date: "2017-08-10"
+featuredImage: ../images/blogImages/views.jpg
 ---
 
 Pandas are really sweet.

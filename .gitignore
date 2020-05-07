@@ -69,5 +69,4 @@ yarn-error.log
 .yarn-integrity
 
 # contentful
-
-contentful-export-*.json
+content*.json

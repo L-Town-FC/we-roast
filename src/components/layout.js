@@ -33,6 +33,7 @@ const Layout = ({ children }) => {
         style={{
             backgroundColor: 'var(--bg)',
             color: 'var(--textNormal)',
+            padding: 10,
             transition: 'color 0.2s ease-out, background 0.2s ease-out',
           }}
         >

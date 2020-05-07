@@ -9,6 +9,12 @@
     flex-direction:row;
 }
 
+.logo {
+    width: 25%;
+    height: 25%;
+    border-radius: 0;
+}
+
 div {
     width: 100%;
 }
@@ -41,6 +47,10 @@ body {
 h1,
 h2 {
     text-align: center;
+}
+
+h1.dark {
+ --textNormal: rgba(255, 255, 255, 0.88);
 }
 
 img {
