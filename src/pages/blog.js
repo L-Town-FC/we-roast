@@ -5,92 +5,63 @@ import { rhythm } from "../utils/typography"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 import { Card } from "antd"
+import ArticlePreview from "../components/article-preview"
 
-const Blog = () => {
+const Blogs = () => {
     const data = useStaticQuery(graphql`
-        query BlogImages {
-            images: allFile(filter: { relativeDirectory: { eq: "brew" } }) {
-                nodes {
-                    id
-                    childImageSharp {
-                        fixed(width: 200) {
-                            ...GatsbyImageSharpFixed
-                        }
-                        fluid {
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
+        query BlogIndexQuery {
+            site {
+                siteMetadata {
+                    title
                 }
             }
-            blogs: allMarkdownRemark(
-                sort: { fields: [frontmatter___date], order: DESC }
+            allContentfulBlogPost(
+                sort: { fields: [publishDate], order: DESC }
             ) {
-                totalCount
                 edges {
                     node {
-                        id
-                        frontmatter {
-                            title
-                            date(formatString: "DD MMMM, YYYY")
+                        title
+                        slug
+                        publishDate(formatString: "MMMM Do, YYYY")
+                        tags
+                        heroImage {
+                            fluid {
+                                ...GatsbyContentfulFluid_tracedSVG
+                            }
                         }
-                        fields {
-                            slug
+                        description {
+                            childMarkdownRemark {
+                                html
+                            }
                         }
-                        excerpt
                     }
                 }
             }
         }
     `)
+    const siteTitle = data.site.siteMetadata.title
+    const posts = data.allContentfulBlogPost.edges
     return (
         <>
-            <SEO title="Blog" />
-            <h4 style={{ color: "var(--titleNormal)" }}>
-                {data.blogs.totalCount} Posts
-            </h4>
-            {data.blogs.edges.map(({ node }) => (
-                node.fields &&
-                    <>
-                        <Link
-                            to={node.fields.slug || "/blog/hello-world"}
-                            css={css`
-                                text-decoration: none;
-                                color: inherit;
-                            `}
+            <SEO title={siteTitle} />
+
+            <div className="wrapper">
+                <h2 className="section-headline">Recent articles</h2>
+                {posts.map(({ node }) => (
+                    <Link to={`/blog/${node.slug}`}>
+                        <Card
+                            title={node.title}
+                            hoverable="true"
+                            key={node.title}
                         >
-                            <Card
-                                title={node.frontmatter.title}
-                                hoverable="true"
-                                key={node.id}
-                                onClick={e => console.log(e)}
-                            >
-                                <h3
-                                    css={css`
-                                        margin-bottom: ${rhythm(1 / 4)};
-                                    `}
-                                >
-                                    {node.frontmatter.title}{" "}
-                                    <span
-                                        css={css`
-                                            color: #bbb;
-                                        `}
-                                    >
-                                        - {node.frontmatter.date}
-                                    </span>
-                                </h3>
-                                <p>{node.excerpt}</p>
-                            </Card>
-                        </Link>
+                            <ArticlePreview article={node} />
+                        </Card>
                         <br />
-                    </>
-            ))}
-            <div className="beans-gallary">
-                {data.images.nodes.map(image => (
-                    <Img fluid={image.childImageSharp.fluid} />
+                    </Link>
                 ))}
             </div>
         </>
     )
 }
 
-export default Blog
+export default Blogs

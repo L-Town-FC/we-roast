@@ -1,7 +1,7 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://weroast.surge.sh/">
-    <img alt="we-roast" src="https://github.com/L-Town-FC/we-roast/blob/dev/static/wr-logo.png" width="60" />
+    <img alt="we-roast" src="https://github.com/L-Town-FC/we-roast/blob/dev/static/wr-logo.png" width="100" />
   </a>
 </p>
 <h1 align="center">
@@ -11,9 +11,16 @@
 
 ## 🚀 Quick start
 
+1. **Install all everything you need**
+    Aside from the code you will be pulling from github you will also need all this apps dependencies
+
+    ```shell
+    npm install
+    ```
+
 1.  **Start developing.**
 
-    Navigate into your new site’s directory and start it up from a terminal.
+    Once you have everything installed navigate to we-roast's directory and start it up
 
     ```shell
     cd we-roast/
