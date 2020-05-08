@@ -12,7 +12,6 @@ export default ({ data }) => {
             <SEO title={`${post.title} | ${siteTitle}`} description={`${post.title} | ${siteTitle}`} />
             <div style={{ padding: 15 }}>
                 <Img
-                    className="hero"
                     alt={post.title}
                     fluid={post.heroImage.fluid}
                 />
