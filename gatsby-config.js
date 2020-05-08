@@ -4,6 +4,31 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+require("dotenv").config({
+    path: `.env.${process.env.NODE_ENV}`,
+})
+
+const contentfulConfig = {
+    spaceId: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+}
+
+// if you want to use the preview API please define
+// CONTENTFUL_HOST in your environment config
+// the `host` property should map to `preview.contentful.com`
+// https://www.contentful.com/developers/docs/references/content-preview-api/#/reference/spaces/space/get-a-space/console/js
+if (process.env.CONTENTFUL_HOST) {
+    contentfulConfig.host = process.env.CONTENTFUL_HOST
+}
+
+const { spaceId, accessToken } = contentfulConfig
+
+if (!spaceId || !accessToken) {
+    throw new Error(
+        "Contentful spaceId and the access token need to be provided."
+    )
+}
+
 module.exports = {
     /* Your site config here */
     siteMetadata: {
@@ -90,35 +115,38 @@ module.exports = {
             },
         },
         `gatsby-plugin-sharp`,
-        `gatsby-transformer-remark`,
         {
             resolve: `gatsby-transformer-remark`,
             options: {
-              plugins: [
-                {
-                  resolve: `gatsby-remark-images`,
-                  options: {
-                    maxWidth: 800,
-                  },
-                },
-              ],
+                plugins: [
+                    {
+                        resolve: `gatsby-remark-images`,
+                        options: {
+                            maxWidth: 800,
+                        },
+                    },
+                ],
             },
-          },
+        },
         `gatsby-transformer-sharp`,
+        {
+            resolve: "gatsby-source-contentful",
+            options: contentfulConfig,
+        },
         `gatsby-remark-images`,
         {
             resolve: `gatsby-plugin-mdx`,
             options: {
-              gatsbyRemarkPlugins: [
-                {
-                  resolve: `gatsby-remark-images`,
-                  options: {
-                    maxWidth: 1200,
-                  },
-                },
-              ],
+                gatsbyRemarkPlugins: [
+                    {
+                        resolve: `gatsby-remark-images`,
+                        options: {
+                            maxWidth: 1200,
+                        },
+                    },
+                ],
             },
-          },
+        },
         // this plugin is for styling
         {
             resolve: `gatsby-plugin-typography`,

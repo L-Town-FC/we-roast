@@ -49,39 +49,40 @@ const Blog = () => {
                 {data.blogs.totalCount} Posts
             </h4>
             {data.blogs.edges.map(({ node }) => (
-                <>
-                    <Link
-                        to={node.fields.slug}
-                        css={css`
-                            text-decoration: none;
-                            color: inherit;
-                        `}
-                    >
-                        <Card
-                            title={node.frontmatter.title}
-                            hoverable="true"
-                            key={node.id}
-                            onClick={e => console.log(e)}
+                node.fields &&
+                    <>
+                        <Link
+                            to={node.fields.slug || "/blog/hello-world"}
+                            css={css`
+                                text-decoration: none;
+                                color: inherit;
+                            `}
                         >
-                            <h3
-                                css={css`
-                                    margin-bottom: ${rhythm(1 / 4)};
-                                `}
+                            <Card
+                                title={node.frontmatter.title}
+                                hoverable="true"
+                                key={node.id}
+                                onClick={e => console.log(e)}
                             >
-                                {node.frontmatter.title}{" "}
-                                <span
+                                <h3
                                     css={css`
-                                        color: #bbb;
+                                        margin-bottom: ${rhythm(1 / 4)};
                                     `}
                                 >
-                                    - {node.frontmatter.date}
-                                </span>
-                            </h3>
-                            <p>{node.excerpt}</p>
-                        </Card>
-                    </Link>
-                    <br />
-                </>
+                                    {node.frontmatter.title}{" "}
+                                    <span
+                                        css={css`
+                                            color: #bbb;
+                                        `}
+                                    >
+                                        - {node.frontmatter.date}
+                                    </span>
+                                </h3>
+                                <p>{node.excerpt}</p>
+                            </Card>
+                        </Link>
+                        <br />
+                    </>
             ))}
             <div className="beans-gallary">
                 {data.images.nodes.map(image => (

@@ -6,6 +6,7 @@ import Img from "gatsby-image"
 export default ({ data }) => {
     const post = data.markdownRemark
     const featuredImgFluid = post.frontmatter.featuredImage.childImageSharp.fluid
+    console.log(post)
     return (
         <>
             <SEO title={post.frontmatter.title} description={post.excerpt} />

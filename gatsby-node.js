@@ -3,13 +3,17 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
     const { createNodeField } = actions
-    if (node.internal.type === `MarkdownRemark`) {
-        const slug = createFilePath({ node, getNode, basePath: `pages` })
-        createNodeField({
-            node,
-            name: `slug`,
-            value: slug,
-        })
+    if (node.internal.type === `MarkdownRemark` && node.parent) {
+        const fileNode = getNode(node.parent)
+        console.log(`\n`, fileNode.relativePath)
+        if (fileNode.relativePath){
+            const slug = createFilePath({ node, getNode, basePath: `pages` })
+            createNodeField({
+                node,
+                name: `slug`,
+                value: slug,
+            })
+        }
     }
 }
 
@@ -30,6 +34,7 @@ exports.createPages = async ({ graphql, actions }) => {
     // **Note:** The graphql function call returns a Promise
     // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
     const { createPage } = actions
+    // used for local markdown
     const result = await graphql(`
         query {
             allMarkdownRemark {
@@ -45,11 +50,35 @@ exports.createPages = async ({ graphql, actions }) => {
     `)
     //console.log(JSON.stringify(result, null, 4))
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+        node.fields
+            ? createPage({
+                  path: node.fields.slug,
+                  component: path.resolve(`./src/templates/local-post.js`),
+                  context: {
+                      slug: node.fields.slug,
+                  },
+              })
+            : {}
+    })
+    // used for contenful
+    const contenfulResult = await graphql(`
+        {
+            allContentfulBlogPost {
+                edges {
+                    node {
+                        title
+                        slug
+                    }
+                }
+            }
+        }
+    `)
+    contenfulResult.data.allContentfulBlogPost.edges.forEach((post, index) => {
         createPage({
-            path: node.fields.slug,
-            component: path.resolve(`./src/templates/blog-post.js`),
+            path: `/blog/${post.node.slug}/`,
+            component: path.resolve(`./src/templates/contentful-post.js`),
             context: {
-                slug: node.fields.slug,
+                slug: post.node.slug,
             },
         })
     })
