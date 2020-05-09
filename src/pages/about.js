@@ -1,5 +1,6 @@
 import React from "react"
 import SEO from "../components/seo"
+import Background from "../components/Background"
 import { Card } from "antd"
 
 const About = () => (
@@ -21,7 +22,7 @@ const About = () => (
             </Card>
             <br />
             <Card hoverable>
-                <b><b>We.</b></b> started this website to facilitate a fully immersive coffee
+                <b>We.</b> started this website to facilitate a fully immersive coffee
                 experience, where you can learn about coffee from some of the
                 most knowledgeable people in the industry! Together, <b>We.</b> let a
                 group's passion drive a desire to learn as much about America’s

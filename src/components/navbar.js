@@ -25,7 +25,6 @@ class navbar extends React.Component {
     }
 
     handleClick = e => {
-        console.log("click ", e)
         navigate(e.key)
         this.setState({
             current: e.key,
@@ -51,13 +50,12 @@ class navbar extends React.Component {
                     }}
                 >
                     {/* <Logo /> */}
-                    <img src={logo} style={{ borderRadius: 0 }} alt="logo" />
+                    <img src={logo} style={{ borderRadius: 0, width: "30%" }} alt="logo" />
                     <ThemeToggler>
                         {({ theme, toggleTheme }) => {
                             theme = this.state.theme
                             localStorage.setItem("theme", theme)
                             // toggleTheme(this.state.theme)
-                            console.log(theme)
                             return (
                                 <Switch
                                     checked={theme === "dark"}

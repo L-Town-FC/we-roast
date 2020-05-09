@@ -46,11 +46,10 @@ const Blogs = () => {
             <SEO title={siteTitle} />
 
             <div className="wrapper">
-                <h2 className="section-headline">Recent articles</h2>
+                <h2 style={{ color: "var(--titleNormal)" }}>Recent articles</h2>
                 {posts.map(({ node }) => (
                     <Link to={`/blog/${node.slug}`}>
                         <Card
-                            title={node.title}
                             hoverable="true"
                             key={node.title}
                         >

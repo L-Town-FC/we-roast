@@ -64,7 +64,7 @@ h1.dark {
 }
 
 img {
-    border-radius: 50%;
+    /* border-radius: 40%; */
     display: flex;
     justify-content: center;
 }

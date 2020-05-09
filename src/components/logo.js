@@ -18,7 +18,7 @@ const Logo = props => {
     query {
       placeholderImage: file(relativePath: { eq: "logo.png" }) {
         childImageSharp {
-          fluid {
+          fluid(quality: 90) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -26,7 +26,7 @@ const Logo = props => {
     }
   `)
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+  return <Img fluid={data.placeholderImage.childImageSharp.fluid} style={{ borderRadius: 0 }}/>
 }
 
 export default Logo

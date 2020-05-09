@@ -9,6 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import NavBar from "./navbar"
+import Background from "./Background"
 import { InstagramFilled } from "@ant-design/icons"
 import { Button } from "antd"
 import { isBrowser } from "../services/auth"
@@ -52,7 +53,7 @@ const Layout = ({ children }) => {
             >
                 <main>{children}</main>
                 <footer>
-                    Created by Mollo LLC © {new Date().getFullYear()}, Built
+                    Created by Mollo {new Date().getFullYear()}, Built
                     with
                     {` `}
                     <a href="https://www.gatsbyjs.org">Gatsby</a>

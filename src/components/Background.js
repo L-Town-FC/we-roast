@@ -34,14 +34,12 @@ const FullBackground = ({ className, children }) => {
       <StyledFullScreenWrapper>
         <BackgroundImage
           Tag="section"
-          className={className}
           fluid={imageData}
           backgroundColor={`#040e18`}
           title="Fullscreen Background"
           id="fullscreenbg"
           role="img"
           aria-label="Fullscreen Background"
-          preserveStackingContext={true}
         >
           {children}
         </BackgroundImage>

@@ -35,7 +35,7 @@ const AntdLayout = ({ children }) => {
                 <div>{children}</div>
             </Content>
             <Footer style={{ textAlign: "center" }}>
-                Created by Mollo LLC
+                Created by Mollo
             </Footer>
         </Layout>
     )

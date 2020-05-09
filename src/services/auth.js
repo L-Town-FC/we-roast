@@ -56,7 +56,6 @@ const setSession = (cb = () => {}) => (err, authResult) => {
         user = authResult.idTokenPayload
         localStorage.setItem("isLoggedIn", true)
         const redirect = authResult.appState || "/app/profile"
-        console.log(redirect)
         navigate(redirect)
         cb()
     }
