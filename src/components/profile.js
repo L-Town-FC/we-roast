@@ -8,7 +8,7 @@ const Profile = () => (
     <div>
         <SEO title="Profile" />
         <Card title="Profile" hoverable="true">
-            <img src={getProfile().picture} alt="profilePicture" />
+            <img style={{borderRadius: "50%"}} src={getProfile().picture} alt="profilePicture" />
             <ul>
                 <li>Name: {getProfile().name}</li>
                 <li>Nickname: {getProfile().nickname}</li>
