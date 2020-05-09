@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
-import { Card } from "antd"
+import { Avatar, Card } from "antd"
 
 export default ({ data }) => {
     const post = data.contentfulBlogPost
@@ -28,7 +28,20 @@ export default ({ data }) => {
                     >
                         Published: {post.publishDate}
                     </p>
-                    <p>Author: {post.author.name}</p>
+                    <div
+                        style={{
+                            // position: "relative",
+                            display: "flex",
+                            padding: "15",
+                        }}
+                    >
+                        <Avatar
+                            size="large"
+                            src={post.author.image.fluid.src}
+                        />
+                    <h3>{' '}{post.author.name}</h3>
+                    </div>
+                    <br />
                     <div
                         dangerouslySetInnerHTML={{
                             __html: post.body.childMarkdownRemark.html,
