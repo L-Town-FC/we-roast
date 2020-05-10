@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 import { Avatar, Card } from "antd"
@@ -28,9 +28,9 @@ export default ({ data }) => {
                     >
                         Published: {post.publishDate}
                     </p>
-                    <div
+                    <Link
+                        to={`/user/${post.author.username}`}
                         style={{
-                            // position: "relative",
                             display: "flex",
                             padding: "15",
                         }}
@@ -39,8 +39,8 @@ export default ({ data }) => {
                             size="large"
                             src={post.author.image.fluid.src}
                         />
-                    <h3>{' '}{post.author.name}</h3>
-                    </div>
+                        <h3> {post.author.name}</h3>
+                    </Link>
                     <br />
                     <div
                         dangerouslySetInnerHTML={{
@@ -65,6 +65,7 @@ export const query = graphql`
             publishDate(formatString: "MMMM Do, YYYY")
             author {
                 name
+                username
                 image {
                     fluid {
                         src
