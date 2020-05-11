@@ -6,7 +6,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     if (node.internal.type === `MarkdownRemark` && node.parent) {
         const fileNode = getNode(node.parent)
         console.log(`\n`, fileNode.relativePath)
-        if (fileNode.relativePath){
+        if (fileNode.relativePath) {
             const slug = createFilePath({ node, getNode, basePath: `pages` })
             createNodeField({
                 node,
@@ -35,7 +35,7 @@ exports.createPages = async ({ graphql, actions }) => {
     // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
     const { createPage } = actions
     // used for local markdown
-    const result = await graphql(`
+    const localMarkdown = await graphql(`
         query {
             allMarkdownRemark {
                 edges {
@@ -48,7 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
             }
         }
     `)
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    localMarkdown.data.allMarkdownRemark.edges.forEach(({ node }) => {
         node.fields
             ? createPage({
                   path: node.fields.slug,
@@ -70,15 +70,33 @@ exports.createPages = async ({ graphql, actions }) => {
                     }
                 }
             }
+            allContentfulPerson {
+                edges {
+                    node {
+                        name
+                        title
+                        username
+                    }
+                }
+            }
         }
     `)
-    contenfulResult.data.allContentfulBlogPost.edges.forEach((post, index) => {
+    contenfulResult.data.allContentfulBlogPost.edges.forEach(({ node }) => {
         createPage({
-            path: `/blog/${post.node.slug}/`,
+            path: `/blog/${node.slug}/`,
             component: path.resolve(`./src/templates/contentful-post.js`),
             context: {
-                slug: post.node.slug,
+                slug: node.slug,
             },
+        })
+    })
+    contenfulResult.data.allContentfulPerson.edges.forEach(({ node }) => {
+        createPage({
+            path: `/user/${node.username}`,
+            component: path.resolve(`./src/templates/site-user.js`),
+            context: {
+                username: node.username,
+            }
         })
     })
 }

@@ -50,7 +50,7 @@ class navbar extends React.Component {
                     }}
                 >
                     {/* <Logo /> */}
-                    <img src={logo} style={{ borderRadius: 0, width: "30%" }} alt="logo" />
+                    <img src={logo} style={{ borderRadius: 0, width: "40%" }} alt="logo" />
                     <ThemeToggler>
                         {({ theme, toggleTheme }) => {
                             theme = this.state.theme

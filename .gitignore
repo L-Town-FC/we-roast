@@ -70,3 +70,5 @@ yarn-error.log
 
 # contentful
 content*.json
+# Local Netlify folder
+.netlify

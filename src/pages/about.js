@@ -32,6 +32,10 @@ const About = () => (
                 our stats, and if all goes well have a ton of fun. Welcome to
                 <b>We. Roast Coffee.</b>
             </Card>
+            <br />
+            <Card hoverable title="Founder">Ted Sullivan</Card>
+            <br />
+            <Card hoverable title="Lead Developer">Andrew Mollohan</Card>
         </div>
         <img
             src="https://source.unsplash.com/featured/?coffee"
