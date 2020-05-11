@@ -7,9 +7,9 @@ export const isBrowser = () => typeof window !== "undefined"
 // this fails on build
 const auth = isBrowser()
     ? new auth0.WebAuth({
-          domain: process.env.AUTH0_DOMAIN,
-          clientID: process.env.AUTH0_CLIENTID,
-          redirectUri: process.env.AUTH0_CALLBACK,
+          domain: process.env.GATSBY_AUTH0_DOMAIN,
+          clientID: process.env.GATSBY_AUTH0_CLIENTID,
+          redirectUri: process.env.GATSBY_AUTH0_CALLBACK,
           responseType: "token id_token",
           scope: "openid profile email",
       })
@@ -85,7 +85,7 @@ export const silentAuth = callback => {
 export const logout = () => {
     localStorage.setItem("isLoggedIn", false)
     auth.logout({
-        returnTo: process.env.AUTH0_LOGOUT,
-        client_id: process.env.AUTH0_CLIENTID,
+        returnTo: process.env.GATSBY_AUTH0_LOGOUT,
+        client_id: process.env.GATSBY_AUTH0_CLIENTID,
     })
 }
