@@ -19,6 +19,7 @@
     "@emotion/core": "^10.0.28",
     "antd": "^4.2.0",
     "auth0-js": "^9.13.2",
+    "contentful": "^7.14.4",
     "contentful-management": "^5.26.1",
     "gatsby": "^2.20.12",
     "gatsby-background-image": "^1.1.1",
