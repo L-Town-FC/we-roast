@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, navigate } from "gatsby"
-import { Menu, Switch } from "antd"
+import { Menu, Space, Switch } from "antd"
 import { UserOutlined, CoffeeOutlined } from "@ant-design/icons"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import logo from "../../static/wr-logo.png"
@@ -40,64 +40,94 @@ class navbar extends React.Component {
 
     render() {
         return (
-            <div>
-                <br />
-                <div
-                    style={{
-                        position: "relative",
-                        display: "flex",
-                        justifyContent: "center",
-                    }}
-                >
-                    {/* <Logo /> */}
-                    <img src={logo} style={{ borderRadius: 0, width: "40%" }} alt="logo" />
-                    <ThemeToggler>
-                        {({ theme, toggleTheme }) => {
-                            theme = this.state.theme
-                            localStorage.setItem("theme", theme)
-                            // toggleTheme(this.state.theme)
-                            return (
-                                <Switch
-                                    checked={theme === "dark"}
-                                    onChange={e => {
-                                        this.changeTheme(e)
-                                        toggleTheme(
-                                            theme === "dark" ? "light" : "dark"
-                                        )
-                                    }}
-                                    checkedChildren="Dark"
-                                    unCheckedChildren="Light"
-                                />
-                            )
+            <Space direction="vertical">
+                <Space align="center">
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
                         }}
-                    </ThemeToggler>
-                </div>
-                <br />
+                    >
+                        <img
+                            src={logo}
+                            style={{ borderRadius: 0 }}
+                            alt="logo"
+                        />
+                        {/* <ThemeToggler>
+                            {({ theme, toggleTheme }) => {
+                                theme = this.state.theme
+                                localStorage.setItem("theme", theme)
+                                // toggleTheme(this.state.theme)
+                                return (
+                                    <Switch
+                                        checked={theme === "dark"}
+                                        onChange={e => {
+                                            this.changeTheme(e)
+                                            toggleTheme(
+                                                theme === "dark"
+                                                    ? "light"
+                                                    : "dark"
+                                            )
+                                        }}
+                                        checkedChildren="Dark"
+                                        unCheckedChildren="Light"
+                                    />
+                                )
+                            }}
+                        </ThemeToggler> */}
+                    </div>
+                </Space>
                 {/* <br /> */}
-                <Menu
-                    theme={this.state.theme}
-                    onClick={this.handleClick}
-                    selectedKeys={[this.state.current]}
-                    mode="horizontal"
-                    style={{
-                        position: "relative",
-                        display: "flex",
-                        justifyContent: "center",
-                    }}
-                >
-                    {this.state.menuLinks.map(menuItem => (
-                        <Menu.Item
-                            key={menuItem.link}
-                            icon={<CoffeeOutlined />}
-                        >
-                            {menuItem.name}
+                <Space align="center">
+                    <Menu
+                        theme={this.state.theme}
+                        onClick={this.handleClick}
+                        selectedKeys={[this.state.current]}
+                        mode="horizontal"
+                        style={{
+                            // position: "relative",
+                            display: "flex",
+                            justifyContent: "center",
+                        }}
+                    >
+                        {this.state.menuLinks.map(menuItem => (
+                            <Menu.Item
+                                key={menuItem.link}
+                                icon={<CoffeeOutlined />}
+                            >
+                                {menuItem.name}
+                            </Menu.Item>
+                        ))}
+                        <Menu.Item key="/app/profile" icon={<UserOutlined />}>
+                            Profile
                         </Menu.Item>
-                    ))}
-                    <Menu.Item key="/app/profile" icon={<UserOutlined />}>
-                        Profile
-                    </Menu.Item>
-                </Menu>
-            </div>
+                        {/* <Menu.Item key="lightdark" disabled> */}
+                            <ThemeToggler>
+                                {({ theme, toggleTheme }) => {
+                                    theme = this.state.theme
+                                    localStorage.setItem("theme", theme)
+                                    // toggleTheme(this.state.theme)
+                                    return (
+                                        <Switch
+                                            checked={theme === "dark"}
+                                            onChange={e => {
+                                                this.changeTheme(e)
+                                                toggleTheme(
+                                                    theme === "dark"
+                                                        ? "light"
+                                                        : "dark"
+                                                )
+                                            }}
+                                            checkedChildren="Dark"
+                                            unCheckedChildren="Light"
+                                        />
+                                    )
+                                }}
+                            </ThemeToggler>
+                        {/* </Menu.Item> */}
+                    </Menu>
+                </Space>
+            </Space>
         )
     }
 }
