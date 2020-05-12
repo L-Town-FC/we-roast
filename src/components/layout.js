@@ -56,11 +56,12 @@ const Layout = ({ children }) => {
                 <footer>
                     <Card>
                         <div style={{ display: `flex` }}>
-                            Created by{" "}
-                            <a href="https://github.com/atmollohan"> Mollo</a>,
-                            {/* Built with{" "}
+                            <p>Created by{" "}
+                            <a href="https://github.com/atmollohan">Mollo</a>
+                            {" "}Built with{" "}
                             <a href="https://www.gatsbyjs.org"> Gatsby</a> and{" "}
-                            <a href="https://3x.ant.design/"> Ant Design</a> */}
+                            <a href="https://3x.ant.design/"> Ant Design</a>
+                            </p>
                             <br />
                         </div>
                     </Card>

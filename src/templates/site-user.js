@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
-import { Card } from "antd"
+import { Card, Space } from "antd"
 import ArticlePreview from "../components/article-preview"
 
 export default ({ data }) => {
@@ -11,35 +11,36 @@ export default ({ data }) => {
     const posts = data.allContentfulBlogPost.edges
 
     return (
-        <>
+        <Space direction="vertical">
             <SEO
                 title={`${user.title} | ${siteTitle}`}
                 description={`${user.title} | ${siteTitle}`}
             />
-            <div style={{ padding: 15 }}>
-                <Img alt={user.username} fluid={user.image.fluid} />
-                <br />
-                <Card hoverable="true">
-                    <h1 style={{ color: "var(--titleNormal)" }}>{user.name}</h1>
-                    <h2 style={{ color: "var(--titleNormal)" }}>
-                        {user.username}
-                    </h2>
-                    <p
-                        style={{
-                            display: "block",
-                        }}
-                    >
-                        Joined: {user.createdAt}
-                    </p>
-                    <br />
-                    <div
-                        dangerouslySetInnerHTML={{
-                            __html:
-                                user.shortBio.childMarkdownRemark.html,
-                        }}
-                    />
-                    <br />
-                </Card>
+                <Space>
+                    <Img alt={user.username} fluid={user.image.fluid} style={{borderRadius:"50%"}} />
+                    <Card hoverable="true">
+                        <h1 style={{ color: "var(--titleNormal)" }}>
+                            {user.name}
+                        </h1>
+                        <h2 style={{ color: "var(--titleNormal)" }}>
+                            {user.username}
+                        </h2>
+                        <p
+                            style={{
+                                display: "block",
+                            }}
+                        >
+                            Joined: {user.createdAt}
+                        </p>
+                        <br />
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: user.shortBio.childMarkdownRemark.html,
+                            }}
+                        />
+                        <br />
+                    </Card>
+                </Space>
                 <br />
                 <h2 style={{ color: "var(--titleNormal)" }}>Blogs</h2>
                 {posts.map(({ node }) => (
@@ -50,8 +51,7 @@ export default ({ data }) => {
                         <br />
                     </Link>
                 ))}
-            </div>
-        </>
+        </Space>
     )
 }
 
