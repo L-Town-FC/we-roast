@@ -1,7 +1,8 @@
+
 const sdk = require("contentful-management")
 const fs = require("fs")
-const spaceId = process.env.GATSBY_CONTENTFUL_SPACE_ID
-const filePath = "../../static/wr-logo.png"
+const spaceId = process.env.CONTENTFUL_SPACE_ID
+const filePath = "./static/wr-logo.png"
 const fileName = "we-roast-logo"
 const contentType = "image/png"
 const accessToken = process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN
