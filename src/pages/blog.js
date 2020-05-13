@@ -48,7 +48,7 @@ const Blogs = () => {
             <div className="wrapper">
                 <h2 style={{ color: "var(--titleNormal)" }}>Recent articles</h2>
                 {posts.map(({ node }) => (
-                    <Link to={`/blog/${node.slug}`}>
+                    <Link key={node.slug} to={`/blog/${node.slug}`}>
                         <Card
                             hoverable="true"
                             key={node.title}
