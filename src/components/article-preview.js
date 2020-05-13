@@ -4,7 +4,7 @@ import Img from 'gatsby-image'
 import { Space } from "antd"
 
 export default ({ article }) => (
-  <Space>
+  <Space direction="vertical">
     <Img alt="blogHero" fluid={article.heroImage.fluid} style={{borderRadius:"50%"}} />
     <h3>
       <Link to={`/blog/${article.slug}`}>{article.title}</Link>
