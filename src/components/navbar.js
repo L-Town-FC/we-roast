@@ -11,7 +11,7 @@ class navbar extends React.Component {
         super(props)
         this.state = {
             loading: true,
-            theme: localStorage.getItem("theme"),
+            theme: localStorage.getItem("theme")!==null ? localStorage.getItem("theme"): "light",
             current: props.currentKey,
             menuLinks: props.menuLinks,
             siteTitle: props.siteTitle,

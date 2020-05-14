@@ -96,7 +96,7 @@ exports.createPages = async ({ graphql, actions }) => {
             component: path.resolve(`./src/templates/site-user.js`),
             context: {
                 username: node.username,
-            }
+            },
         })
     })
 }
@@ -118,6 +118,9 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
                         use: loaders.null(),
                     },
                 ],
+            },
+            node: {
+                fs: "empty",
             },
         })
     }

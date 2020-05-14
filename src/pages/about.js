@@ -55,7 +55,7 @@ const About = () => {
                 ton of fun. Welcome to
                 <b>We. Roast Coffee.</b>
             </Card>
-            <Space align="center">
+            <Space align="center" direction="vertical">
                 <Card hoverable title="Founder: Ted Sullivan">
                     <Img fluid={aboutData.ted.image.fluid} alt="tedAboutPage" style={{borderRadius:"50%"}}/>
                 </Card>
