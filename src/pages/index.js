@@ -1,7 +1,7 @@
 import React from "react"
 import { getProfile, isAuthenticated } from "../services/auth"
 import SEO from "../components/seo"
-import { Card, Space, PageHeader } from "antd"
+import { Card, Space } from "antd"
 
 const IndexPage = ({ data }) => {
     return (

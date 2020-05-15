@@ -41,7 +41,7 @@ const Layout = ({ children }) => {
             <NavBar
                 menuLinks={data.site.siteMetadata.menuLinks}
                 siteTitle={data.site.siteMetadata.title}
-                currentKey="premium coffee"
+                currentKey="Home"
                 theme="light"
             />
             <div
@@ -58,7 +58,7 @@ const Layout = ({ children }) => {
                         <div style={{ display: `flex` }}>
                             <p>Created by{" "}
                             <a href="https://github.com/atmollohan">Mollo</a>
-                            {" "}Built with{" "}
+                            ,{" "}built with{" "}
                             <a href="https://www.gatsbyjs.org"> Gatsby</a> and{" "}
                             <a href="https://3x.ant.design/"> Ant Design</a>
                             </p>

@@ -1,7 +1,6 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import { css } from "@emotion/core"
-import { rhythm } from "../utils/typography"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 import { Card } from "antd"
@@ -63,11 +62,7 @@ const LocalPosts = () => {
                                 hoverable="true"
                                 key={node.id}
                             >
-                                <h3
-                                    css={css`
-                                        margin-bottom: ${rhythm(1 / 4)};
-                                    `}
-                                >
+                                <h3>
                                     {node.frontmatter.title}{" "}
                                     <span
                                         css={css`

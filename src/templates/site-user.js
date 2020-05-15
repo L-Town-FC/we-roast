@@ -79,7 +79,7 @@ export const query = graphql`
             }
         }
         allContentfulBlogPost(
-            filter: { author: { username: { eq: "ramzord" } } }
+            filter: { author: { username: { eq: $username } } }
         ) {
             edges {
                 node {
