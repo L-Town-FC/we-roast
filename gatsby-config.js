@@ -17,8 +17,8 @@ const contentfulConfig = {
 // CONTENTFUL_HOST in your environment config
 // the `host` property should map to `preview.contentful.com`
 // https://www.contentful.com/developers/docs/references/content-preview-api/#/reference/spaces/space/get-a-space/console/js
-if (process.env.GATSBY_CONTENTFUL_HOST) {
-    contentfulConfig.host = process.env.GATSBY_CONTENTFUL_HOST
+if (process.env.CONTENTFUL_HOST) {
+    contentfulConfig.host = process.env.CONTENTFUL_HOST
 }
 
 const { spaceId, accessToken } = contentfulConfig
@@ -145,13 +145,6 @@ module.exports = {
                         },
                     },
                 ],
-            },
-        },
-        // this plugin is for styling
-        {
-            resolve: `gatsby-plugin-typography`,
-            options: {
-                pathToConfigModule: `src/utils/typography`,
             },
         },
     ],

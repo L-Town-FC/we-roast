@@ -1,0 +1,67 @@
+const sdk = require("contentful-management")
+const fs = require("fs")
+const spaceId = process.env.CONTENTFUL_SPACE_ID
+const filePath = "./static/wr-logo.png"
+const fileName = "we-roast-logo"
+const contentType = "image/png"
+const accessToken = process.env.CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
+
+const sdkClient = sdk.createClient({
+    spaceId: spaceId,
+    accessToken: accessToken,
+})
+
+const uploadFile = (filePath, fileName, contentType) => {
+    sdkClient.getSpace(spaceId).then(space => {
+        console.log("uploading...")
+        return space
+            .createUpload({
+                file: fs.readFileSync(filePath),
+                contentType,
+                fileName,
+            })
+            .then(upload => {
+                console.log("creating asset...")
+                return space
+                    .createAsset({
+                        fields: {
+                            title: {
+                                "en-US": fileName,
+                            },
+                            file: {
+                                "en-US": {
+                                    fileName: fileName,
+                                    contentType: contentType,
+                                    uploadFrom: {
+                                        sys: {
+                                            type: "Link",
+                                            linkType: "Upload",
+                                            id: upload.sys.id,
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    })
+                    .then(asset => {
+                        console.log("prcessing...")
+                        return asset.processForLocale("en-US", {
+                            processingCheckWait: 2000,
+                        })
+                    })
+                    .then(asset => {
+                        console.log("publishing...")
+                        return asset.publish()
+                    })
+                    .then(asset => {
+                        console.log(asset)
+                        return asset
+                    })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    })
+}
+
+module.exports = { uploadFile }
