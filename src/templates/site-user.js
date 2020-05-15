@@ -7,6 +7,7 @@ import ArticlePreview from "../components/article-preview"
 
 export default ({ data }) => {
     const user = data.contentfulPerson
+    const contentfulId = data.contentfulPerson.contentful_id
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allContentfulBlogPost.edges
 
@@ -63,6 +64,7 @@ export const query = graphql`
             }
         }
         contentfulPerson(username: { eq: $username }) {
+            contentful_id
             createdAt(formatString: "MMMM Do, YYYY")
             image {
                 fluid {

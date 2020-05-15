@@ -67,6 +67,7 @@ exports.createPages = async ({ graphql, actions }) => {
                     node {
                         title
                         slug
+                        contentful_id
                     }
                 }
             }
@@ -76,6 +77,7 @@ exports.createPages = async ({ graphql, actions }) => {
                         name
                         title
                         username
+                        contentful_id
                     }
                 }
             }

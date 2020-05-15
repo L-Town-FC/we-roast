@@ -6,6 +6,7 @@ import { Avatar, Card } from "antd"
 
 export default ({ data }) => {
     const post = data.contentfulBlogPost
+    const contentfulId = data.contentfulBlogPost.contentful_id    
     const siteTitle = data.site.siteMetadata.title
 
     return (
@@ -61,6 +62,7 @@ export const query = graphql`
             }
         }
         contentfulBlogPost(slug: { eq: $slug }) {
+            contentful_id
             title
             publishDate(formatString: "MMMM Do, YYYY")
             author {

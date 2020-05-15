@@ -52,6 +52,7 @@ class navbar extends React.Component {
                             src={logo}
                             style={{ borderRadius: 0 }}
                             alt="logo"
+                            
                         />
                         {/* <ThemeToggler>
                             {({ theme, toggleTheme }) => {

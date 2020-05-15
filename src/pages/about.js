@@ -55,12 +55,18 @@ const About = () => {
                 ton of fun. Welcome to
                 <b>We. Roast Coffee.</b>
             </Card>
-            <Space>
-                <Card hoverable title="Founder: Ted Sullivan" size="small">
-                    <Img fluid={aboutData.ted.image.fluid} alt="tedAboutPage" style={{borderRadius:"50%",flex:"1"}} imgStyle={{objectFit: 'contain'}}/>
+            <Space direction="vertical">
+                <Card hoverable title="Founder: Ted Sullivan" size="small" style={{ width:"75%" }}>
+                    <Space>
+                        <Img fluid={aboutData.ted.image.fluid} alt="tedAboutPage" style={{borderRadius:"50%"}} imgStyle={{width: 'auto', height: 'auto'}} />
+                        <p>The brains of the organization</p>
+                    </Space>
                 </Card>
-                <Card hoverable title="Lead Developer: Andrew Mollohan" size="small">
-                    <Img fluid={aboutData.andrew.image.fluid} alt="andrewAboutPage" style={{borderRadius:"50%", flex:"1"}} imgStyle={{objectFit: 'contain'}}/>
+                <Card hoverable title="Lead Developer: Andrew Mollohan" size="small" style={{ width:"75%" }}>
+                    <Space>
+                        <Img fluid={aboutData.andrew.image.fluid} alt="andrewAboutPage" style={{borderRadius:"50%"}} imgStyle={{width: 'auto', height: 'auto'}} />
+                        <p>The brawn of the organization</p>
+                    </Space>
                 </Card>
             </Space>
             <img
