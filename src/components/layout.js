@@ -41,7 +41,7 @@ const Layout = ({ children }) => {
             <NavBar
                 menuLinks={data.site.siteMetadata.menuLinks}
                 siteTitle={data.site.siteMetadata.title}
-                currentKey="premium coffee"
+                currentKey="Home"
                 theme="light"
             />
             <div

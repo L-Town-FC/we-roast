@@ -4,7 +4,7 @@ import SEO from "../components/seo"
 import { Button, Card } from "antd"
 import ArticlePreview from "../components/article-preview"
 import { getProfile } from "../services/auth"
-import { uploadFile } from "../services/contentful.API"
+// import { uploadFile } from "../services/contentful.API"
 
 const Blogs = () => {
     const data = useStaticQuery(graphql`
