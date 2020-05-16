@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, navigate } from "gatsby"
-import { Menu, Space, Switch } from "antd"
+import { Menu, Space, Switch, Affix } from "antd"
 import { UserOutlined, CoffeeOutlined } from "@ant-design/icons"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import logo from "../../static/wr-logo.png"
@@ -40,19 +40,19 @@ class navbar extends React.Component {
 
     render() {
         return (
-            <Space direction="vertical">
-                <Space align="center">
+            <Affix>
+                <div>
                     <div
                         style={{
                             display: "flex",
                             justifyContent: "center",
+                            backgroundColor: "var(--bg)",
                         }}
                     >
                         <img
                             src={logo}
                             style={{ borderRadius: 0 }}
                             alt="logo"
-                            
                         />
                         {/* <ThemeToggler>
                             {({ theme, toggleTheme }) => {
@@ -77,9 +77,8 @@ class navbar extends React.Component {
                             }}
                         </ThemeToggler> */}
                     </div>
-                </Space>
-                {/* <br /> */}
-                <Space align="center">
+                    {/* <br /> */}
+
                     <Menu
                         theme={this.state.theme}
                         onClick={this.handleClick}
@@ -103,32 +102,32 @@ class navbar extends React.Component {
                             Profile
                         </Menu.Item>
                         {/* <Menu.Item key="lightdark" disabled> */}
-                            <ThemeToggler>
-                                {({ theme, toggleTheme }) => {
-                                    theme = this.state.theme
-                                    localStorage.setItem("theme", theme)
-                                    // toggleTheme(this.state.theme)
-                                    return (
-                                        <Switch
-                                            checked={theme === "dark"}
-                                            onChange={e => {
-                                                this.changeTheme(e)
-                                                toggleTheme(
-                                                    theme === "dark"
-                                                        ? "light"
-                                                        : "dark"
-                                                )
-                                            }}
-                                            checkedChildren="Dark"
-                                            unCheckedChildren="Light"
-                                        />
-                                    )
-                                }}
-                            </ThemeToggler>
+                        <ThemeToggler>
+                            {({ theme, toggleTheme }) => {
+                                theme = this.state.theme
+                                localStorage.setItem("theme", theme)
+                                // toggleTheme(this.state.theme)
+                                return (
+                                    <Switch
+                                        checked={theme === "dark"}
+                                        onChange={e => {
+                                            this.changeTheme(e)
+                                            toggleTheme(
+                                                theme === "dark"
+                                                    ? "light"
+                                                    : "dark"
+                                            )
+                                        }}
+                                        checkedChildren="Dark"
+                                        unCheckedChildren="Light"
+                                    />
+                                )
+                            }}
+                        </ThemeToggler>
                         {/* </Menu.Item> */}
                     </Menu>
-                </Space>
-            </Space>
+                </div>
+            </Affix>
         )
     }
 }

@@ -14,11 +14,11 @@ export default ({ data }) => {
     return (
         <Space direction="vertical">
             <SEO
-                title={`${user.title} | ${siteTitle}`}
-                description={`${user.title} | ${siteTitle}`}
+                title={`${user.username} | ${siteTitle}`}
+                description={`${user.username} | ${siteTitle}`}
             />
                 <Space>
-                    <Img alt={user.username} fluid={user.image.fluid} style={{borderRadius:"50%"}} />
+                    <Img alt={user.username} fluid={user.image.fluid} />
                     <Card hoverable="true">
                         <h1 style={{ color: "var(--titleNormal)" }}>
                             {user.name}

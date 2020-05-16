@@ -1,10 +1,10 @@
 import React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import { Link, graphql, useStaticQuery, navigate } from "gatsby"
 import SEO from "../components/seo"
 import { Button, Card } from "antd"
 import ArticlePreview from "../components/article-preview"
 import { getProfile } from "../services/auth"
-// import { uploadFile } from "../services/contentful.API"
+import { getEntryById } from "../services/contentful.API"
 
 const Blogs = () => {
     const data = useStaticQuery(graphql`
@@ -46,9 +46,12 @@ const Blogs = () => {
 
             <div className="wrapper">
                 {getProfile() ? (
-                    <div>
-                        <Button onClick={e => console.log(e)}>Write something new</Button>
-                    </div>
+                    <Card style={{padding: 10}}>
+                        <p>Hey {getProfile().name}!</p>
+                        <Button onClick={e => navigate("/app/writeBlog")}>
+                        Want to write something new?
+                        </Button>
+                    </Card>
                 ) : (
                     <></>
                 )}
