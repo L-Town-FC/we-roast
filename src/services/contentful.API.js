@@ -28,7 +28,7 @@ async function getBlogStructure() {
         const space = await sdkClient.getSpace(spaceId)
         const environment = await space.getEnvironment("master")
         const blogPost = await environment.getContentType("blogPost")
-        return blogPost.fields
+        return blogPost
     } catch (error) {
         console.error(error)
     }
@@ -57,12 +57,22 @@ async function createNewBlog(blogObject) {
     const blogPublishDate = today
     // TODO handle tags
 
-    const contentfulBlogFields = await getBlogStructure()
-    let fields = {}
-    Object.entries(contentfulBlogFields).forEach(field => console.log(field))
+    // map blogObject details to fields
+    let newBlogData = { fields: {}}
+    newBlogData.fields.title = { "en-US": blogTitle}
+    newBlogData.fields.slug = { "en-US": blogSlug}
+    // newBlogData.fields.author = { "en-US": blogAuthor}
+    newBlogData.fields.description = { "en-US": blogDescription}
+    newBlogData.fields.body = { "en-US": blogBody}
+    newBlogData.fields.publishDate = { "en-US": blogPublishDate }
+    console.log(newBlogData)
+    
+    
+    const contentfulBlog = await getBlogStructure()
+    Object.entries(contentfulBlog.fields).forEach(entry => console.log(entry))
 
     // writes new blog
-    // const newBlog = await createBlog()
+    const newBlog = await createBlog(newBlogData)
 }
 
 module.exports = { createNewBlog, getEntryById }
