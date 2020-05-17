@@ -49,7 +49,7 @@ export const Navigation = props => {
                         </Menu.Item>
                     ))}
                     {!isAuthenticated && !loading && (
-                        <Menu.Item
+                        <Menu.Item key="/account"
                             onClick={() =>
                                 loginWithRedirect({
                                     appState: `${window.location.pathname}`,

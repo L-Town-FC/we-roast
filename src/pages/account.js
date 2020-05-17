@@ -7,8 +7,11 @@ import { ProtectedRoute } from "../components/protected-route"
 import { Navigatioin, Navigation } from "../components/navigation"
 
 const Account = () => {
-    const { user, logout } = useAuth0()
-    console.log(user)
+    const { loading, user, isAuthenticated, logout } = useAuth0()
+
+    if (loading || !user) {
+        return <p>Loading Account Profile...</p>
+    }
 
     return (
         <ProtectedRoute>
@@ -19,13 +22,20 @@ const Account = () => {
                     <Space>
                         <img
                             style={{ borderRadius: "50%" }}
-                            src={JSON.stringify(user, null, 2).picture}
+                            src={user.picture}
                             alt="profilePicture"
                         />
                         <ul>
-                            <li>Name: {JSON.stringify(user, null, 2).given_name}</li>
-                            <li>Nickname: {JSON.stringify(user, null, 2).nickname}</li>
-                            <li>E-mail: {JSON.stringify(user, null, 2).email}</li>
+                            <li>
+                                Name: {user.given_name}
+                            </li>
+                            <li>
+                                Nickname:{" "}
+                                {user.nickname}
+                            </li>
+                            <li>
+                                E-mail: {user.email}
+                            </li>
                             <li>
                                 <Button
                                     icon={<LogoutOutlined />}
