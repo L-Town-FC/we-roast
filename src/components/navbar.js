@@ -6,6 +6,7 @@ import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import logo from "../../static/wr-logo.png"
 import Logo from "./logo"
 
+
 class navbar extends React.Component {
     constructor(props) {
         super(props)
@@ -39,6 +40,7 @@ class navbar extends React.Component {
     // }
 
     render() {
+        
         return (
             <Space direction="vertical">
                 <Space align="center">
