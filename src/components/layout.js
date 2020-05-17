@@ -8,11 +8,10 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import NavBar from "./navbar"
+import { Navigation } from "../components/navigation"
 import Background from "./Background"
 import { InstagramFilled } from "@ant-design/icons"
 import { Avatar, Button, Card } from "antd"
-import { isBrowser } from "../services/auth"
 
 const Layout = ({ children }) => {
     const data = useStaticQuery(graphql`
@@ -38,10 +37,10 @@ const Layout = ({ children }) => {
                 transition: "color 0.2s ease-out, background 0.2s ease-out",
             }}
         >
-            <NavBar
+            <Navigation
                 menuLinks={data.site.siteMetadata.menuLinks}
                 siteTitle={data.site.siteMetadata.title}
-                currentKey="Home"
+                currentKey="/"
                 theme="light"
             />
             <div
@@ -56,11 +55,15 @@ const Layout = ({ children }) => {
                 <footer>
                     <Card>
                         <div style={{ display: `flex` }}>
-                            <p>Created by{" "}
-                            <a href="https://github.com/atmollohan">Mollo</a>
-                            ,{" "}built with{" "}
-                            <a href="https://www.gatsbyjs.org"> Gatsby</a> and{" "}
-                            <a href="https://3x.ant.design/"> Ant Design</a>
+                            <p>
+                                Created by{" "}
+                                <a href="https://github.com/atmollohan">
+                                    Mollo
+                                </a>
+                                , built with{" "}
+                                <a href="https://www.gatsbyjs.org"> Gatsby</a>{" "}
+                                and{" "}
+                                <a href="https://3x.ant.design/"> Ant Design</a>
                             </p>
                             <br />
                         </div>

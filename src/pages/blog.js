@@ -3,8 +3,9 @@ import { Link, graphql, useStaticQuery, navigate } from "gatsby"
 import SEO from "../components/seo"
 import { Button, Card } from "antd"
 import ArticlePreview from "../components/article-preview"
-import { getProfile } from "../services/auth"
 import { getEntryById } from "../services/contentful.API"
+import { useAuth0 } from "../services/auth.API"
+// import { uploadFile } from "../services/contentful.API"
 
 const Blogs = () => {
     const data = useStaticQuery(graphql`
@@ -40,18 +41,21 @@ const Blogs = () => {
     `)
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allContentfulBlogPost.edges
+    const { loading, user, isAuthenticated } = useAuth0()
+    if (loading) {
+        return <p>Loading...</p>
+    }
     return (
         <>
             <SEO title={siteTitle} />
 
             <div className="wrapper">
-                {getProfile() ? (
-                    <Card style={{padding: 10}}>
-                        <p>Hey {getProfile().name}!</p>
-                        <Button onClick={e => navigate("/app/writeBlog")}>
-                        Want to write something new?
+                {isAuthenticated ? (
+                    <div>
+                        <Button onClick={e => console.log(e)}>
+                            Write something new
                         </Button>
-                    </Card>
+                    </div>
                 ) : (
                     <></>
                 )}
