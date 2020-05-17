@@ -23,6 +23,17 @@ const getEntryById = entryId => {
     })
 }
 
+async function getUserById(userEmail) {
+    try {
+        const space = await sdkClient.getSpace(spaceId)
+        const environment = await space.getEnvironment("master")
+        const allEntries = await environment.getEntries({'content_type': 'person'})
+        Object.entries(allEntries.items).forEach(item => console.log(item))
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 async function getBlogStructure() {
     try {
         const space = await sdkClient.getSpace(spaceId)
@@ -75,4 +86,4 @@ async function createNewBlog(blogObject) {
     const newBlog = await createBlog(newBlogData)
 }
 
-module.exports = { createNewBlog, getEntryById }
+module.exports = { createNewBlog, getEntryById, getUserById }

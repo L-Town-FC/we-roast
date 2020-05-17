@@ -3,7 +3,6 @@ import React from "react"
 import { silentAuth } from "./src/services/auth"
 
 import Layout from "./src/components/layout"
-import AntdLayout from "./src/components/antdLayout"
 
 class SessionCheck extends React.Component {
     constructor(props) {
