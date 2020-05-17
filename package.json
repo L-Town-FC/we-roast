@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.1.0",
+    "@auth0/auth0-spa-js": "^1.8.1",
     "@emotion/core": "^10.0.28",
     "antd": "^4.2.0",
     "auth0-js": "^9.13.2",
