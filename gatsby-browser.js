@@ -3,7 +3,18 @@ import React from "react"
 import { silentAuth } from "./src/services/auth"
 
 import Layout from "./src/components/layout"
-import AntdLayout from "./src/components/antdLayout"
+import authConfig from "./auth_config.json"
+import { Auth0Provider } from "./src/services/auth.API"
+
+const onRedirectCallback = appState => {
+    window.history.replaceState(
+        {},
+        document.title,
+        appState && appState.targetUrl
+            ? appState.targetUrl
+            : window.location.pathname
+    )
+}
 
 class SessionCheck extends React.Component {
     constructor(props) {
@@ -30,15 +41,28 @@ class SessionCheck extends React.Component {
     }
 }
 
-export const wrapRootElement = ({ element }) => {
-    return (
-        <SessionCheck>
-            <Layout>
-                {element}
-            </Layout>
-        </SessionCheck>
-    )
-}
+export const wrapRootElement = ({ element }) => (
+    <Auth0Provider
+        domain={authConfig.domain}
+        client_id={authConfig.clientId}
+        redirect_uri={window.location.origin}
+        onRedirectCallback={onRedirectCallback}
+    >
+        <Layout>
+            {element}
+        </Layout>
+    </Auth0Provider>
+)
+
+// export const wrapRootElement = ({ element }) => {
+//     return (
+//         <SessionCheck>
+//             <Layout>
+//                 {element}
+//             </Layout>
+//         </SessionCheck>
+//     )
+// }
 
 // export const onServiceWorkerUpdateReady = () => {
 //     const answer = window.confirm(
