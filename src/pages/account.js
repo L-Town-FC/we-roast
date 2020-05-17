@@ -1,13 +1,14 @@
 import React from "react"
 import { Button, Card, Space } from "antd"
 import SEO from "../components/seo"
-import { useAuth0, logout } from "../services/auth.API"
+import { useAuth0 } from "../services/auth.API"
 import { LogoutOutlined } from "@ant-design/icons"
 import { ProtectedRoute } from "../components/protected-route"
 import { Navigatioin, Navigation } from "../components/navigation"
 
 const Account = () => {
-    const { user } = useAuth0()
+    const { user, logout } = useAuth0()
+    console.log(user)
 
     return (
         <ProtectedRoute>
@@ -16,15 +17,15 @@ const Account = () => {
                 <br />
                 <Card title="Account Profile" hoverable="true">
                     <Space>
-                        {/* <img
+                        <img
                             style={{ borderRadius: "50%" }}
-                            src={user.picture}
+                            src={JSON.stringify(user, null, 2).picture}
                             alt="profilePicture"
-                        /> */}
+                        />
                         <ul>
-                            {/* <li>Name: {user.given_name}</li>
-                            <li>Nickname: {user.nickname}</li>
-                            <li>E-mail: {user.email}</li> */}
+                            <li>Name: {JSON.stringify(user, null, 2).given_name}</li>
+                            <li>Nickname: {JSON.stringify(user, null, 2).nickname}</li>
+                            <li>E-mail: {JSON.stringify(user, null, 2).email}</li>
                             <li>
                                 <Button
                                     icon={<LogoutOutlined />}

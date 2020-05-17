@@ -39,16 +39,16 @@ const Layout = ({ children }) => {
                 transition: "color 0.2s ease-out, background 0.2s ease-out",
             }}
         >
-            <NavBar
+            {/* <NavBar
                 menuLinks={data.site.siteMetadata.menuLinks}
                 siteTitle={data.site.siteMetadata.title}
                 currentKey="Home"
                 theme="light"
-            />
+            /> */}
             <Navigation
                 menuLinks={data.site.siteMetadata.menuLinks}
                 siteTitle={data.site.siteMetadata.title}
-                currentKey="Home"
+                currentKey="/"
                 theme="light"
             />
             <div
