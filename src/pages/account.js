@@ -56,8 +56,6 @@ const Account = () => {
                     alt="randomCoffee"
                 />
             </Space>
-            <p>Check out the user data supplied by Auth0, below:</p>
-            <pre>{JSON.stringify(user, null, 2)}</pre>
         </ProtectedRoute>
     )
 }

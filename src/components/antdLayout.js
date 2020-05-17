@@ -1,6 +1,6 @@
 import React from "react"
 import { Layout } from "antd"
-import NavBar from "./navbar"
+import { Navigation } from "./navigation"
 import { useStaticQuery, graphql } from "gatsby"
 import PropTypes from "prop-types"
 
@@ -25,7 +25,7 @@ const AntdLayout = ({ children }) => {
         <Layout className="layout">
             <Header>
                 {/* <div className="logo" /> */}
-                <NavBar
+                <Navigation
                     menuLinks={data.site.siteMetadata.menuLinks}
                     siteTitle={data.site.siteMetadata.title}
                     currentKey="premium coffee"

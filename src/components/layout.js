@@ -8,12 +8,10 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import NavBar from "./navbar"
 import { Navigation } from "../components/navigation"
 import Background from "./Background"
 import { InstagramFilled } from "@ant-design/icons"
 import { Avatar, Button, Card } from "antd"
-import { isBrowser } from "../services/auth"
 
 const Layout = ({ children }) => {
     const data = useStaticQuery(graphql`
@@ -39,12 +37,6 @@ const Layout = ({ children }) => {
                 transition: "color 0.2s ease-out, background 0.2s ease-out",
             }}
         >
-            {/* <NavBar
-                menuLinks={data.site.siteMetadata.menuLinks}
-                siteTitle={data.site.siteMetadata.title}
-                currentKey="Home"
-                theme="light"
-            /> */}
             <Navigation
                 menuLinks={data.site.siteMetadata.menuLinks}
                 siteTitle={data.site.siteMetadata.title}
