@@ -1,8 +1,9 @@
 import React from "react"
 import { Form, Input, InputNumber, Button, DatePicker, Card } from "antd"
 import moment from 'moment';
-import { getProfile } from "../services/auth"
 import { createNewBlog } from "../services/contentful.API"
+import { useAuth0 } from "../services/auth.API"
+
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -19,13 +20,20 @@ const validateMessages = {
     },
 }
 
-const newBlogForm = () => {
+const NewBlogForm = () => {
+
+    const { loading, user, isAuthenticated, logout } = useAuth0()
+
+    if (loading || !user) {
+        return <p>Loading Account Profile...</p>
+    }
+
     const onFinish = values => {
         createNewBlog(values)
     }
     const today = new Date()
-    const userEmail = getProfile().email
-    const userName = getProfile().nickname
+    const userEmail = user.email
+    const userName = user.nickname
     const dateFormat = 'YYYY/MM/DD';
 
     return (
@@ -84,4 +92,4 @@ const newBlogForm = () => {
     )
 }
 
-export default newBlogForm
+export default NewBlogForm

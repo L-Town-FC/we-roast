@@ -4,11 +4,8 @@ const filePath = "./static/wr-logo.png"
 const fileName = "we-roast-logo"
 const contentType = "image/png"
 const accessToken = process.env.CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
-const authUtils = require("../services/auth.js")
 
 const today = new Date()
-const userEmail = authUtils.getProfile().email
-const userName = authUtils.getProfile().nickname
 
 const sdkClient = sdk.createClient({
     accessToken: accessToken,
@@ -61,7 +58,7 @@ async function createNewBlog(blogObject) {
     // grab relevant parts of form
     const blogTitle = blogObject.title
     const blogSlug = blogTitle.replace(" ", "-")
-    const blogAuthor = userName
+    const blogAuthor = blogObject.author
     // TODO handle blog hero
     const blogDescription = blogObject.shortBio
     const blogBody = blogObject.blogBody

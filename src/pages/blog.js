@@ -52,7 +52,7 @@ const Blogs = () => {
             <div className="wrapper">
                 {isAuthenticated ? (
                     <div>
-                        <Button onClick={e => console.log(e)}>
+                        <Button onClick={e => navigate("/writeBlog")}>
                             Write something new
                         </Button>
                     </div>
