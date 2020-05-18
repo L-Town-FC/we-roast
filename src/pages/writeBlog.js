@@ -1,8 +1,7 @@
 import React from "react"
 import { getProfile, logout } from "../services/auth"
 import SEO from "./seo"
-import { Button, Card, Space } from "antd"
-import { LogoutOutlined } from "@ant-design/icons"
+import { Card, Space } from "antd"
 import NewBlogForm from "./newBlogForm"
 
 const WriteBlog = () => (
