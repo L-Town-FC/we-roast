@@ -1,6 +1,7 @@
 import React from "react"
 import { Form, Input, InputNumber, Button, DatePicker, Card } from "antd"
-import moment from 'moment';
+import moment from "moment"
+import { navigate } from "gatsby"
 import { createNewBlog } from "../services/contentful.API"
 import { useAuth0 } from "../services/auth.API"
 
@@ -21,7 +22,6 @@ const validateMessages = {
 }
 
 const NewBlogForm = () => {
-
     const { loading, user, isAuthenticated, logout } = useAuth0()
 
     if (loading || !user) {
@@ -30,11 +30,12 @@ const NewBlogForm = () => {
 
     const onFinish = values => {
         createNewBlog(values)
+        navigate("/")
     }
     const today = new Date()
     const userEmail = user.email
     const userName = user.nickname
-    const dateFormat = 'YYYY/MM/DD';
+    const dateFormat = "YYYY/MM/DD"
 
     return (
         <Card hoverable>
@@ -48,6 +49,7 @@ const NewBlogForm = () => {
                     name={["title"]}
                     label="Title"
                     rules={[{ required: true }]}
+                    extra="Make it catchy!"
                 >
                     <Input />
                 </Form.Item>
@@ -73,13 +75,16 @@ const NewBlogForm = () => {
                 >
                     <InputNumber />
                 </Form.Item> */}
-                <Form.Item name={["publishDate"]} label="Publish Date">
-                    <DatePicker showToday defaultValue={moment(today, dateFormat)}/>
+                <Form.Item name={["publishDate"]} label="Publish Date" extra="Defaults to today">
+                    <DatePicker
+                        showToday
+                        defaultValue={moment(today, dateFormat)}
+                    />
                 </Form.Item>
-                <Form.Item name={["shortBio"]} label="Short intro">
+                <Form.Item name={["shortBio"]} label="Short intro" extra="This will be shown in the preview">
                     <Input />
                 </Form.Item>
-                <Form.Item name={["blogBody"]} label="Blog">
+                <Form.Item name={["blogBody"]} label="Body">
                     <Input.TextArea />
                 </Form.Item>
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>

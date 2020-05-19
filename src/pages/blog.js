@@ -49,7 +49,7 @@ const Blogs = () => {
         <>
             <SEO title={siteTitle} />
 
-            <div className="wrapper">
+            <div style={{padding:10}}>
                 {isAuthenticated ? (
                     <div>
                         <Button onClick={e => navigate("/writeBlog")}>

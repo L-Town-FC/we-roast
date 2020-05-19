@@ -80,7 +80,7 @@ async function createNewBlog(blogObject) {
     Object.entries(contentfulBlog.fields).forEach(entry => console.log(entry))
 
     // writes new blog
-    const newBlog = await createBlog(newBlogData)
+    // const newBlog = await createBlog(newBlogData)
 }
 
 module.exports = { createNewBlog, getEntryById, getUserById }

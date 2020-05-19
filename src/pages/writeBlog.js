@@ -19,15 +19,6 @@ const WriteBlog = () => {
                 <h2 style={{ color: "var(--titleNormal)" }}>
                     Write something new!
                 </h2>
-                <Card title="Your user info:" hoverable="true">
-                    <Space>
-                        <ul>
-                            <li>Name: {user.name}</li>
-                            <li>Nickname: {user.nickname}</li>
-                            <li>E-mail: {user.email}</li>
-                        </ul>
-                    </Space>
-                </Card>
                 <NewBlogForm />
                 <img
                     src="https://source.unsplash.com/featured/?coffee"

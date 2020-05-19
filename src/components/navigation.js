@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link, navigate } from "gatsby"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import { useAuth0 } from "../services/auth.API"
@@ -7,13 +7,14 @@ import { UserOutlined, CoffeeOutlined } from "@ant-design/icons"
 import logo from "../../static/wr-logo.png"
 
 export const Navigation = props => {
-    const { isAuthenticated, loginWithRedirect, logout, loading } = useAuth0()
+    const { isAuthenticated, loginWithRedirect, loginWithPopup, loading } = useAuth0()
 
     const [currentTheme, setCurrentTheme] = useState(props.theme)
     const [currentKey, setCurrentKey] = useState(props.currentKey)
     console.log(currentKey)
 
     const handleClick = e => {
+
         setCurrentKey(e.key)
         navigate(e.key)
     }
