@@ -1,8 +1,9 @@
 import React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import { Link, graphql, useStaticQuery, navigate } from "gatsby"
 import SEO from "../components/seo"
 import { Button, Card } from "antd"
 import ArticlePreview from "../components/article-preview"
+import { getEntryById } from "../services/contentful.API"
 import { useAuth0 } from "../services/auth.API"
 // import { uploadFile } from "../services/contentful.API"
 
@@ -48,10 +49,10 @@ const Blogs = () => {
         <>
             <SEO title={siteTitle} />
 
-            <div className="wrapper">
+            <div style={{padding:10}}>
                 {isAuthenticated ? (
                     <div>
-                        <Button onClick={e => console.log(e)}>
+                        <Button onClick={e => navigate("/writeBlog")}>
                             Write something new
                         </Button>
                     </div>
