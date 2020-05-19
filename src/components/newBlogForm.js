@@ -2,7 +2,7 @@ import React from "react"
 import { Form, Input, InputNumber, Button, DatePicker, Card } from "antd"
 import moment from "moment"
 import { navigate } from "gatsby"
-import { createNewBlog } from "../services/contentful.API"
+//import { createNewBlog } from "../services/contentful.API"
 import { useAuth0 } from "../services/auth.API"
 
 const layout = {
@@ -29,7 +29,7 @@ const NewBlogForm = () => {
     }
 
     const onFinish = values => {
-        createNewBlog(values)
+        // createNewBlog(values)
         navigate("/")
     }
     const today = new Date()
