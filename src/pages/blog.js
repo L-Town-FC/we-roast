@@ -3,9 +3,7 @@ import { Link, graphql, useStaticQuery, navigate } from "gatsby"
 import SEO from "../components/seo"
 import { Button, Card } from "antd"
 import ArticlePreview from "../components/article-preview"
-import { getEntryById } from "../services/contentful.API"
 import { useAuth0 } from "../services/auth.API"
-// import { uploadFile } from "../services/contentful.API"
 
 const Blogs = () => {
     const data = useStaticQuery(graphql`
