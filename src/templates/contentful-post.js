@@ -2,11 +2,11 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
-import { Avatar, Card } from "antd"
+import { Avatar, Card, Space } from "antd"
 
 export default ({ data }) => {
     const post = data.contentfulBlogPost
-    const contentfulId = data.contentfulBlogPost.contentful_id    
+    const contentfulId = data.contentfulBlogPost.contentful_id
     const siteTitle = data.site.siteMetadata.title
 
     return (
@@ -18,7 +18,7 @@ export default ({ data }) => {
             <div style={{ padding: 15 }}>
                 <Img alt={post.title} fluid={post.heroImage.fluid} />
                 <br />
-                <Card hoverable="true">
+                <Card>
                     <h1 style={{ color: "var(--titleNormal)" }}>
                         {post.title}
                     </h1>
@@ -29,19 +29,24 @@ export default ({ data }) => {
                     >
                         Published: {post.publishDate}
                     </p>
-                    <Link
-                        to={`/user/${post.author.username}`}
-                        style={{
-                            display: "flex",
-                            padding: "15",
-                        }}
-                    >
-                        <Avatar
-                            size="large"
-                            src={post.author.image.fluid.src}
-                        />
-                        <h3> {post.author.name}</h3>
+                    <Link to={`/user/${post.author.username}`}>
+                        <Card hoverable style={{width:"25%"}}>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    padding: "15",
+                                    alignContent: "center",
+                                }}
+                            >
+                                <Avatar
+                                    size="large"
+                                    src={post.author.image.fluid.src}
+                                />
+                                <h3> {post.author.name}</h3>
+                            </div>
+                        </Card>
                     </Link>
+
                     <br />
                     <div
                         dangerouslySetInnerHTML={{

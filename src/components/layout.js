@@ -67,14 +67,14 @@ const Layout = ({ children }) => {
                             </p>
                             <br />
                         </div>
+                        <a href="https://www.instagram.com/weroast.coffee/">
+                            <Avatar
+                                shape="square"
+                                href="https://www.instagram.com/weroast.coffee/"
+                                src="https://instagram-brand.com/wp-content/uploads/2016/11/Instagram_AppIcon_Aug2017.png?w=300"
+                            />
+                        </a>
                     </Card>
-                    <br />
-                    <a href="https://www.instagram.com/weroast.coffee/">
-                        <Avatar
-                            href="https://www.instagram.com/weroast.coffee/"
-                            icon={<InstagramFilled />}
-                        />
-                    </a>
                 </footer>
             </div>
         </div>

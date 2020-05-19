@@ -9,7 +9,7 @@
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
-    "serve": ". ./.env.production; gatsby serve",
+    "serve": "NODE_ENV=production gatsby serve",
     "clean": "gatsby clean",
     "clear": "rm -rf node_modules/ package-lock.json",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
