@@ -4,6 +4,7 @@ import moment from "moment"
 import { navigate } from "gatsby"
 //import { createNewBlog } from "../services/contentful.API"
 import { useAuth0 } from "../services/auth.API"
+import UploadHero from "./uploadHero"
 
 const layout = {
     labelCol: { span: 8 },
@@ -22,15 +23,16 @@ const validateMessages = {
 }
 
 const NewBlogForm = () => {
-    const { loading, user, isAuthenticated, logout } = useAuth0()
+    const { loading, user, isAuthenticated, logout, getTokenSilently } = useAuth0()
 
     if (loading || !user) {
         return <p>Loading Account Profile...</p>
     }
 
-    const onFinish = values => {
+    const onFinish = async (values) => {
         // createNewBlog(values)
-        navigate("/")
+        console.log(await getTokenSilently())
+        // navigate("/")
     }
     const today = new Date()
     const userEmail = user.email
@@ -80,6 +82,9 @@ const NewBlogForm = () => {
                         showToday
                         defaultValue={moment(today, dateFormat)}
                     />
+                </Form.Item>
+                <Form.Item name={["hero"]} label="Display Image" extra="This will be shown in the preview">
+                    <UploadHero />
                 </Form.Item>
                 <Form.Item name={["shortBio"]} label="Short intro" extra="This will be shown in the preview">
                     <Input />

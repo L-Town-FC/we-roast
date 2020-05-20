@@ -1,4 +1,5 @@
 {
     "domain": "dev-kf5grd7y.auth0.com",
-    "clientId": "Jp156U6HuZ30b27x13LT6dAr7ZzGU8T1"
+    "clientId": "Jp156U6HuZ30b27x13LT6dAr7ZzGU8T1",
+    "audience": "https://weroastapi/"
   }
