@@ -45,7 +45,7 @@ const NewBlogForm = () => {
             })
             console.log("Success")
             console.log(res.body)
-            // navigate("/")
+            navigate("/")
         } catch (error) {
             console.error("You messed up")
             console.error(error)
