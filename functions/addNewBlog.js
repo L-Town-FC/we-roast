@@ -94,7 +94,7 @@ async function createNewBlog(blogObject) {
     return newBlog
 }
 
-exports.handler = async event => {
+exports.handler = async (event, context, callback) => {
     console.log(event.headers)
     const token = getAccessTokenFromHeaders(event.headers)
     let user = await validateAccessToken(token)
