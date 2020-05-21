@@ -2,7 +2,6 @@ import React from "react"
 import { Form, Input, InputNumber, Button, DatePicker, Card } from "antd"
 import moment from "moment"
 import { navigate } from "gatsby"
-//import { createNewBlog } from "../services/contentful.API"
 import { useAuth0 } from "../services/auth.API"
 import UploadHero from "./uploadHero"
 
@@ -36,17 +35,17 @@ const NewBlogForm = () => {
     }
 
     const onFinish = async values => {
-        // createNewBlog(values)
+        console.log(values)
         try {
             const token = await getTokenSilently()
-            const res = await fetch("/.netlify/functions/addInfluencer", {
+            const res = await fetch("/.netlify/functions/addNewBlog", {
                 method: "POST",
                 body: JSON.stringify(values),
                 headers: { authorization: `Bearer ${token}` },
             })
             console.log("Success")
-            console.log(res)
-            navigate("/")
+            console.log(res.body)
+            // navigate("/")
         } catch (error) {
             console.error("You messed up")
             console.error(error)

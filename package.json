@@ -40,6 +40,8 @@
     "gatsby-source-filesystem": "^2.2.2",
     "gatsby-transformer-remark": "^2.7.4",
     "gatsby-transformer-sharp": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^1.8.0",
     "less": "^3.11.1",
     "less-loader": "^6.0.0",
     "openssl": "^1.1.0",

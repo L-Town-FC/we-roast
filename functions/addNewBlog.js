@@ -123,7 +123,7 @@ exports.handler = async (event, context, callback) => {
         console.log(newPost)
         return {
             statusCode: 200,
-            body: JSON.stringify({ newPost }),
+            body: JSON.stringify({ success: true }),
         }
     } catch (err) {
         console.error(err)
