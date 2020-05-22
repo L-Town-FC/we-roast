@@ -2,8 +2,8 @@ import React from "react"
 import { Form, Input, InputNumber, Button, DatePicker, Card } from "antd"
 import moment from "moment"
 import { navigate } from "gatsby"
-//import { createNewBlog } from "../services/contentful.API"
 import { useAuth0 } from "../services/auth.API"
+import UploadHero from "./uploadHero"
 
 const layout = {
     labelCol: { span: 8 },
@@ -22,15 +22,35 @@ const validateMessages = {
 }
 
 const NewBlogForm = () => {
-    const { loading, user, isAuthenticated, logout } = useAuth0()
+    const {
+        loading,
+        user,
+        isAuthenticated,
+        logout,
+        getTokenSilently,
+    } = useAuth0()
 
     if (loading || !user) {
         return <p>Loading Account Profile...</p>
     }
 
-    const onFinish = values => {
-        // createNewBlog(values)
-        navigate("/")
+    const onFinish = async values => {
+        console.log(values)
+        try {
+            const token = await getTokenSilently()
+            const res = await fetch("/.netlify/functions/addNewBlog", {
+                method: "POST",
+                body: JSON.stringify(values),
+                headers: { authorization: `Bearer ${token}` },
+            })
+            console.log("Success")
+            console.log(res.body)
+            navigate("/")
+        } catch (error) {
+            console.error("You messed up")
+            console.error(error)
+        }
+        // navigate("/")
     }
     const today = new Date()
     const userEmail = user.email
@@ -75,13 +95,28 @@ const NewBlogForm = () => {
                 >
                     <InputNumber />
                 </Form.Item> */}
-                <Form.Item name={["publishDate"]} label="Publish Date" extra="Defaults to today">
+                <Form.Item
+                    name={["publishDate"]}
+                    label="Publish Date"
+                    extra="Defaults to today"
+                >
                     <DatePicker
                         showToday
                         defaultValue={moment(today, dateFormat)}
                     />
                 </Form.Item>
-                <Form.Item name={["shortBio"]} label="Short intro" extra="This will be shown in the preview">
+                <Form.Item
+                    name={["hero"]}
+                    label="Display Image"
+                    extra="This will be shown in the preview"
+                >
+                    <UploadHero />
+                </Form.Item>
+                <Form.Item
+                    name={["shortBio"]}
+                    label="Short intro"
+                    extra="This will be shown in the preview"
+                >
                     <Input />
                 </Form.Item>
                 <Form.Item name={["blogBody"]} label="Body">

@@ -8,7 +8,7 @@ const IndexPage = ({ data }) => {
     if (loading) {
         return <p>Loading...</p>
     }
-
+    
     return (
         <Space direction="vertical">
             <SEO title="Home" />
