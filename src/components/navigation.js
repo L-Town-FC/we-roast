@@ -14,12 +14,17 @@ export const Navigation = props => {
         loading,
     } = useAuth0()
 
-    const [currentKey, setCurrentKey] = useState(localStorage.getItem("currentKey") || "/")
+    const [currentKey, setCurrentKey] = useState(
+        localStorage.getItem("currentKey") || "/"
+    )
 
     const handleClick = e => {
-        localStorage.setItem("currentKey",e.key)
-        setCurrentKey(e.key)
-        navigate(e.key)
+        if(e.key){
+            localStorage.setItem("currentKey", e.key)
+            console.log(e.key)
+            setCurrentKey(e.key)
+            navigate(e.key)
+        }
     }
     return (
         <Affix>
