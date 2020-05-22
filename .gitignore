@@ -72,3 +72,5 @@ yarn-error.log
 content*.json
 # Local Netlify folder
 .netlify
+
+*.zip

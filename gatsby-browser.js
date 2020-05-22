@@ -21,6 +21,7 @@ export const wrapRootElement = ({ element }) => (
         client_id={authConfig.clientId}
         redirect_uri={window.location.origin}
         onRedirectCallback={onRedirectCallback}
+        audience={authConfig.audience}
     >
         <Layout>
             {element}
