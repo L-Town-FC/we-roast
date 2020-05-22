@@ -43,14 +43,15 @@ const Layout = ({ children }) => {
             />
             <div
                 style={{
-                    margin: `0 auto`,
+                    // margin: `0 auto`,
                     backgroundColor: "var(--bg)",
-                    maxWidth: 1060,
+                    color: "var(--textNormal)",
+                    // maxWidth: 1060,
                 }}
             >
-                <main>{children}</main>
+                <main style={{margin: `0 auto`, maxWidth:1060}}>{children}</main>
                 <br />
-                <footer>
+                <footer style={{margin: `0 auto`, maxWidth:"50%"}}>
                     <Card>
                         <div style={{ display: `flex` }}>
                             <p>
