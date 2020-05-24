@@ -35,6 +35,10 @@ const NewBlogForm = () => {
     }
 
     const onFinish = async values => {
+        // console.log(user.email)
+        if (!values.author) {
+            values.author = user.nickname
+        }
         console.log(values)
         try {
             const token = await getTokenSilently()
@@ -44,8 +48,8 @@ const NewBlogForm = () => {
                 headers: { authorization: `Bearer ${token}` },
             })
             console.log("Success")
-            console.log(res.body)
-            navigate("/")
+            // console.log(res.body)
+            // navigate("/")
         } catch (error) {
             console.error("You messed up")
             console.error(error)
@@ -80,14 +84,14 @@ const NewBlogForm = () => {
                 >
                     <Input disabled defaultValue={userName} />
                 </Form.Item>
-                <Form.Item
+                {/* <Form.Item
                     name={["email"]}
                     label="Email"
                     rules={[{ type: "email" }]}
                     extra="this will be kept private"
                 >
                     <Input disabled defaultValue={userEmail} />
-                </Form.Item>
+                </Form.Item> */}
                 {/* <Form.Item
                     name={["user", "age"]}
                     label="Age"
