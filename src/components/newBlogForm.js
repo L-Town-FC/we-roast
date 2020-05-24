@@ -35,7 +35,6 @@ const NewBlogForm = () => {
     }
 
     const onFinish = async values => {
-        // console.log(user.email)
         if (!values.author) {
             values.author = user.nickname
         }
@@ -65,14 +64,14 @@ const NewBlogForm = () => {
         <Card hoverable>
             <Form
                 {...layout}
-                name="nest-messages"
+                name="new-blog"
                 onFinish={onFinish}
                 validateMessages={validateMessages}
             >
                 <Form.Item
                     name={["title"]}
                     label="Title"
-                    rules={[{ required: true }]}
+                    rules={[{ required: true, message: "You need a title for your new blog" }]}
                     extra="Make it catchy!"
                 >
                     <Input />
@@ -84,21 +83,6 @@ const NewBlogForm = () => {
                 >
                     <Input disabled defaultValue={userName} />
                 </Form.Item>
-                {/* <Form.Item
-                    name={["email"]}
-                    label="Email"
-                    rules={[{ type: "email" }]}
-                    extra="this will be kept private"
-                >
-                    <Input disabled defaultValue={userEmail} />
-                </Form.Item> */}
-                {/* <Form.Item
-                    name={["user", "age"]}
-                    label="Age"
-                    rules={[{ type: "number", min: 0, max: 99 }]}
-                >
-                    <InputNumber />
-                </Form.Item> */}
                 <Form.Item
                     name={["publishDate"]}
                     label="Publish Date"
@@ -111,6 +95,7 @@ const NewBlogForm = () => {
                 </Form.Item>
                 <Form.Item
                     name={["hero"]}
+                    valuePropName="fileList"
                     label="Display Image"
                     extra="This will be shown in the preview"
                 >

@@ -88,8 +88,8 @@ async function createNewImage(imageData) {
             },
         })
         const newImageProcessed = await newImage.processForLocale("en-US")
-        const newPublished = await newImageProcessed.publish()
-        return newPublished
+        // const newPublished = await newImageProcessed.publish()
+        return newImageProcessed
     } catch (error) {
         console.error(error)
     }
