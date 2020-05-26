@@ -1,14 +1,23 @@
 import React from "react"
-import { Form, Input, InputNumber, Button, DatePicker, Card } from "antd"
+import { Form, Input, InputNumber, Button, DatePicker, Card, Upload } from "antd"
 import moment from "moment"
 import { navigate } from "gatsby"
 import { useAuth0 } from "../services/auth.API"
 import UploadHero from "./uploadHero"
+import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
 }
+
+const normFile = e => {
+    console.log('Upload event:', e);
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e && e.fileList;
+  };
 
 const validateMessages = {
     required: "${label} is required!",
@@ -71,7 +80,12 @@ const NewBlogForm = () => {
                 <Form.Item
                     name={["title"]}
                     label="Title"
-                    rules={[{ required: true, message: "You need a title for your new blog" }]}
+                    rules={[
+                        {
+                            required: true,
+                            message: "You need a title for your new blog",
+                        },
+                    ]}
                     extra="Make it catchy!"
                 >
                     <Input />
@@ -93,13 +107,25 @@ const NewBlogForm = () => {
                         defaultValue={moment(today, dateFormat)}
                     />
                 </Form.Item>
-                <Form.Item
+                {/* <Form.Item
                     name={["hero"]}
                     valuePropName="fileList"
                     label="Display Image"
                     extra="This will be shown in the preview"
                 >
                     <UploadHero />
+                </Form.Item> */}
+                <Form.Item
+                    name="hero"
+                    label="Display Image"
+                    valuePropName="fileList"
+                    getValueFromEvent={normFile}
+                >
+                    <Upload name="logo" action="/upload.do" listType="picture">
+                        <Button>
+                            <UploadOutlined /> Click to upload
+                        </Button>
+                    </Upload>
                 </Form.Item>
                 <Form.Item
                     name={["shortBio"]}

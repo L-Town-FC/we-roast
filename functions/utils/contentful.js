@@ -67,9 +67,7 @@ async function createBlog(blogData) {
 
 async function createNewImage(imageData) {
     try {
-        const space = await sdkClient.getSpace(spaceId)
-        const environment = await space.getEnvironment("master")
-        const newImage = await environment.createAsset({
+        let imageFields = {
             fields: {
                 title: {
                     "en-US": imageData.title,
@@ -86,7 +84,10 @@ async function createNewImage(imageData) {
                     },
                 },
             },
-        })
+        }
+        const space = await sdkClient.getSpace(spaceId)
+        const environment = await space.getEnvironment("master")
+        const newImage = await environment.createAsset(imageFields)
         const newImageProcessed = await newImage.processForLocale("en-US")
         // const newPublished = await newImageProcessed.publish()
         return newImageProcessed
@@ -107,7 +108,19 @@ async function createNewBlog(blogObject) {
         newImgObject = {
             url: "https://source.unsplash.com/featured/?coffee",
             contentType: "image/jpeg",
-            fileName: "test-hero",
+            fileName: `random-${blogSlug}-hero`,
+            title: `${blogSlug}-hero`,
+        }
+        const newHeroImage = await createNewImage(newImgObject)
+        heroId = newHeroImage.sys.id
+    } 
+    else {
+        console.log(blogObject.hero[0])
+        const firstImage = blogObject.hero[0]
+        newImgObject = {
+            url: firstImage.thumbUrl,
+            contentType: firstImage.type,
+            fileName: firstImage.name,
             title: `${blogSlug}-hero`,
         }
         const newHeroImage = await createNewImage(newImgObject)
