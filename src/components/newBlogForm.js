@@ -8,16 +8,14 @@ import {
     Card,
     Upload,
     message,
+    Spin,
 } from "antd"
 import moment from "moment"
 import { navigate } from "gatsby"
 import { useAuth0 } from "../services/auth.API"
-import UploadHero from "./uploadHero"
 import {
     LoadingOutlined,
     PlusOutlined,
-    UploadOutlined,
-    InboxOutlined,
 } from "@ant-design/icons"
 
 const validateMessages = {
@@ -41,6 +39,7 @@ const NewBlogForm = () => {
     } = useAuth0()
 
     const [isUploading, setIsUploading] = useState(false)
+    const [pageLoading, setPageLoading] = useState(false)
     const [url, setUrl] = useState(null)
 
     const uploadButton = (
@@ -96,18 +95,16 @@ const NewBlogForm = () => {
         return e && e.fileList
     }
 
-    if (loading || !user) {
-        return <p>...Loading Account new blog form...</p>
+    if (loading || !user || pageLoading) {
+        return <Spin tip="Loading..." size="large" />
     }
 
     const onFinish = async values => {
+        setPageLoading(true)
         if (!values.author) {
             values.author = user.nickname
         }
-        console.log(values)
-        console.log(url)
         values.imageUrl = url
-        const reader = new FileReader()
         try {
             const token = await getTokenSilently()
             const res = await fetch("/.netlify/functions/addNewBlog", {
@@ -115,14 +112,14 @@ const NewBlogForm = () => {
                 body: JSON.stringify(values),
                 headers: { authorization: `Bearer ${token}` },
             })
-            console.log("Success")
-            // console.log(res.body)
-            // navigate("/")
+            if(res.status===200){
+                console.log("Message went through")
+                navigate("/")
+            }
         } catch (error) {
-            console.error("You messed up")
             console.error(error)
         }
-        // navigate("/")
+        setPageLoading(false)
     }
     const today = new Date()
     const userEmail = user.email
@@ -167,14 +164,6 @@ const NewBlogForm = () => {
                         defaultValue={moment(today, dateFormat)}
                     />
                 </Form.Item>
-                {/* <Form.Item
-                    name={["hero"]}
-                    valuePropName="fileList"
-                    label="Display Image"
-                    extra="This will be shown in the preview"
-                >
-                    <UploadHero />
-                </Form.Item> */}
                 <Form.Item
                     name="hero"
                     label="Display Image"

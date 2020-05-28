@@ -1,6 +1,7 @@
 require("dotenv").config()
 const sdk = require("contentful-management")
 const fs = require("fs")
+const path = require("path")
 const spaceId = process.env.CONTENTFUL_SPACE_ID
 const accessToken = process.env.CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
 
@@ -90,11 +91,12 @@ async function createNewImage(imageData) {
             const base64Image = base64Data.split(';base64,').pop();
             fs.writeFile(imageData.fileName, base64Image, {encoding: 'base64'}, function(err) {
                 console.log(`Created file ${imageData.fileName}`);
+                const resolved = (process.env.LAMBDA_TASK_ROOT)? path.resolve(process.env.LAMBDA_TASK_ROOT, "..", imageData.fileName):path.resolve(__dirname,".." , imageData.fileName)
                 imageFields.fields.file = {
                     "en-US": {
                         contentType: imageData.contentType,
                         fileName: imageData.fileName,
-                        file: fs.createReadStream(imageData.fileName),
+                        file: fs.createReadStream(resolved),
                     },
                 }
             });
