@@ -1,5 +1,5 @@
 import { Upload, message } from "antd"
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons"
+import { LoadingOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons"
 import React from "react"
 
 function getBase64(img, callback) {

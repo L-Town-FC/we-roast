@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
-import { Space } from "antd"
+import { Divider, Space } from "antd"
 
 export default ({ article }) => (
   <Space direction="vertical">
     <Img alt="blogHero" fluid={article.heroImage.fluid} style={{borderRadius:"50%", height:"50%"}} />
+    <Divider />
     <h3>
       <Link to={`/blog/${article.slug}`}>{article.title}</Link>
     </h3>
