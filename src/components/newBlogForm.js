@@ -8,6 +8,7 @@ import {
     Card,
     Upload,
     message,
+    Spin,
 } from "antd"
 import moment from "moment"
 import { navigate } from "gatsby"
@@ -38,6 +39,7 @@ const NewBlogForm = () => {
     } = useAuth0()
 
     const [isUploading, setIsUploading] = useState(false)
+    const [pageLoading, setPageLoading] = useState(false)
     const [url, setUrl] = useState(null)
 
     const uploadButton = (
@@ -93,11 +95,12 @@ const NewBlogForm = () => {
         return e && e.fileList
     }
 
-    if (loading || !user) {
-        return <p>...Loading Account new blog form...</p>
+    if (loading || !user || pageLoading) {
+        return <Spin tip="Loading..." size="large" />
     }
 
     const onFinish = async values => {
+        setPageLoading(true)
         if (!values.author) {
             values.author = user.nickname
         }
@@ -109,11 +112,14 @@ const NewBlogForm = () => {
                 body: JSON.stringify(values),
                 headers: { authorization: `Bearer ${token}` },
             })
-            console.log("Success")
-            navigate("/")
+            if(res.status===200){
+                console.log("Message went through")
+                navigate("/")
+            }
         } catch (error) {
             console.error(error)
         }
+        setPageLoading(false)
     }
     const today = new Date()
     const userEmail = user.email
