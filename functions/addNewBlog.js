@@ -21,21 +21,8 @@ exports.handler = async (event, context, callback) => {
     }
 
     const body = JSON.parse(event.body)
-    // validation
-    // if (!body.name || !body.handle || !body.tags || body.tags.length === 0) {
-    //     return {
-    //         statusCode: 403,
-    //         body: JSON.stringify({
-    //             msg: "Each influencer must include a name, handle, and tags",
-    //         }),
-    //     }
-    // }
     try {
-        // body.approved = false
-        // body.votes = 0
-        // const record = await table.create(body)
         const newPost = await createNewBlog(body)
-        // console.log(newPost)
         return {
             statusCode: 200,
             body: JSON.stringify({ success: true }),

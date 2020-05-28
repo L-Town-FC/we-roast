@@ -12,12 +12,9 @@ import {
 import moment from "moment"
 import { navigate } from "gatsby"
 import { useAuth0 } from "../services/auth.API"
-import UploadHero from "./uploadHero"
 import {
     LoadingOutlined,
     PlusOutlined,
-    UploadOutlined,
-    InboxOutlined,
 } from "@ant-design/icons"
 
 const validateMessages = {
@@ -104,10 +101,7 @@ const NewBlogForm = () => {
         if (!values.author) {
             values.author = user.nickname
         }
-        console.log(values)
-        console.log(url)
         values.imageUrl = url
-        const reader = new FileReader()
         try {
             const token = await getTokenSilently()
             const res = await fetch("/.netlify/functions/addNewBlog", {
@@ -116,13 +110,10 @@ const NewBlogForm = () => {
                 headers: { authorization: `Bearer ${token}` },
             })
             console.log("Success")
-            // console.log(res.body)
-            // navigate("/")
+            navigate("/")
         } catch (error) {
-            console.error("You messed up")
             console.error(error)
         }
-        // navigate("/")
     }
     const today = new Date()
     const userEmail = user.email
@@ -167,14 +158,6 @@ const NewBlogForm = () => {
                         defaultValue={moment(today, dateFormat)}
                     />
                 </Form.Item>
-                {/* <Form.Item
-                    name={["hero"]}
-                    valuePropName="fileList"
-                    label="Display Image"
-                    extra="This will be shown in the preview"
-                >
-                    <UploadHero />
-                </Form.Item> */}
                 <Form.Item
                     name="hero"
                     label="Display Image"
