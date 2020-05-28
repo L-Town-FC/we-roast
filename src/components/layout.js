@@ -51,7 +51,7 @@ const Layout = ({ children }) => {
             >
                 <main style={{margin: `0 auto`, maxWidth:1060}}>{children}</main>
                 <br />
-                <footer style={{margin: `0 auto`, maxWidth:"50%"}}>
+                <footer style={{margin: `0 auto`, maxWidth:"90%"}}>
                     <Card>
                         <div style={{ display: `flex` }}>
                             <p>

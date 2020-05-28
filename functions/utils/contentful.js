@@ -1,9 +1,11 @@
 require("dotenv").config()
 const sdk = require("contentful-management")
+const fs = require("fs")
 const spaceId = process.env.CONTENTFUL_SPACE_ID
 const accessToken = process.env.CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
 
 const today = new Date()
+
 
 const sdkClient = sdk.createClient({
     accessToken: accessToken,
@@ -34,8 +36,6 @@ async function getUserEntry(userName) {
             }
         })
         return userEntry
-
-        // Object.entries(allEntries.items).forEach(item => console.log(item))
     } catch (error) {
         console.error(error)
     }
@@ -74,7 +74,7 @@ async function createNewImage(imageData) {
                 },
                 description: {
                     "en-US":
-                        "Default random coffee pic for blog post if nothing is uploaded",
+                        "Hero image for blog",
                 },
                 file: {
                     "en-US": {
@@ -85,9 +85,27 @@ async function createNewImage(imageData) {
                 },
             },
         }
+        if (imageData.file) {
+            const base64Data = imageData.file
+            const base64Image = base64Data.split(';base64,').pop();
+            fs.writeFile(imageData.fileName, base64Image, {encoding: 'base64'}, function(err) {
+                console.log(`Created file ${imageData.fileName}`);
+                imageFields.fields.file = {
+                    "en-US": {
+                        contentType: imageData.contentType,
+                        fileName: imageData.fileName,
+                        file: fs.createReadStream(imageData.fileName),
+                    },
+                }
+            });
+        }
+        // console.log(imageFields)
+        // return null
         const space = await sdkClient.getSpace(spaceId)
         const environment = await space.getEnvironment("master")
-        const newImage = await environment.createAsset(imageFields)
+
+        const newImage = imageData.file ? await environment.createAssetFromFiles(imageFields) : await environment.createAsset(imageFields)
+        // const newImage = await environment.createAsset(imageFields)
         const newImageProcessed = await newImage.processForLocale("en-US")
         // const newPublished = await newImageProcessed.publish()
         return newImageProcessed
@@ -109,19 +127,18 @@ async function createNewBlog(blogObject) {
             url: "https://source.unsplash.com/featured/?coffee",
             contentType: "image/jpeg",
             fileName: `random-${blogSlug}-hero`,
-            title: `${blogSlug}-hero`,
+            title: `${blogSlug}-default-hero`,
         }
         const newHeroImage = await createNewImage(newImgObject)
         heroId = newHeroImage.sys.id
-    } 
-    else {
-        console.log(blogObject.hero[0])
+    } else {
         const firstImage = blogObject.hero[0]
-        newImgObject = {
+        const newImgObject = {
             url: firstImage.thumbUrl,
             contentType: firstImage.type,
             fileName: firstImage.name,
-            title: `${blogSlug}-hero`,
+            file: blogObject.imageUrl,
+            title: `${blogSlug}-custom-hero`,
         }
         const newHeroImage = await createNewImage(newImgObject)
         heroId = newHeroImage.sys.id

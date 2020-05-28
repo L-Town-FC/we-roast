@@ -1,23 +1,24 @@
-import React from "react"
-import { Form, Input, InputNumber, Button, DatePicker, Card, Upload } from "antd"
+import React, { useState } from "react"
+import {
+    Form,
+    Input,
+    InputNumber,
+    Button,
+    DatePicker,
+    Card,
+    Upload,
+    message,
+} from "antd"
 import moment from "moment"
 import { navigate } from "gatsby"
 import { useAuth0 } from "../services/auth.API"
 import UploadHero from "./uploadHero"
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
-
-const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
-}
-
-const normFile = e => {
-    console.log('Upload event:', e);
-    if (Array.isArray(e)) {
-      return e;
-    }
-    return e && e.fileList;
-  };
+import {
+    LoadingOutlined,
+    PlusOutlined,
+    UploadOutlined,
+    InboxOutlined,
+} from "@ant-design/icons"
 
 const validateMessages = {
     required: "${label} is required!",
@@ -39,8 +40,64 @@ const NewBlogForm = () => {
         getTokenSilently,
     } = useAuth0()
 
+    const [isUploading, setIsUploading] = useState(false)
+    const [url, setUrl] = useState(null)
+
+    const uploadButton = (
+        <div>
+            {isUploading ? <LoadingOutlined /> : <PlusOutlined />}
+            <div className="ant-upload-text">Upload</div>
+        </div>
+    )
+
+    const layout = {
+        labelCol: { span: 8 },
+        wrapperCol: { span: 16 },
+    }
+
+    function beforeUpload(file) {
+        const isJpgOrPng =
+            file.type === "image/jpeg" || file.type === "image/png"
+        if (!isJpgOrPng) {
+            message.error("You can only upload JPG/PNG file!")
+        }
+        const isLt2M = file.size / 1024 / 1024 < 2
+        if (!isLt2M) {
+            message.error("Image must smaller than 2MB!")
+        }
+        return isJpgOrPng && isLt2M
+    }
+
+    function getBase64(img, callback) {
+        const reader = new FileReader()
+        reader.addEventListener("load", () => callback(reader.result))
+        reader.readAsDataURL(img)
+    }
+
+    const handleChange = info => {
+        if (info.file.status === "uploading") {
+            setIsUploading(true)
+            return
+        }
+        if (info.file.status === "done") {
+            // Get this url from response in real world.
+            getBase64(info.file.originFileObj, url => {
+                setUrl(url)
+                setIsUploading(false)
+            })
+        }
+    }
+
+    const normFile = e => {
+        console.log("Upload event:", e)
+        if (Array.isArray(e)) {
+            return e
+        }
+        return e && e.fileList
+    }
+
     if (loading || !user) {
-        return <p>Loading Account Profile...</p>
+        return <p>...Loading Account new blog form...</p>
     }
 
     const onFinish = async values => {
@@ -48,6 +105,9 @@ const NewBlogForm = () => {
             values.author = user.nickname
         }
         console.log(values)
+        console.log(url)
+        values.imageUrl = url
+        const reader = new FileReader()
         try {
             const token = await getTokenSilently()
             const res = await fetch("/.netlify/functions/addNewBlog", {
@@ -121,10 +181,21 @@ const NewBlogForm = () => {
                     valuePropName="fileList"
                     getValueFromEvent={normFile}
                 >
-                    <Upload name="logo" action="/upload.do" listType="picture">
-                        <Button>
-                            <UploadOutlined /> Click to upload
-                        </Button>
+                    <Upload
+                        name="logo"
+                        listType="picture"
+                        beforeUpload={beforeUpload}
+                        onChange={handleChange}
+                    >
+                        {url ? (
+                            <img
+                                src={url}
+                                alt="avatar"
+                                style={{ width: "100%" }}
+                            />
+                        ) : (
+                            uploadButton
+                        )}
                     </Upload>
                 </Form.Item>
                 <Form.Item

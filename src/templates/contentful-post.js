@@ -30,7 +30,7 @@ export default ({ data }) => {
                         Published: {post.publishDate}
                     </p>
                     <Link to={`/user/${post.author.username}`}>
-                        <Card hoverable style={{width:"25%"}}>
+                        <Card hoverable>
                             <div
                                 style={{
                                     display: "flex",
