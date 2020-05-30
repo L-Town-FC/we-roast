@@ -28,8 +28,15 @@ const getContentTypeMapping = async (
 
     return id => {
         const entry = entries.find(entry => entry.sys.id === id)
-        const ctId = entry.sys.contentType.sys.id
-        return contentTypes.find(ct => ct.sys.id === ctId)
+        if(entry){
+            const ctId = entry.sys.contentType.sys.id
+            return contentTypes.find(ct => ct.sys.id === ctId)
+
+        }
+        else{
+            console.log(id)
+            return null
+        }
     }
 }
 
@@ -60,14 +67,16 @@ module.exports = {
         )
 
         for (const entityNode of entityNodes) {
-            const id = entityNode.contentful_id
-            const ct = getContentTypeForEntry(id)
-
-            entityNode.contentfulEditor = {
-                contentTypeId: ct.sys.id,
-                entityId: id,
-                spaceId: spaceId,
-                fields: ct.fields,
+            if(entityNode){
+                const id = entityNode.contentful_id
+                const ct = getContentTypeForEntry(id)
+    
+                entityNode.contentfulEditor = {
+                    contentTypeId: ct.sys.id,
+                    entityId: id,
+                    spaceId: spaceId,
+                    fields: ct.fields,
+                }
             }
         }
     },

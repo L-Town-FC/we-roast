@@ -81,6 +81,13 @@ exports.createPages = async ({ graphql, actions }) => {
                     }
                 }
             }
+            allContentfulTag {
+                edges {
+                    node {
+                        slug
+                    }
+                }
+            }
         }
     `)
     contenfulResult.data.allContentfulBlogPost.edges.forEach(({ node }) => {
@@ -94,13 +101,22 @@ exports.createPages = async ({ graphql, actions }) => {
     })
     contenfulResult.data.allContentfulPerson.edges.forEach(({ node }) => {
         createPage({
-            path: `/user/${node.username}`,
+            path: `/user/${node.username}/`,
             component: path.resolve(`./src/templates/site-user.js`),
             context: {
                 username: node.username,
             },
         })
     })
+    // contenfulResult.data.allContentfulTag.edges.forEach(({ node }) => {
+    //     createPage({
+    //         path: `/tag/${node.slug}/`,
+    //         component: path.resolve(`./src/templates/tag.js`),
+    //         context: {
+    //             slug: node.slug,
+    //         },
+    //     })
+    // })
 }
 
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
