@@ -1,6 +1,5 @@
 import React from "react"
 import SEO from "../components/seo"
-import Background from "../components/Background"
 import { Card, Space } from "antd"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"

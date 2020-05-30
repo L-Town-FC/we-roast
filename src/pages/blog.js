@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql, useStaticQuery, navigate } from "gatsby"
 import SEO from "../components/seo"
 import { Button, Card } from "antd"
-import ArticlePreview from "../components/article-preview"
+import ArticlePreview from "../components/articlePreview"
 import { useAuth0 } from "../services/auth.API"
 
 const Blogs = () => {

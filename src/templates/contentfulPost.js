@@ -16,7 +16,7 @@ export default ({ data }) => {
                 description={`${post.title} | ${siteTitle}`}
             />
             <div style={{ padding: 15 }}>
-                <Img alt={post.title} fluid={post.heroImage.fluid} />
+                <Img alt={post.title} fluid={post.heroImage.fluid} imgStyle={{maxHeight:"80%"}}/>
                 <br />
                 <Card>
                     <h1 style={{ color: "var(--titleNormal)" }}>

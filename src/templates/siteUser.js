@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 import { Card, Space } from "antd"
-import ArticlePreview from "../components/article-preview"
+import ArticlePreview from "../components/articlePreview"
 
 export default ({ data }) => {
     const user = data.contentfulPerson

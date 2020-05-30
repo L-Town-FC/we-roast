@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
  
 import BackgroundImage from 'gatsby-background-image'
-import { StyledFullScreenWrapper } from './SharedStyledComponents'
+import { StyledFullScreenWrapper } from './sharedStyledComponents'
 
 /**
  * In this functional component a fullscreen <BackgroundImage />  is created.

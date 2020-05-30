@@ -8,6 +8,8 @@ require("dotenv").config({
     path: `.env.${process.env.NODE_ENV}`,
 })
 
+const sitConfig = require("./src/utils/siteConfig")
+
 try {
     var contentfulConfig = require("./.contentful.json")
 } catch (e) {
@@ -33,33 +35,7 @@ const contentfulOptions =
 
 module.exports = {
     /* Your site config here */
-    siteMetadata: {
-        title: "We Roast",
-        menuLinks: [
-            {
-                name: "Home",
-                link: "/",
-            },
-            {
-                name: "about",
-                link: "/about",
-            },
-            {
-                name: "conservation",
-                link: "/conservation",
-            },
-            {
-                name: "content",
-                link: "/content",
-            },
-            {
-                name: "blog",
-                link: "/blog",
-            },
-        ],
-        author: "L-Town-FC",
-        description: "Its roasted",
-    },
+    siteMetadata: sitConfig.metaData,
     plugins: [
         `gatsby-plugin-dark-mode`,
         {
@@ -85,9 +61,9 @@ module.exports = {
                 name: `we roast`,
                 short_name: `we roast`,
                 start_url: `/`,
-                background_color: `#663399`,
-                theme_color: `#663399`,
-                display: `minimal-ui`,
+                background_color: `#FFFFFF`,
+                theme_color: `#5A3311`,
+                display: `roast manifest`,
                 icon: `static/favicon.ico`, // This path is relative to the root of the site.
             },
         },
@@ -135,10 +111,10 @@ module.exports = {
             resolve: "gatsby-source-contentful",
             options: contentfulOptions,
         },
-        {
-            resolve: "contentful-editor",
-            options: contentfulOptions,
-        },
+        // {
+        //     resolve: "contentful-editor",
+        //     options: contentfulOptions,
+        // },
         `gatsby-plugin-netlify`,
         `gatsby-remark-images`,
         {

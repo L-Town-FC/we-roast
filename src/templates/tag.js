@@ -25,14 +25,15 @@ const TagTemplate = ({ data }) => {
             </Space>
             <br />
             <h2 style={{ color: "var(--titleNormal)" }}>Posts</h2>
-            {/* {posts.map(({ node }) => (
-                    <Link to={`/blog/${node.slug}`}>
-                        <Card hoverable="true" key={node.title}>
-                            <ArticlePreview article={node} />
+            {posts.map(({ node }) => (
+                    <Link to={`/`}>
+                        <Card hoverable="true">
+                            {/* {node.title} */}
+                            {/* <ArticlePreview article={node} /> */}
                         </Card>
                         <br />
                     </Link>
-                ))} */}
+                ))}
         </Space>
     )
 }
