@@ -20,7 +20,6 @@ const TagList = (props) => {
       }
     `
   )
-  console.log(allContentfulTag)
   return (
     <Space style={{width:"100%"}}>
       {allContentfulTag.edges.map( ({node}) => (
