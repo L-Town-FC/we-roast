@@ -10,11 +10,12 @@ require("dotenv").config({
 
 const sitConfig = require("./src/utils/siteConfig")
 
+let contentfulConfig
 try {
-    let contentfulConfig = require("./.contentful.json")
+    contentfulConfig = require("./.contentful.json")
 } catch (e) {
     // only runs in production on netlify
-    let contentfulConfig = {
+    contentfulConfig = {
         production: {
             spaceId: process.env.CONTENTFUL_SPACE_ID,
             accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,

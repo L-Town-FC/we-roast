@@ -76,5 +76,5 @@ yarn-error.log
 *.zip
 
 # ignore images written to addNewBlog
-functions/**.jpg
-functions/**.png
+functions/**/*.jpg
+functions/**/*.png
