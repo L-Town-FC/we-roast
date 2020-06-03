@@ -93,11 +93,6 @@ async function createNewImage(imageData) {
             const relativeNetlifyPath = (process.env.LAMBDA_TASK_ROOT)? path.resolve(process.env.LAMBDA_TASK_ROOT, relativePath): path.resolve(__dirname, relativePath)
             fs.writeFile(relativeNetlifyPath, base64Image, {encoding: 'base64'}, function(err) {
                 console.log(`Created file ${relativeNetlifyPath}`);
-                // const filePath = path.join(process.cwd(), imageData.fileName)
-                // console.log(`Possible path: ${filePath}`);
-                // console.log(`Lambda root: ${process.env.LAMBDA_TASK_ROOT}`);
-                // console.log(`Relative path: ${path.join(".." , imageData.fileName)}`);
-                // const resolved = (process.env.LAMBDA_TASK_ROOT)? path.resolve(process.env.LAMBDA_TASK_ROOT, "..", imageData.fileName): path.join(".." , imageData.fileName)
                 imageFields.fields.file = {
                     "en-US": {
                         contentType: imageData.contentType,
