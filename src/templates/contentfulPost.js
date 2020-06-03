@@ -32,21 +32,6 @@ export default ({ data }) => {
                     </p>
                     <Link to={`/user/${post.author.username}`}>
                         <UserPreview user={post.author} />
-                        {/* <Card hoverable>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    padding: "15",
-                                    alignContent: "center",
-                                }}
-                            >
-                                <Avatar
-                                    size="large"
-                                    src={post.author.image.fluid.src}
-                                />
-                                <h3> {post.author.name}</h3>
-                            </div>
-                        </Card> */}
                     </Link>
 
                     <br />
