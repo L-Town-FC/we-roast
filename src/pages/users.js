@@ -1,8 +1,8 @@
 import React from "react"
 import { Link, graphql, useStaticQuery, navigate } from "gatsby"
 import SEO from "../components/seo"
-import { Button, Card } from "antd"
-import BlogPreview from "../components/blogPreview"
+import { Button, Card, Space } from "antd"
+import UserPreview from "../components/userPreview"
 import { useAuth0 } from "../services/auth.API"
 
 const Users = () => {
@@ -45,14 +45,11 @@ const Users = () => {
             <div style={{ padding: 10 }}>
                 <h2 style={{ color: "var(--titleNormal)" }}>Users</h2>
                 {users.map(({ node }) => (
-                    <>
+                    <Space>
                         <Link key={node.username} to={`/user/${node.username}`}>
-                            <Card hoverable="true" key={node.title}>
-                                {node.username}
-                            </Card>
+                            <UserPreview user={node} />
                         </Link>
-                        <br />
-                    </>
+                    </Space>
                 ))}
             </div>
         </>

@@ -19,7 +19,7 @@ const TagTemplate = ({ data }) => {
                 description={`${title} | ${siteTitle}`}
             />
             <Space>
-                <Card hoverable="true">
+                <Card>
                     <h1 style={{ color: "var(--titleNormal)" }}>{title}</h1>
                     <br />
                 </Card>

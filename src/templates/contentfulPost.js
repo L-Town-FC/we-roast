@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 import { Avatar, Card, Space } from "antd"
+import UserPreview from "../components/userPreview"
 
 export default ({ data }) => {
     const post = data.contentfulBlogPost
@@ -30,7 +31,8 @@ export default ({ data }) => {
                         Published: {post.publishDate}
                     </p>
                     <Link to={`/user/${post.author.username}`}>
-                        <Card hoverable>
+                        <UserPreview user={post.author} />
+                        {/* <Card hoverable>
                             <div
                                 style={{
                                     display: "flex",
@@ -44,7 +46,7 @@ export default ({ data }) => {
                                 />
                                 <h3> {post.author.name}</h3>
                             </div>
-                        </Card>
+                        </Card> */}
                     </Link>
 
                     <br />
