@@ -1,15 +1,16 @@
 import React from "react"
-import sortBy from 'lodash/sortBy'
+import sortBy from "lodash/sortBy"
 import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 import { Card, Space } from "antd"
+import BlogPreview from "../components/blogPreview"
 
 const TagTemplate = ({ data }) => {
     const siteTitle = data.site.siteMetadata.title
     const { title, slug } = data.contentfulTag
 
-    const posts = sortBy(data.contentfulTag.post, "publishDate").reverse()
+    const blogs = sortBy(data.contentfulTag.blog_post, "publishDate").reverse()
 
     return (
         <Space direction="vertical">
@@ -24,16 +25,15 @@ const TagTemplate = ({ data }) => {
                 </Card>
             </Space>
             <br />
-            <h2 style={{ color: "var(--titleNormal)" }}>Posts</h2>
-            {posts.map(({ node }) => (
-                    <Link to={`/`}>
-                        <Card hoverable="true">
-                            {/* {node.title} */}
-                            {/* <ArticlePreview article={node} /> */}
-                        </Card>
-                        <br />
-                    </Link>
-                ))}
+            <h2 style={{ color: "var(--titleNormal)" }}>Blogs</h2>
+            {blogs.map(({ blog }) => (
+                <Link to={`/`}>
+                    <Card hoverable="true">
+                        <BlogPreview article={blog} />
+                    </Card>
+                    <br />
+                </Link>
+            ))}
         </Space>
     )
 }
@@ -49,21 +49,22 @@ export const query = graphql`
             title
             id
             slug
-            post {
-                id
+            blog_post {
                 title
                 slug
-                publishDate(formatString: "MMMM DD, YYYY")
-                heroImage {
+                publishDate(formatString: "MMMM Do, YYYY")
+                tags {
+                    slug
                     title
-                    sizes(maxWidth: 1800) {
-                        ...GatsbyContentfulSizes_withWebp_noBase64
+                }
+                heroImage {
+                    fluid {
+                        ...GatsbyContentfulFluid_tracedSVG
                     }
                 }
-                body {
+                description {
                     childMarkdownRemark {
                         html
-                        excerpt(pruneLength: 80)
                     }
                 }
             }

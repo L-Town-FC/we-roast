@@ -48,11 +48,11 @@ export default ({ data }) => {
                     </Link>
 
                     <br />
-                    <div
+                    {post.body && <div
                         dangerouslySetInnerHTML={{
                             __html: post.body.childMarkdownRemark.html,
                         }}
-                    />
+                    />}
                 </Card>
             </div>
         </>

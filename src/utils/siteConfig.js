@@ -19,8 +19,8 @@ module.exports = {
                 link: "/content",
             },
             {
-                name: "blog",
-                link: "/blog",
+                name: "blogs",
+                link: "/blogs",
             },
         ],
         author: "L-Town-FC",

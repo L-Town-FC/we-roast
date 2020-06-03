@@ -7,7 +7,7 @@ import { Link, navigate, graphql, useStaticQuery } from "gatsby"
 const TagList = (props) => {
   const { allContentfulTag } = useStaticQuery(
     graphql`
-      query TagList {
+      query allTags {
         allContentfulTag {
           edges {
             node {

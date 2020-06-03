@@ -3,13 +3,13 @@ import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 import { Card, Space } from "antd"
-import ArticlePreview from "../components/articlePreview"
+import BlogPreview from "../components/blogPreview"
 
 export default ({ data }) => {
     const user = data.contentfulPerson
     const contentfulId = data.contentfulPerson.contentful_id
     const siteTitle = data.site.siteMetadata.title
-    const posts = data.allContentfulBlogPost.edges
+    const blogs = data.allContentfulBlogPost.edges
 
     return (
         <Space direction="vertical">
@@ -44,10 +44,10 @@ export default ({ data }) => {
                 </Space>
                 <br />
                 <h2 style={{ color: "var(--titleNormal)" }}>Blogs</h2>
-                {posts.map(({ node }) => (
+                {blogs.map(({ node }) => (
                     <Link to={`/blog/${node.slug}`}>
                         <Card hoverable="true" key={node.title}>
-                            <ArticlePreview article={node} />
+                            <BlogPreview article={node} />
                         </Card>
                         <br />
                     </Link>
@@ -88,7 +88,10 @@ export const query = graphql`
                     title
                     slug
                     publishDate(formatString: "MMMM Do, YYYY")
-                    tags
+                    tags {
+                        slug
+                        title
+                    }
                     heroImage {
                         fluid {
                             ...GatsbyContentfulFluid_tracedSVG
