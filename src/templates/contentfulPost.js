@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 import { Avatar, Card, Space } from "antd"
+import UserPreview from "../components/userPreview"
 
 export default ({ data }) => {
     const post = data.contentfulBlogPost
@@ -16,7 +17,7 @@ export default ({ data }) => {
                 description={`${post.title} | ${siteTitle}`}
             />
             <div style={{ padding: 15 }}>
-                <Img alt={post.title} fluid={post.heroImage.fluid} />
+                <Img alt={post.title} fluid={post.heroImage.fluid} imgStyle={{maxHeight:"80%"}}/>
                 <br />
                 <Card>
                     <h1 style={{ color: "var(--titleNormal)" }}>
@@ -30,29 +31,15 @@ export default ({ data }) => {
                         Published: {post.publishDate}
                     </p>
                     <Link to={`/user/${post.author.username}`}>
-                        <Card hoverable>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    padding: "15",
-                                    alignContent: "center",
-                                }}
-                            >
-                                <Avatar
-                                    size="large"
-                                    src={post.author.image.fluid.src}
-                                />
-                                <h3> {post.author.name}</h3>
-                            </div>
-                        </Card>
+                        <UserPreview user={post.author} />
                     </Link>
 
                     <br />
-                    <div
+                    {post.body && <div
                         dangerouslySetInnerHTML={{
                             __html: post.body.childMarkdownRemark.html,
                         }}
-                    />
+                    />}
                 </Card>
             </div>
         </>

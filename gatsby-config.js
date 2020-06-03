@@ -8,56 +8,36 @@ require("dotenv").config({
     path: `.env.${process.env.NODE_ENV}`,
 })
 
-const contentfulConfig = {
-    spaceId: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+const sitConfig = require("./src/utils/siteConfig")
+
+let contentfulConfig
+try {
+    contentfulConfig = require("./.contentful.json")
+} catch (e) {
+    // only runs in production on netlify
+    contentfulConfig = {
+        production: {
+            spaceId: process.env.CONTENTFUL_SPACE_ID,
+            accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        },
+    }
 }
+
+const contentfulOptions =
+    process.env.NODE_ENV === "development"
+        ? contentfulConfig.development
+        : contentfulConfig.production
+
 
 // if you want to use the preview API please define
 // CONTENTFUL_HOST in your environment config
 // the `host` property should map to `preview.contentful.com`
 // https://www.contentful.com/developers/docs/references/content-preview-api/#/reference/spaces/space/get-a-space/console/js
-if (process.env.CONTENTFUL_HOST) {
-    contentfulConfig.host = process.env.CONTENTFUL_HOST
-}
 
-const { spaceId, accessToken } = contentfulConfig
-
-if (!spaceId || !accessToken) {
-    throw new Error(
-        "Contentful spaceId and the access token need to be provided."
-    )
-}
 
 module.exports = {
     /* Your site config here */
-    siteMetadata: {
-        title: "We Roast",
-        menuLinks: [
-            {
-                name: "Home",
-                link: "/",
-            },
-            {
-                name: "about",
-                link: "/about",
-            },
-            {
-                name: "conservation",
-                link: "/conservation",
-            },
-            {
-                name: "content",
-                link: "/content",
-            },
-            {
-                name: "blog",
-                link: "/blog",
-            },
-        ],
-        author: "L-Town-FC",
-        description: "Its roasted",
-    },
+    siteMetadata: sitConfig.metaData,
     plugins: [
         `gatsby-plugin-dark-mode`,
         {
@@ -83,9 +63,9 @@ module.exports = {
                 name: `we roast`,
                 short_name: `we roast`,
                 start_url: `/`,
-                background_color: `#663399`,
-                theme_color: `#663399`,
-                display: `minimal-ui`,
+                background_color: `#FFFFFF`,
+                theme_color: `#5A3311`,
+                display: `roast manifest`,
                 icon: `static/favicon.ico`, // This path is relative to the root of the site.
             },
         },
@@ -131,8 +111,13 @@ module.exports = {
         `gatsby-transformer-sharp`,
         {
             resolve: "gatsby-source-contentful",
-            options: contentfulConfig,
+            options: contentfulOptions,
         },
+        // {
+        //     resolve: "contentful-editor",
+        //     options: contentfulOptions,
+        // },
+        `gatsby-plugin-netlify`,
         `gatsby-remark-images`,
         {
             resolve: `gatsby-plugin-mdx`,

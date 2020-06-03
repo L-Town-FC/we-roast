@@ -3,7 +3,7 @@ import { Button, Card, Space } from "antd"
 import SEO from "../components/seo"
 import { useAuth0 } from "../services/auth.API"
 import { LogoutOutlined } from "@ant-design/icons"
-import { ProtectedRoute } from "../components/protected-route"
+import { ProtectedRoute } from "../components/protectedRoute"
 import { Navigatioin, Navigation } from "../components/navigation"
 
 const Account = () => {

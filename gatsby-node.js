@@ -52,7 +52,7 @@ exports.createPages = async ({ graphql, actions }) => {
         node.fields
             ? createPage({
                   path: node.fields.slug,
-                  component: path.resolve(`./src/templates/local-post.js`),
+                  component: path.resolve(`./src/templates/localPost.js`),
                   context: {
                       slug: node.fields.slug,
                   },
@@ -81,12 +81,19 @@ exports.createPages = async ({ graphql, actions }) => {
                     }
                 }
             }
+            allContentfulTag {
+                edges {
+                    node {
+                        slug
+                    }
+                }
+            }
         }
     `)
     contenfulResult.data.allContentfulBlogPost.edges.forEach(({ node }) => {
         createPage({
             path: `/blog/${node.slug}/`,
-            component: path.resolve(`./src/templates/contentful-post.js`),
+            component: path.resolve(`./src/templates/contentfulPost.js`),
             context: {
                 slug: node.slug,
             },
@@ -94,10 +101,19 @@ exports.createPages = async ({ graphql, actions }) => {
     })
     contenfulResult.data.allContentfulPerson.edges.forEach(({ node }) => {
         createPage({
-            path: `/user/${node.username}`,
-            component: path.resolve(`./src/templates/site-user.js`),
+            path: `/user/${node.username}/`,
+            component: path.resolve(`./src/templates/siteUser.js`),
             context: {
                 username: node.username,
+            },
+        })
+    })
+    contenfulResult.data.allContentfulTag.edges.forEach(({ node }) => {
+        createPage({
+            path: `/tag/${node.slug}/`,
+            component: path.resolve(`./src/templates/tag.js`),
+            context: {
+                slug: node.slug,
             },
         })
     })

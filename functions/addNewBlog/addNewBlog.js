@@ -1,14 +1,14 @@
 require("dotenv").config()
-const fs = require('fs');
+const fs = require("fs")
 const sdk = require("contentful-management")
 const spaceId = process.env.CONTENTFUL_SPACE_ID
 const accessToken = process.env.CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
 const {
     getAccessTokenFromHeaders,
     validateAccessToken,
-} = require("./utils/auth")
+} = require("../utils/auth")
 
-const { createNewBlog } = require("./utils/contentful")
+const { createNewBlog } = require("../utils/contentful")
 
 exports.handler = async (event, context, callback) => {
     const token = getAccessTokenFromHeaders(event.headers)
