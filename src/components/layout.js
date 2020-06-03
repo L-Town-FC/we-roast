@@ -9,7 +9,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { Navigation } from "../components/navigation"
-import Background from "./Background"
 import { InstagramFilled } from "@ant-design/icons"
 import { Avatar, Button, Card } from "antd"
 

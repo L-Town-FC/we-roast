@@ -11,16 +11,16 @@ export default ({ article }) => (
       <Link to={`/blog/${article.slug}`}>{article.title}</Link>
     </h3>
     <small>{article.publishDate}</small>
-    <div
+    {article.description && <div
       dangerouslySetInnerHTML={{
         __html: article.description.childMarkdownRemark.html,
       }}
-    />
+    />}
     <ul>
       {article.tags &&
         article.tags.map(tag => (
-          <li key={tag}>
-            {tag}
+          <li key={tag.slug}>
+            {tag.title}
           </li>
         ))}
     </ul>

@@ -69,8 +69,12 @@ yarn-error.log
 .yarn-integrity
 
 # contentful
-content*.json
+.contentful.json
 # Local Netlify folder
 .netlify
 
 *.zip
+
+# ignore images written to addNewBlog
+functions/**/*.jpg
+functions/**/*.png
