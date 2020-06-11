@@ -41,7 +41,7 @@ export const Navigation = props => {
                     >
                         <img
                             src={logo}
-                            style={{ borderRadius: 0, maxWidth: "50%" }}
+                            style={{ borderRadius: 0, maxWidth: "50%"}}
                             alt="logo"
                         />
                     </div>

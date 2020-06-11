@@ -27,7 +27,7 @@ const TagTemplate = ({ data }) => {
             <br />
             <h2 style={{ color: "var(--titleNormal)" }}>Blogs</h2>
             {blogs.map( blog => (
-                <Link to={`/`}>
+                <Link to={`/blog/${blog.slug}`}>
                     <Card hoverable="true">
                         <BlogPreview article={blog} />
                     </Card>
