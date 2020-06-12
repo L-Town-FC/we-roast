@@ -85,22 +85,12 @@ async function createNewImage(imageData) {
             },
         }
         if (imageData.file) {
-            const base64Data = imageData.file
-            const base64Image = base64Data.split(";base64,").pop()
-            const relativePath = `./${imageData.fileName}`
-            const relativeNetlifyPath = process.env.LAMBDA_TASK_ROOT
-                ? path.resolve(process.env.LAMBDA_TASK_ROOT, relativePath)
-                : path.resolve(__dirname, relativePath)
-            fs.writeFileSync(relativeNetlifyPath, base64Image, {
-                encoding: "base64",
-            })
-
-            console.log(`Created file ${relativeNetlifyPath}`)
+            const newImageData = new Buffer.from(imageData.file.replace(/^data:image\/[a-z]+;base64,/, ''), 'base64');
             imageFields.fields.file = {
                 "en-US": {
                     contentType: imageData.contentType,
                     fileName: imageData.fileName,
-                    file: fs.createReadStream(relativeNetlifyPath),
+                    file: newImageData,
                 },
             }
         }
