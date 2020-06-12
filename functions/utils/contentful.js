@@ -7,7 +7,6 @@ const accessToken = process.env.CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
 
 const today = new Date()
 
-
 const sdkClient = sdk.createClient({
     accessToken: accessToken,
 })
@@ -74,8 +73,7 @@ async function createNewImage(imageData) {
                     "en-US": imageData.title,
                 },
                 description: {
-                    "en-US":
-                        "Hero image for blog",
+                    "en-US": "Hero image for blog",
                 },
                 file: {
                     "en-US": {
@@ -88,26 +86,32 @@ async function createNewImage(imageData) {
         }
         if (imageData.file) {
             const base64Data = imageData.file
-            const base64Image = base64Data.split(';base64,').pop();
+            const base64Image = base64Data.split(";base64,").pop()
             const relativePath = `./${imageData.fileName}`
-            const relativeNetlifyPath = (process.env.LAMBDA_TASK_ROOT)? path.resolve(process.env.LAMBDA_TASK_ROOT, relativePath): path.resolve(__dirname, relativePath)
-            fs.writeFile(relativeNetlifyPath, base64Image, {encoding: 'base64'}, function(err) {
-                console.log(`Created file ${relativeNetlifyPath}`);
-                imageFields.fields.file = {
-                    "en-US": {
-                        contentType: imageData.contentType,
-                        fileName: imageData.fileName,
-                        file: fs.createReadStream(relativeNetlifyPath),
-                    },
-                }
-            });
+            const relativeNetlifyPath = process.env.LAMBDA_TASK_ROOT
+                ? path.resolve(process.env.LAMBDA_TASK_ROOT, relativePath)
+                : path.resolve(__dirname, relativePath)
+            fs.writeFileSync(relativeNetlifyPath, base64Image, {
+                encoding: "base64",
+            })
+
+            console.log(`Created file ${relativeNetlifyPath}`)
+            imageFields.fields.file = {
+                "en-US": {
+                    contentType: imageData.contentType,
+                    fileName: imageData.fileName,
+                    file: fs.createReadStream(relativeNetlifyPath),
+                },
+            }
         }
         // console.log(imageFields)
         // return null
         const space = await sdkClient.getSpace(spaceId)
         const environment = await space.getEnvironment("master")
 
-        const newImage = imageData.file ? await environment.createAssetFromFiles(imageFields) : await environment.createAsset(imageFields)
+        const newImage = imageData.file
+            ? await environment.createAssetFromFiles(imageFields)
+            : await environment.createAsset(imageFields)
         // const newImage = await environment.createAsset(imageFields)
         const newImageProcessed = await newImage.processForLocale("en-US")
         // const newPublished = await newImageProcessed.publish()
