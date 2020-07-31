@@ -12,7 +12,7 @@ import {
 } from "antd"
 import moment from "moment"
 import { navigate } from "gatsby"
-import { useAuth0 } from "../services/auth.API"
+import { useAuth0 } from "../services/auth.service"
 import {
     LoadingOutlined,
     PlusOutlined,

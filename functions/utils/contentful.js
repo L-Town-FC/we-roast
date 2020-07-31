@@ -1,7 +1,5 @@
 require("dotenv").config()
 const sdk = require("contentful-management")
-const fs = require("fs")
-const path = require("path")
 const spaceId = process.env.CONTENTFUL_SPACE_ID
 const accessToken = process.env.CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
 

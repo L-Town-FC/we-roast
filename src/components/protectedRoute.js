@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useAuth0 } from "../services/auth.API"
+import { useAuth0 } from "../services/auth.service"
 
 export const ProtectedRoute = ({ children }) => {
   const { loading, isAuthenticated, loginWithRedirect, loginWithPopup } = useAuth0()

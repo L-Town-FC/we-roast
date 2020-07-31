@@ -1,7 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
 import { Card, Space } from "antd"
-import { useAuth0 } from "../services/auth.API"
+import { useAuth0 } from "../services/auth.service"
 import NewBlogForm from "../components/newBlogForm"
 import { ProtectedRoute } from "../components/protectedRoute"
 

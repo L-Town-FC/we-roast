@@ -1,5 +1,5 @@
 import React from "react"
-import { useAuth0 } from "../services/auth.API"
+import { useAuth0 } from "../services/auth.service"
 import SEO from "../components/seo"
 import { Card, Space } from "antd"
 

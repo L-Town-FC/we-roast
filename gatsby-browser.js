@@ -3,7 +3,7 @@ import React from "react"
 
 import Layout from "./src/components/layout"
 import authConfig from "./auth_config.json"
-import { Auth0Provider } from "./src/services/auth.API"
+import { Auth0Provider } from "./src/services/auth.service"
 
 const onRedirectCallback = appState => {
     window.history.replaceState(

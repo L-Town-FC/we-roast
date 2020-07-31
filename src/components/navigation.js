@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link, navigate } from "gatsby"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
-import { useAuth0 } from "../services/auth.API"
+import { useAuth0 } from "../services/auth.service"
 import { Affix, Button, Space, Menu, Switch } from "antd"
 import { UserOutlined, CoffeeOutlined } from "@ant-design/icons"
 import logo from "../../static/wr-logo.png"
