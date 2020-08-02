@@ -1,14 +1,19 @@
 import React from "react"
 import { useAuth0 } from "../services/auth.service"
 import SEO from "../components/seo"
-import { Card, Space } from "antd"
+import { Card, Space, Spin } from "antd"
 
 const IndexPage = ({ data }) => {
     const { loading, user, isAuthenticated } = useAuth0()
     if (loading) {
-        return <p>Loading...</p>
+        return (
+            <div className="flexCenter">
+                <h2>... Loading ...</h2>
+                <Spin size="large" />
+            </div>
+        )
     }
-    
+
     return (
         <Space direction="vertical">
             <SEO title="Home" />

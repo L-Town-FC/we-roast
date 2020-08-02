@@ -10,6 +10,5 @@ const client = contentful.createClient({
 
 export async function getEnryById(id) {
     const entry = await client.getEntry(id)
-    console.log(entry)
     return entry
 }

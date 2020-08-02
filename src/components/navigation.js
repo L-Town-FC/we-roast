@@ -19,7 +19,7 @@ export const Navigation = props => {
     )
 
     const handleClick = e => {
-        if(e.key){
+        if (e.key) {
             localStorage.setItem("currentKey", e.key)
             console.log(e.key)
             setCurrentKey(e.key)
@@ -32,20 +32,22 @@ export const Navigation = props => {
                 direction="vertical"
                 style={{ backgroundColor: "var(--bg)" }}
             >
-                <Space align="center">
-                    <div
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        maxHeight: "10%",
+                    }}
+                >
+                    <img
+                        src={logo}
                         style={{
-                            display: "flex",
-                            justifyContent: "center",
+                            borderRadius: 0,
+                            maxHeight: "20vh"
                         }}
-                    >
-                        <img
-                            src={logo}
-                            style={{ borderRadius: 0, maxWidth: "50%"}}
-                            alt="logo"
-                        />
-                    </div>
-                </Space>
+                        alt="logo"
+                    />
+                </div>
                 <Space align="center">
                     <ThemeToggler>
                         {({ theme, toggleTheme }) => {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { Button, Card, Space } from "antd"
+import { Button, Card, Space, Spin } from "antd"
+import "../../src/styles/global.css"
 import SEO from "../components/seo"
 import { useAuth0 } from "../services/auth.service"
 import { LogoutOutlined } from "@ant-design/icons"
@@ -8,14 +9,22 @@ import { getEnryById } from "../services/contentful.service"
 
 const Account = () => {
     const { loading, user, isAuthenticated, logout } = useAuth0()
-    const [contentfulUser, setContentfulUser] = useState({})
-    useEffect(async () => {
-        console.log(await getEnryById("24ibMbzD8mVXeKgVykfn6z"))
-        console.log(user.email)
+    const [contentfulUser, setContentfulUser] = useState(null)
+    useEffect(() => {
+        ;(async () => {
+            const userEntry = await getEnryById("24ibMbzD8mVXeKgVykfn6z")
+            setContentfulUser(userEntry)
+            console.log(userEntry)
+        })()
     }, [])
 
-    if (loading || !user) {
-        return <p>Loading Account Profile...</p>
+    if (loading || !user || !contentfulUser) {
+        return (
+            <div className="flexCenter">
+                <h2>...Loading Account Profile...</h2>
+                <Spin size="large"/>
+            </div>
+        )
     }
 
     return (
@@ -31,9 +40,9 @@ const Account = () => {
                             alt="profilePicture"
                         />
                         <ul>
-                            <li>Name: {user.given_name}</li>
-                            <li>Nickname: {user.nickname}</li>
-                            <li>E-mail: {user.email}</li>
+                            <li>Name: {contentfulUser.fields.name}</li>
+                            <li>Nickname: {contentfulUser.fields.username}</li>
+                            <li>E-mail: {contentfulUser.fields.email}</li>
                             <li>
                                 <Button
                                     icon={<LogoutOutlined />}
@@ -47,6 +56,10 @@ const Account = () => {
                                 </Button>
                             </li>
                         </ul>
+                    </Space>
+                    <Space direction="vertical">
+                        <h1>{contentfulUser.fields.title}</h1>
+                        <h2>{contentfulUser.fields.shortBio}</h2>
                     </Space>
                 </Card>
                 {/* <>{getEnryById("24ibMbzD8mVXeKgVykfn6z")}</> */}
