@@ -6,6 +6,8 @@ import { useAuth0 } from "../services/auth.service"
 import { LogoutOutlined } from "@ant-design/icons"
 import { ProtectedRoute } from "../components/protectedRoute"
 import { getEnryById } from "../services/contentful.service"
+import pouring from "../../static/pouringCoffee.gif"
+import LoadingPour from "../components/loadingPour"
 
 const Account = () => {
     const { loading, user, isAuthenticated, logout } = useAuth0()
@@ -20,10 +22,7 @@ const Account = () => {
 
     if (loading || !user || !contentfulUser) {
         return (
-            <div className="flexCenter">
-                <h2>...Loading Account Profile...</h2>
-                <Spin size="large"/>
-            </div>
+            <LoadingPour />
         )
     }
 

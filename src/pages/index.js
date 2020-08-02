@@ -2,15 +2,14 @@ import React from "react"
 import { useAuth0 } from "../services/auth.service"
 import SEO from "../components/seo"
 import { Card, Space, Spin } from "antd"
+import "../styles/global.css"
+import LoadingPour from "../components/loadingPour"
 
 const IndexPage = ({ data }) => {
     const { loading, user, isAuthenticated } = useAuth0()
     if (loading) {
         return (
-            <div className="flexCenter">
-                <h2>... Loading ...</h2>
-                <Spin size="large" />
-            </div>
+            <LoadingPour />
         )
     }
 

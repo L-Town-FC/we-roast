@@ -4,12 +4,13 @@ import { Card, Space } from "antd"
 import { useAuth0 } from "../services/auth.service"
 import NewBlogForm from "../components/newBlogForm"
 import { ProtectedRoute } from "../components/protectedRoute"
+import LoadingPour from "../components/loadingPour"
 
 const WriteBlog = () => {
     const { loading, user, isAuthenticated, logout } = useAuth0()
 
     if (loading || !user) {
-        return <p>Loading new blog form...</p>
+        return <LoadingPour />
     }
     return (
         <ProtectedRoute>
