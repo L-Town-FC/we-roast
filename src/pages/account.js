@@ -3,7 +3,7 @@ import { Button, Card, Space, Spin } from "antd"
 import "../../src/styles/global.css"
 import SEO from "../components/seo"
 import { useAuth0 } from "../services/auth.service"
-import { LogoutOutlined } from "@ant-design/icons"
+import { EditOutlined, LogoutOutlined } from "@ant-design/icons"
 import { ProtectedRoute } from "../components/protectedRoute"
 import { getEnryById } from "../services/contentful.service"
 import pouring from "../../static/pouringCoffee.gif"
@@ -21,9 +21,7 @@ const Account = () => {
     }, [])
 
     if (loading || !user || !contentfulUser) {
-        return (
-            <LoadingPour />
-        )
+        return <LoadingPour />
     }
 
     return (
@@ -35,6 +33,7 @@ const Account = () => {
                     <Space>
                         <img
                             style={{ borderRadius: "50%" }}
+                            // src={contentfulUser.fields.image.fields.url}
                             src={user.picture}
                             alt="profilePicture"
                         />
@@ -42,7 +41,7 @@ const Account = () => {
                             <li>Name: {contentfulUser.fields.name}</li>
                             <li>Nickname: {contentfulUser.fields.username}</li>
                             <li>E-mail: {contentfulUser.fields.email}</li>
-                            <li>
+                            <li style={{ marginRight: "auto" }}>
                                 <Button
                                     icon={<LogoutOutlined />}
                                     type="primary"
@@ -52,6 +51,11 @@ const Account = () => {
                                     }}
                                 >
                                     Loggout
+                                </Button>
+                            </li>
+                            <li>
+                                <Button icon={<EditOutlined />} type="primary">
+                                    Edit
                                 </Button>
                             </li>
                         </ul>
