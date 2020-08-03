@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { Button, Card, Space, Spin } from "antd"
+import { graphql, useStaticQuery } from "gatsby"
+import { Button, Card, Space } from "antd"
 import "../../src/styles/global.css"
 import SEO from "../components/seo"
 import { useAuth0 } from "../services/auth.service"
@@ -10,6 +11,19 @@ import pouring from "../../static/pouringCoffee.gif"
 import LoadingPour from "../components/loadingPour"
 
 const Account = () => {
+    const data = useStaticQuery(graphql`
+        query Images {
+            users: allContentfulPerson {
+                edges {
+                  node {
+                    contentful_id
+                    email
+                  }
+                }
+              }
+        }
+    `)
+    console.log(data)
     const { loading, user, isAuthenticated, logout } = useAuth0()
     const [contentfulUser, setContentfulUser] = useState(null)
     useEffect(() => {

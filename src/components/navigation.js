@@ -3,7 +3,12 @@ import { Link, navigate } from "gatsby"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import { useAuth0 } from "../services/auth.service"
 import { Affix, Button, Space, Menu, Switch } from "antd"
-import { UserOutlined, CoffeeOutlined } from "@ant-design/icons"
+import {
+    UserOutlined,
+    CoffeeOutlined,
+    EditOutlined,
+    LogoutOutlined,
+} from "@ant-design/icons"
 import logo from "../../static/wr-logo.png"
 
 export const Navigation = props => {
@@ -12,6 +17,7 @@ export const Navigation = props => {
         loginWithRedirect,
         loginWithPopup,
         loading,
+        logout,
     } = useAuth0()
 
     const [currentKey, setCurrentKey] = useState(
@@ -24,6 +30,9 @@ export const Navigation = props => {
             console.log(e.key)
             setCurrentKey(e.key)
             navigate(e.key)
+        }
+        else {
+            navigate("/")
         }
     }
     return (
@@ -43,7 +52,7 @@ export const Navigation = props => {
                         src={logo}
                         style={{
                             borderRadius: 0,
-                            maxHeight: "20vh"
+                            maxHeight: "20vh",
                         }}
                         alt="logo"
                     />
@@ -84,23 +93,34 @@ export const Navigation = props => {
                                         </Menu.Item>
                                     )}
                                     {isAuthenticated && !loading && (
-                                        <Menu.Item
-                                            key="/account"
+                                        <Menu.SubMenu
                                             icon={<UserOutlined />}
+                                            title="Profile"
                                         >
-                                            Profile
-                                        </Menu.Item>
+                                            <Menu.Item
+                                                key="/account"
+                                                icon={<UserOutlined />}
+                                            >
+                                                My Profile
+                                            </Menu.Item>
+                                            <Menu.Item
+                                                key="/editUser"
+                                                icon={<EditOutlined />}
+                                            >
+                                                Edit
+                                            </Menu.Item>
+                                            <Menu.Item
+                                                icon={<LogoutOutlined />}
+                                                onClick={()=>{logout()}}
+                                            >
+                                                Logout
+                                            </Menu.Item>
+                                        </Menu.SubMenu>
                                     )}
 
                                     <Switch
                                         checked={theme === "dark"}
                                         onChange={e => {
-                                            // changeTheme(theme)
-                                            // setCurrentTheme(
-                                            //     theme === "dark"
-                                            //         ? "light"
-                                            //         : "dark"
-                                            // )
                                             toggleTheme(
                                                 theme === "dark"
                                                     ? "light"
