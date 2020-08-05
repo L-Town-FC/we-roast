@@ -33,8 +33,6 @@ const BlogForm = () => {
     const {
         loading,
         user,
-        isAuthenticated,
-        logout,
         getTokenSilently,
     } = useAuth0()
 
