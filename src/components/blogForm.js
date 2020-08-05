@@ -12,7 +12,7 @@ import {
 } from "antd"
 import moment from "moment"
 import { navigate } from "gatsby"
-import { useAuth0 } from "../services/auth.API"
+import { useAuth0 } from "../services/auth.service"
 import {
     LoadingOutlined,
     PlusOutlined,
@@ -29,12 +29,10 @@ const validateMessages = {
     },
 }
 
-const NewBlogForm = () => {
+const BlogForm = () => {
     const {
         loading,
         user,
-        isAuthenticated,
-        logout,
         getTokenSilently,
     } = useAuth0()
 
@@ -207,4 +205,4 @@ const NewBlogForm = () => {
     )
 }
 
-export default NewBlogForm
+export default BlogForm;

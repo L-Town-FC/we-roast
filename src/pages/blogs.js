@@ -3,7 +3,8 @@ import { Link, graphql, useStaticQuery, navigate } from "gatsby"
 import SEO from "../components/seo"
 import { Button, Card } from "antd"
 import BlogPreview from "../components/blogPreview"
-import { useAuth0 } from "../services/auth.API"
+import { useAuth0 } from "../services/auth.service"
+import LoadingPour from "../components/loadingPour"
 
 const Blogs = () => {
     const data = useStaticQuery(graphql`
@@ -44,7 +45,7 @@ const Blogs = () => {
     const blogs = data.allContentfulBlogPost.edges
     const { loading, user, isAuthenticated } = useAuth0()
     if (loading) {
-        return <p>Loading...</p>
+        return <LoadingPour />
     }
     return (
         <>

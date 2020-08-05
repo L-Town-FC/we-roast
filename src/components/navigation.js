@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react"
-import { Link, navigate } from "gatsby"
+import { navigate } from "gatsby"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
-import { useAuth0 } from "../services/auth.API"
-import { Affix, Button, Space, Menu, Switch } from "antd"
-import { UserOutlined, CoffeeOutlined } from "@ant-design/icons"
+import { useAuth0 } from "../services/auth.service"
+import { Affix, Space, Menu, Switch } from "antd"
+import {
+    UserOutlined,
+    CoffeeOutlined,
+    EditOutlined,
+    LogoutOutlined,
+} from "@ant-design/icons"
 import logo from "../../static/wr-logo.png"
 
 export const Navigation = props => {
@@ -12,40 +17,45 @@ export const Navigation = props => {
         loginWithRedirect,
         loginWithPopup,
         loading,
+        logout,
     } = useAuth0()
 
-    const [currentKey, setCurrentKey] = useState(
-        localStorage.getItem("currentKey") || "/"
-    )
+    const [currentKey, setCurrentKey] = useState(window.location.pathname)
 
     const handleClick = e => {
-        if(e.key){
-            localStorage.setItem("currentKey", e.key)
-            console.log(e.key)
+        if (e.key) {
+            console.log(e.key);
             setCurrentKey(e.key)
             navigate(e.key)
         }
     }
+
+    // useEffect(() => {
+    //     setCurrentKey(window.location.pathname)
+    // })
+
     return (
         <Affix>
             <Space
                 direction="vertical"
                 style={{ backgroundColor: "var(--bg)" }}
             >
-                <Space align="center">
-                    <div
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        maxHeight: "10%",
+                    }}
+                >
+                    <img
+                        src={logo}
                         style={{
-                            display: "flex",
-                            justifyContent: "center",
+                            borderRadius: 0,
+                            maxHeight: "20vh",
                         }}
-                    >
-                        <img
-                            src={logo}
-                            style={{ borderRadius: 0, maxWidth: "50%"}}
-                            alt="logo"
-                        />
-                    </div>
-                </Space>
+                        alt="logo"
+                    />
+                </div>
                 <Space align="center">
                     <ThemeToggler>
                         {({ theme, toggleTheme }) => {
@@ -82,23 +92,37 @@ export const Navigation = props => {
                                         </Menu.Item>
                                     )}
                                     {isAuthenticated && !loading && (
-                                        <Menu.Item
+                                        <Menu.SubMenu
                                             key="/account"
                                             icon={<UserOutlined />}
+                                            title="Profile"
                                         >
-                                            Profile
-                                        </Menu.Item>
+                                            <Menu.Item
+                                                key="/account"
+                                                icon={<UserOutlined />}
+                                            >
+                                                My Profile
+                                            </Menu.Item>
+                                            <Menu.Item
+                                                key="/editUser"
+                                                icon={<EditOutlined />}
+                                            >
+                                                Edit
+                                            </Menu.Item>
+                                            <Menu.Item
+                                                icon={<LogoutOutlined />}
+                                                onClick={() => {
+                                                    logout()
+                                                }}
+                                            >
+                                                Logout
+                                            </Menu.Item>
+                                        </Menu.SubMenu>
                                     )}
 
                                     <Switch
                                         checked={theme === "dark"}
                                         onChange={e => {
-                                            // changeTheme(theme)
-                                            // setCurrentTheme(
-                                            //     theme === "dark"
-                                            //         ? "light"
-                                            //         : "dark"
-                                            // )
                                             toggleTheme(
                                                 theme === "dark"
                                                     ? "light"

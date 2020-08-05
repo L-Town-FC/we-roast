@@ -9,8 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { Navigation } from "../components/navigation"
-import { InstagramFilled } from "@ant-design/icons"
-import { Avatar, Button, Card } from "antd"
+import { Avatar, Card } from "antd"
 
 const Layout = ({ children }) => {
     const data = useStaticQuery(graphql`
@@ -42,10 +41,8 @@ const Layout = ({ children }) => {
             />
             <div
                 style={{
-                    // margin: `0 auto`,
                     backgroundColor: "var(--bg)",
                     color: "var(--textNormal)",
-                    // maxWidth: 1060,
                 }}
             >
                 <main style={{margin: `0 auto`, maxWidth:1060}}>{children}</main>

@@ -74,3 +74,8 @@ li {
     list-style-type: none;
     padding: 1rem;
 }
+
+.flexCenter {
+    display: "flex";
+    justify-content: "center";
+}

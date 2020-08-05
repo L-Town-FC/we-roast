@@ -3,7 +3,7 @@ import { Link, graphql, useStaticQuery, navigate } from "gatsby"
 import SEO from "../components/seo"
 import { Button, Card, Space } from "antd"
 import UserPreview from "../components/userPreview"
-import { useAuth0 } from "../services/auth.API"
+import { useAuth0 } from "../services/auth.service"
 
 const Users = () => {
     const data = useStaticQuery(graphql`

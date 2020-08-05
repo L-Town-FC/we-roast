@@ -1,14 +1,18 @@
 import React from "react"
-import { useAuth0 } from "../services/auth.API"
+import { useAuth0 } from "../services/auth.service"
 import SEO from "../components/seo"
 import { Card, Space } from "antd"
+import "../styles/global.css"
+import LoadingPour from "../components/loadingPour"
 
 const IndexPage = ({ data }) => {
     const { loading, user, isAuthenticated } = useAuth0()
     if (loading) {
-        return <p>Loading...</p>
+        return (
+            <LoadingPour />
+        )
     }
-    
+
     return (
         <Space direction="vertical">
             <SEO title="Home" />
