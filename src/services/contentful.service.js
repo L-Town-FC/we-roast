@@ -9,6 +9,29 @@ const client = contentful.createClient({
 })
 
 export async function getEnryById(id) {
-    const entry = await client.getEntry(id)
-    return entry
+    try {
+        const entry = await client.getEntry(id)
+        return entry
+    }
+    catch (error){
+        console.error(error)
+    }
+}
+
+// Find contentful info from username
+export async function getUserByEmail(email) {
+    try {
+        const allEntries = await client.getEntries({
+            content_type: "person",
+        })
+        const userEntry = allEntries.items.find(person => {
+            if (person.fields.email === email) {
+                return person
+            }
+        })
+        console.log(userEntry)
+        return userEntry
+    } catch (error) {
+        console.error(error)
+    }
 }

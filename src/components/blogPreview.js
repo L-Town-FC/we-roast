@@ -5,7 +5,7 @@ import { Divider, Space } from "antd"
 
 export default ({ article }) => (
   <Space direction="vertical">
-    <Img alt="blogHero" fluid={article.heroImage.fluid} style={{borderRadius:"50%", height:"50%"}} />
+    <Img alt="blogHero" fluid={article.heroImage.fluid} style={{borderRadius:"50%"}} />
     <Divider />
     <h3>
       <Link to={`/blog/${article.slug}`}>{article.title}</Link>

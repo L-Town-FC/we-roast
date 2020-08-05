@@ -31,8 +31,7 @@ const Conversation = () => (
             <List
                 bordered
                 dataSource={bullets}
-                renderItem={item => <List.Item>{item}</List.Item>}
-                style={{ color: "var(--titleNormal)" }}
+                renderItem={item => <List.Item style={{ color: "var(--titleNormal)" }}>{item}</List.Item>}
             />
             <Card title="The Rainforest Alliance">
                 <img

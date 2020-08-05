@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
-import { Link, navigate } from "gatsby"
+import { navigate } from "gatsby"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import { useAuth0 } from "../services/auth.service"
-import { Affix, Button, Space, Menu, Switch } from "antd"
+import { Affix, Space, Menu, Switch } from "antd"
 import {
     UserOutlined,
     CoffeeOutlined,
@@ -20,21 +20,20 @@ export const Navigation = props => {
         logout,
     } = useAuth0()
 
-    const [currentKey, setCurrentKey] = useState(
-        localStorage.getItem("currentKey") || "/"
-    )
+    const [currentKey, setCurrentKey] = useState(window.location.pathname)
 
     const handleClick = e => {
         if (e.key) {
-            localStorage.setItem("currentKey", e.key)
-            console.log(e.key)
+            console.log(e.key);
             setCurrentKey(e.key)
             navigate(e.key)
         }
-        else {
-            navigate("/")
-        }
     }
+
+    // useEffect(() => {
+    //     setCurrentKey(window.location.pathname)
+    // })
+
     return (
         <Affix>
             <Space
@@ -94,6 +93,7 @@ export const Navigation = props => {
                                     )}
                                     {isAuthenticated && !loading && (
                                         <Menu.SubMenu
+                                            key="/account"
                                             icon={<UserOutlined />}
                                             title="Profile"
                                         >
@@ -111,7 +111,9 @@ export const Navigation = props => {
                                             </Menu.Item>
                                             <Menu.Item
                                                 icon={<LogoutOutlined />}
-                                                onClick={()=>{logout()}}
+                                                onClick={() => {
+                                                    logout()
+                                                }}
                                             >
                                                 Logout
                                             </Menu.Item>

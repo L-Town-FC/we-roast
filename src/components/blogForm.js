@@ -29,7 +29,7 @@ const validateMessages = {
     },
 }
 
-const NewBlogForm = () => {
+const BlogForm = () => {
     const {
         loading,
         user,
@@ -207,4 +207,4 @@ const NewBlogForm = () => {
     )
 }
 
-export default NewBlogForm
+export default BlogForm;

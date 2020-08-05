@@ -9,8 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { Navigation } from "../components/navigation"
-import { InstagramFilled } from "@ant-design/icons"
-import { Avatar, Button, Card } from "antd"
+import { Avatar, Card } from "antd"
 
 const Layout = ({ children }) => {
     const data = useStaticQuery(graphql`

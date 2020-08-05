@@ -2,7 +2,6 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import SEO from "../components/seo"
 import TagList from "../components/tagList"
-import Img from "gatsby-image"
 
 const Content = () => {
     return (

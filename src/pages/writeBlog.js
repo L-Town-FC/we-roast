@@ -2,7 +2,7 @@ import React from "react"
 import SEO from "../components/seo"
 import { Card, Space } from "antd"
 import { useAuth0 } from "../services/auth.service"
-import NewBlogForm from "../components/newBlogForm"
+import BlogForm from "../components/blogForm"
 import { ProtectedRoute } from "../components/protectedRoute"
 import LoadingPour from "../components/loadingPour"
 
@@ -20,7 +20,7 @@ const WriteBlog = () => {
                 <h2 style={{ color: "var(--titleNormal)" }}>
                     Write something new!
                 </h2>
-                <NewBlogForm />
+                <BlogForm />
                 <img
                     src="https://source.unsplash.com/featured/?coffee"
                     alt="randomCoffee"

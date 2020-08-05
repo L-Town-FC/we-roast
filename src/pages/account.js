@@ -1,38 +1,26 @@
 import React, { useEffect, useState } from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, navigate } from "gatsby"
 import { Button, Card, Space } from "antd"
 import "../../src/styles/global.css"
 import SEO from "../components/seo"
 import { useAuth0 } from "../services/auth.service"
 import { EditOutlined, LogoutOutlined } from "@ant-design/icons"
 import { ProtectedRoute } from "../components/protectedRoute"
-import { getEnryById } from "../services/contentful.service"
-import pouring from "../../static/pouringCoffee.gif"
+import { getUserByEmail } from "../services/contentful.service"
 import LoadingPour from "../components/loadingPour"
 
 const Account = () => {
-    const data = useStaticQuery(graphql`
-        query Images {
-            users: allContentfulPerson {
-                edges {
-                  node {
-                    contentful_id
-                    email
-                  }
-                }
-              }
-        }
-    `)
-    console.log(data)
     const { loading, user, isAuthenticated, logout } = useAuth0()
     const [contentfulUser, setContentfulUser] = useState(null)
     useEffect(() => {
         ;(async () => {
-            const userEntry = await getEnryById("24ibMbzD8mVXeKgVykfn6z")
-            setContentfulUser(userEntry)
-            console.log(userEntry)
+            if(user){
+                const userEntry = await getUserByEmail(user.email)
+                console.log(userEntry)
+                setContentfulUser(userEntry)
+            }
         })()
-    }, [])
+    }, [user, contentfulUser])
 
     if (loading || !user || !contentfulUser) {
         return <LoadingPour />
@@ -68,7 +56,7 @@ const Account = () => {
                                 </Button>
                             </li>
                             <li>
-                                <Button icon={<EditOutlined />} type="primary">
+                                <Button icon={<EditOutlined />} type="primary" onClick={()=>{navigate("/editUser")}}>
                                     Edit
                                 </Button>
                             </li>
