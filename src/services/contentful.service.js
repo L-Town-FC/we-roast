@@ -29,11 +29,11 @@ export async function getUserByEmail(email) {
                 return person
             }
         })
-        console.log(userEntry)
         if(!userEntry){
             console.log(`${email} doesn't exist in contentful`);
+            const splitEmail = email.split("@")[0]
+            console.log(splitEmail)
         }
-        console.log(userEntry)
         return userEntry
     } catch (error) {
         console.error(error)
