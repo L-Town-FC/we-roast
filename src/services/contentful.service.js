@@ -30,6 +30,10 @@ export async function getUserByEmail(email) {
             }
         })
         console.log(userEntry)
+        if(!userEntry){
+            console.log(`${email} doesn't exist in contentful`);
+        }
+        console.log(userEntry)
         return userEntry
     } catch (error) {
         console.error(error)

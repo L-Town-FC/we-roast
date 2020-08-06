@@ -15,8 +15,8 @@ const Account = () => {
     useEffect(() => {
         ;(async () => {
             if(user){
-                const userEntry = await getUserByEmail(user.email)
-                console.log(userEntry)
+                // const userEntry = await getUserByEmail(user.email)
+                const userEntry = await getUserByEmail("bademail@gmail.com")
                 setContentfulUser(userEntry)
             }
         })()
