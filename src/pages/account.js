@@ -10,13 +10,14 @@ import { getUserByEmail } from "../services/contentful.service"
 import LoadingPour from "../components/loadingPour"
 
 const Account = () => {
-    const { loading, user, isAuthenticated, logout } = useAuth0()
+    const { loading, user, isAuthenticated, logout, getTokenSilently } = useAuth0()
     const [contentfulUser, setContentfulUser] = useState(null)
     useEffect(() => {
         ;(async () => {
             if(user){
+                const token = await getTokenSilently()
                 // const userEntry = await getUserByEmail(user.email)
-                const userEntry = await getUserByEmail("bademail@gmail.com")
+                const userEntry = await getUserByEmail("bademail@gmail.com", token)
                 setContentfulUser(userEntry)
             }
         })()
