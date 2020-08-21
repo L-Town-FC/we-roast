@@ -21,14 +21,14 @@ exports.handler = async (event, context, callback) => {
         const newPost = await createNewBlog(body)
         return {
             statusCode: 200,
-            body: JSON.stringify({ success: true }),
+            body: JSON.stringify({ success: true, newPost }),
         }
     } catch (err) {
         console.error(err)
         return {
             statusCode: 500,
             body: JSON.stringify({
-                msg: "Failed to create record in Contentful",
+                msg: "Failed to create new blog in Contentful",
             }),
         }
     }
