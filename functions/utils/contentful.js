@@ -51,12 +51,16 @@ async function getBlogStructure() {
     }
 }
 
-// Function that writes validated blog to contentful
-async function createBlog(blogData) {
+/** Function that writes validated blog to contentful
+ * @param {String} entryType Type of contentful entry being created
+ * @param {Object} entryObject Object representing new entry
+ * @param {String} contentfulEnv Environment to publish entry to
+ */
+async function createCustomEntry(entryType, entryObject, contentfulEnv = "master") {
     try {
         const space = await sdkClient.getSpace(spaceId)
-        const environment = await space.getEnvironment("master")
-        const entry = await environment.createEntry("blogPost", blogData)
+        const environment = await space.getEnvironment(contentfulEnv)
+        const entry = await environment.createEntry(entryType, entryObject)
         return entry
     } catch (error) {
         console.error(error)
@@ -172,13 +176,35 @@ async function createNewBlog(blogObject) {
     // Object.entries(contentfulBlog.fields).forEach(entry => console.log(entry))
 
     // writes new blog
-    const newBlog = await createBlog(newBlogData)
+    const newBlog = await createCustomEntry("blogPost", newBlogData)
     return newBlog
+}
+
+/** Function that creates a new 
+ * @param {*} personObject Object representing new person in contentful
+ */
+async function createNewPerson(personObject) {
+    const {userName, email} = personObject
+    let newPersonData = { fields: {} }
+    newPersonData.fields.name = { "en-US": "testName" }
+    newPersonData.fields.username = { "en-US": userName }
+    newPersonData.fields.title = { "en-US": "test title" }
+    newPersonData.fields.company = { "en-US": "test company" }
+    newPersonData.fields.shortBio = { "en-US": "test short bio" }
+    newPersonData.fields.email = { "en-US": email }
+    newPersonData.fields.image = {
+        "en-US": {
+            sys: { type: "Link", linkType: "Asset", id: "6Od9v3wzLOysiMum0Wkmme" },
+        },
+    }
+    const newPerson = await createCustomEntry("person", newPersonData)
+    return newPerson
 }
 
 module.exports = {
     getBlogStructure,
     getEntryById,
     createNewBlog,
+    createNewPerson,
     getUserEntry,
 }

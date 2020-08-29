@@ -38,6 +38,7 @@ const Users = () => {
     `)
     const siteTitle = data.site.siteMetadata.title
     const users = data.allContentfulPerson.edges
+    console.log(users);
     return (
         <>
             <SEO title={siteTitle} />
