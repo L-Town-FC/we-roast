@@ -181,7 +181,7 @@ async function createNewBlog(blogObject) {
 }
 
 /** Function that creates a new 
- * @param {*} personObject Object representing new person in contentful
+ * @param {Object} personObject Object representing new person in contentful
  */
 async function createNewPerson(personObject) {
     const {userName, email} = personObject
