@@ -16,8 +16,8 @@ const Account = () => {
         ;(async () => {
             if(user){
                 const token = await getTokenSilently()
-                const userEntry = await getUserByEmail(user.email, token)
-                // const userEntry = await getUserByEmail("bademail@gmail.com", token)
+                // const userEntry = await getUserByEmail(user.email, token)
+                const userEntry = await getUserByEmail("bademail@gmail.com", token)
                 setContentfulUser(userEntry)
             }
         })()
@@ -40,6 +40,7 @@ const Account = () => {
                             src={user.picture}
                             alt="profilePicture"
                         />
+                        
                         <ul>
                             <li>Name: {contentfulUser.fields.name}</li>
                             <li>Nickname: {contentfulUser.fields.username}</li>

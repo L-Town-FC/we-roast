@@ -186,15 +186,15 @@ async function createNewBlog(blogObject) {
 async function createNewPerson(personObject) {
     const {userName, email} = personObject
     let newPersonData = { fields: {} }
-    newPersonData.fields.name = { "en-US": "testName" }
+    newPersonData.fields.name = { "en-US": "" }
     newPersonData.fields.username = { "en-US": userName }
-    newPersonData.fields.title = { "en-US": "test title" }
-    newPersonData.fields.company = { "en-US": "test company" }
-    newPersonData.fields.shortBio = { "en-US": "test short bio" }
+    newPersonData.fields.title = { "en-US": "" }
+    newPersonData.fields.company = { "en-US": "" }
+    newPersonData.fields.shortBio = { "en-US": "" }
     newPersonData.fields.email = { "en-US": email }
     newPersonData.fields.image = {
         "en-US": {
-            sys: { type: "Link", linkType: "Asset", id: "6Od9v3wzLOysiMum0Wkmme" },
+            sys: { type: "Link", linkType: "Asset", id: "2MNMslg7icXIg4axtZti6a" },
         },
     }
     const newPerson = await createCustomEntry("person", newPersonData)

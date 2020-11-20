@@ -24,15 +24,15 @@ export const Navigation = props => {
 
     const handleClick = e => {
         if (e.key) {
-            console.log(e.key);
+            console.log(e.key)
             setCurrentKey(e.key)
             navigate(e.key)
         }
     }
 
-    // useEffect(() => {
-    //     setCurrentKey(window.location.pathname)
-    // })
+    useEffect(() => {
+        setCurrentKey(window.location.pathname)
+    }, [window.location.pathname])
 
     return (
         <Affix>
@@ -79,7 +79,47 @@ export const Navigation = props => {
                                             {menuItem.name}
                                         </Menu.Item>
                                     ))}
-                                    {!isAuthenticated && !loading && (
+                                    {!loading &&
+                                        (!isAuthenticated ? (
+                                            <Menu.Item
+                                                key="/account"
+                                                onClick={() =>
+                                                    loginWithRedirect({
+                                                        appState: `${window.location.pathname}`,
+                                                    })
+                                                }
+                                            >
+                                                Log in
+                                            </Menu.Item>
+                                        ) : (
+                                            <Menu.SubMenu
+                                                key="/account"
+                                                icon={<UserOutlined />}
+                                                title="Profile"
+                                            >
+                                                <Menu.Item
+                                                    key="/account"
+                                                    icon={<UserOutlined />}
+                                                >
+                                                    My Profile
+                                                </Menu.Item>
+                                                <Menu.Item
+                                                    key="/editUser"
+                                                    icon={<EditOutlined />}
+                                                >
+                                                    Edit
+                                                </Menu.Item>
+                                                <Menu.Item
+                                                    icon={<LogoutOutlined />}
+                                                    onClick={() => {
+                                                        logout()
+                                                    }}
+                                                >
+                                                    Logout
+                                                </Menu.Item>
+                                            </Menu.SubMenu>
+                                        ))}
+                                    {/* {!isAuthenticated && !loading && (
                                         <Menu.Item
                                             key="/account"
                                             onClick={() =>
@@ -118,7 +158,7 @@ export const Navigation = props => {
                                                 Logout
                                             </Menu.Item>
                                         </Menu.SubMenu>
-                                    )}
+                                    )} */}
 
                                     <Switch
                                         checked={theme === "dark"}
