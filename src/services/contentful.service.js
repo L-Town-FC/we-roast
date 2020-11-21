@@ -8,8 +8,8 @@ try {
     // only runs in production on netlify
     contentfulConfig = {
         production: {
-            spaceId: process.env.CONTENTFUL_SPACE_ID,
-            accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+            spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
+            accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
         },
     }
 }
