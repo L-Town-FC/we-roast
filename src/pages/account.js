@@ -21,9 +21,10 @@ const Account = () => {
                 setContentfulUser(userEntry)
             }
         })()
-    }, [user, contentfulUser])
+    }, [user])
 
     if (loading || !user || !contentfulUser) {
+        console.log(contentfulUser)
         return <LoadingPour />
     }
 
@@ -40,6 +41,16 @@ const Account = () => {
                             src={user.picture}
                             alt="profilePicture"
                         />
+                        <img
+                            style={{ borderRadius: "50%" }}
+                            src={contentfulUser.fields.image.fields.url}
+                            srcSet={contentfulUser.fields.image.fields.url}
+                            alt="contentfulPicture"
+                        />
+                        <picture>
+                            <source srcset={contentfulUser.fields.image.fields.url} />
+                            <img src={contentfulUser.fields.image.fields.url} />
+                        </picture>
                         
                         <ul>
                             <li>Name: {contentfulUser.fields.name}</li>

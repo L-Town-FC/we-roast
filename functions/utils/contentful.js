@@ -61,6 +61,10 @@ async function createCustomEntry(entryType, entryObject, contentfulEnv = "master
         const space = await sdkClient.getSpace(spaceId)
         const environment = await space.getEnvironment(contentfulEnv)
         const entry = await environment.createEntry(entryType, entryObject)
+        if (process.env.NODE_ENV === "production") {
+            const publishedEntry = entry.publish()
+            return publishedEntry;
+        }
         return entry
     } catch (error) {
         console.error(error)

@@ -64,6 +64,7 @@ export async function getUserByEmail(email, token) {
                 navigate("/account")
             }
         }
+        console.log(userEntry)
         return userEntry
     } catch (error) {
         console.error(error)
