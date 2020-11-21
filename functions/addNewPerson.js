@@ -2,9 +2,9 @@ require("dotenv").config()
 const {
     getAccessTokenFromHeaders,
     validateAccessToken,
-} = require("../utils/auth")
+} = require("./utils/auth")
 
-const { createNewBlog } = require("../utils/contentful")
+const { createNewPerson } = require("./utils/contentful")
 
 exports.handler = async (event, context, callback) => {
     const token = getAccessTokenFromHeaders(event.headers)
@@ -18,17 +18,18 @@ exports.handler = async (event, context, callback) => {
 
     const body = JSON.parse(event.body)
     try {
-        const newPost = await createNewBlog(body)
+        console.log("in addNewPerson");
+        const newPerson = await createNewPerson(body)
         return {
             statusCode: 200,
-            body: JSON.stringify({ success: true }),
+            body: JSON.stringify({ success: true, newPerson }),
         }
     } catch (err) {
         console.error(err)
         return {
             statusCode: 500,
             body: JSON.stringify({
-                msg: "Failed to create record in Contentful",
+                msg: "Failed to create new person in Contentful",
             }),
         }
     }
