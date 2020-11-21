@@ -49,6 +49,14 @@ const Layout = ({ children }) => {
                 <br />
                 <footer style={{margin: `0 auto`, maxWidth:"90%"}}>
                     <Card>
+                        <a href="https://www.instagram.com/weroast.coffee/">
+                            <Avatar
+                                shape="square"
+                                href="https://www.instagram.com/weroast.coffee/"
+                                src="https://instagram-brand.com/wp-content/uploads/2016/11/Instagram_AppIcon_Aug2017.png?w=300"
+                            />
+                        </a>
+                        <br />
                         <div style={{ display: `flex` }}>
                             <p>
                                 Created by{" "}
@@ -62,13 +70,6 @@ const Layout = ({ children }) => {
                             </p>
                             <br />
                         </div>
-                        <a href="https://www.instagram.com/weroast.coffee/">
-                            <Avatar
-                                shape="square"
-                                href="https://www.instagram.com/weroast.coffee/"
-                                src="https://instagram-brand.com/wp-content/uploads/2016/11/Instagram_AppIcon_Aug2017.png?w=300"
-                            />
-                        </a>
                     </Card>
                 </footer>
             </div>

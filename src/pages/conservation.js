@@ -1,7 +1,6 @@
 import React from "react"
 import SEO from "../components/seo"
 import { Card, Carousel, Col, List, Row, Space } from "antd"
-import { Link } from "gatsby"
 
 const bullets = [
     "The coffee we enjoy is purchased and imported using ethical business practices, making sure the world's coffee farmers are paid well for their hard work",
@@ -40,7 +39,7 @@ const Conversation = () => (
                 renderItem={item => <Card>{item}</Card>}
                 style={{ color: "var(--titleNormal)" }}
             />
-            <Link to="https://www.rainforest-alliance.org/">
+            <a href="https://www.rainforest-alliance.org/">
                 <Card title="The Rainforest Alliance">
                     <img
                         src={"/rainforestAlliance.png"}
@@ -64,8 +63,8 @@ const Conversation = () => (
                         well.
                     </p>
                 </Card>
-            </Link>
-            <Link to="https://worldcoffeeresearch.org/">
+            </a>
+            <a href="https://worldcoffeeresearch.org/">
                 <Card title="World Coffee Research">
                     <img
                         src={"/worldCoffeeResearch.png"}
@@ -79,7 +78,7 @@ const Conversation = () => (
                         advantageously diversify it!
                     </p>
                 </Card>
-            </Link>
+            </a>
             <List
                 dataSource={values}
                 itemLayout="vertical"
