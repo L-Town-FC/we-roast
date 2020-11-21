@@ -65,7 +65,7 @@ module.exports = {
                 start_url: `/`,
                 background_color: `#FFFFFF`,
                 theme_color: `#5A3311`,
-                display: `roast manifest`,
+                display: `standalone`,
                 icon: `static/favicon.ico`, // This path is relative to the root of the site.
             },
         },

@@ -17,6 +17,7 @@ import {
     LoadingOutlined,
     PlusOutlined,
 } from "@ant-design/icons"
+import LoadingPour from "../components/loadingPour"
 
 const validateMessages = {
     required: "${label} is required!",
@@ -94,7 +95,7 @@ const BlogForm = () => {
     }
 
     if (loading || !user || pageLoading) {
-        return <Spin tip="Loading..." size="large" />
+        return <LoadingPour />
     }
 
     const onFinish = async values => {

@@ -1,9 +1,8 @@
 import React from "react"
 import SEO from "../components/seo"
-import { Card, Space } from "antd"
+import { Card, Space, Row, Col } from "antd"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
-
 
 const About = () => {
     const aboutData = useStaticQuery(graphql`
@@ -54,20 +53,42 @@ const About = () => {
                 ton of fun. Welcome to
                 <b>We. Roast Coffee.</b>
             </Card>
-            <Space direction="vertical">
-                <Card hoverable title="Founder: Ted Sullivan" size="small" style={{ width:"75%" }}>
-                    <Space>
-                        <Img fluid={aboutData.ted.image.fluid} alt="tedAboutPage" style={{borderRadius:"50%"}} imgStyle={{width: 'auto', height: 'auto'}} />
-                        <p>The brains of the organization</p>
-                    </Space>
-                </Card>
-                <Card hoverable title="Lead Developer: Andrew Mollohan" size="small" style={{ width:"75%" }}>
-                    <Space>
-                        <Img fluid={aboutData.andrew.image.fluid} alt="andrewAboutPage" style={{borderRadius:"50%"}} imgStyle={{width: 'auto', height: 'auto'}} />
-                        <p>The brawn of the organization</p>
-                    </Space>
-                </Card>
-            </Space>
+            <Row>
+                <Col span={12}>
+                    <Card
+                        hoverable
+                        title="Founder: Ted Sullivan"
+                        size="large"
+                    >
+                        <Space>
+                            <Img
+                                fluid={aboutData.ted.image.fluid}
+                                alt="tedAboutPage"
+                                style={{ borderRadius: "50%" }}
+                                imgStyle={{ width: "auto", height: "auto" }}
+                            />
+                            <p>The brains of the organization</p>
+                        </Space>
+                    </Card>
+                </Col>
+                <Col span={12}>
+                    <Card
+                        hoverable
+                        title="Lead Developer: Andrew Mollohan"
+                        size="large"
+                    >
+                        <Space>
+                            <Img
+                                fluid={aboutData.andrew.image.fluid}
+                                alt="andrewAboutPage"
+                                style={{ borderRadius: "50%" }}
+                                imgStyle={{ width: "auto", height: "auto" }}
+                            />
+                            <p>The brawn of the organization</p>
+                        </Space>
+                    </Card>
+                </Col>
+            </Row>
             <img
                 src="https://source.unsplash.com/featured/?coffee"
                 alt="randomCoffee"

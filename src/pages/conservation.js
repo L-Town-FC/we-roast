@@ -9,6 +9,12 @@ const bullets = [
     "The coffee industry is prepared to grapple and cope with the short term and long term effects of climate change",
 ]
 
+const values = [
+    {title: "Mission", blurb: "Grow, protect, and enhance supplies of quality coffee while improving the livelihoods of the families who produce it."},
+    {title: "Strategy", blurb: "All of our projects are designed to enhance the livelihoods of the producers who are the stewards of both quality and productivity. If we lose them, we lose the game and future of the industry."},
+    {title: "Vision", blurb: "To create a toolbox of coffee varieties, genetic resources and accompanying technologies and to disseminate them strategically and collaboratively in producing countries to alleviate constraints to the supply chain of high quality"},
+]
+
 const Conversation = () => (
     <>
         <SEO title="Conversation" />
@@ -29,71 +35,56 @@ const Conversation = () => (
                 who work hard to ensure the following
             </Card>
             <List
-                bordered
                 dataSource={bullets}
-                renderItem={item => <List.Item style={{ color: "var(--titleNormal)" }}>{item}</List.Item>}
+                renderItem={item => <Card>{item}</Card>}
+                style={{ color: "var(--titleNormal)" }}
             />
-            <Card title="The Rainforest Alliance">
-                <img
-                    src={"/rainforestAlliance.png"}
-                    alt="rainforestAllianceLogo"
-                />
-                <p>
-                    The Rainforest Alliance Certified seal is awarded to farms,
-                    forests, and businesses that meet rigorous environmental and
-                    social standards encompassing the following areas Biodiversity
-                    conservation Improved livelihoods and human well-being Natural
-                    resource conservation Effective planning and farm management
-                    systems The Alliance focuses on the Human aspect of coffee
-                    growing that WeRoast cares very much about supporting. We Roast
-                    often talks about the many steps of processing coffee, well the
-                    Rainforest Alliance supports the people behind all the hard
-                    work. You can support them with donations, or simply by
-                    purchasing your coffee from a certified farm. This simple step
-                    ensures that your morning coffee isn't the product of any bad
-                    business, that the farmers and importers aren't being taken
-                    advantage of, and that their employees are treated fairly as
-                    well.
-                </p>
-            </Card>
-            <Card title="World Coffee Research">
-                <img
-                    src={"/worldCoffeeResearch.png"}
-                    alt="rainforestAllianceLogo"
-                />
-                <p>
-                    For those interested in the science behind a healthy coffee
-                    industry, this organization needs your support. Visit the
-                    World Coffee Research page to learn more about the genetic
-                    makeup of the coffee plant, and what is being done to
-                    advantageously diversify it!
-                </p>
-            </Card>
-            <Row gutter={16}>
-                <Col span={8}>
-                    <Card title="MISSION">
-                        “Grow, protect, and enhance supplies of quality coffee while
-                        improving the livelihoods of the families who produce it.”
-                    </Card>
-                </Col>
-                <Col span={8}>
-                    <Card title="STRATEGY">
-                        “All of our projects are designed to enhance the livelihoods
-                        of the producers who are the stewards of both quality and
-                        productivity. If we lose them, we lose the game and future
-                        of the industry.”
-                    </Card>
-                </Col>
-                <Col span={8}>
-                    <Card title="VISION">
-                        To create a toolbox of coffee varieties, genetic resources
-                        and accompanying technologies and to disseminate them
-                        strategically and collaboratively in producing countries to
-                        alleviate constraints to the supply chain of high quality
-                        coffee.
-                    </Card>
-                </Col>
-            </Row>
+            <a href="https://www.rainforest-alliance.org/">
+                <Card title="The Rainforest Alliance">
+                    <img
+                        src={"/rainforestAlliance.png"}
+                        alt="rainforestAllianceLogo"
+                    />
+                    <p>
+                        The Rainforest Alliance Certified seal is awarded to farms,
+                        forests, and businesses that meet rigorous environmental and
+                        social standards encompassing the following areas Biodiversity
+                        conservation Improved livelihoods and human well-being Natural
+                        resource conservation Effective planning and farm management
+                        systems The Alliance focuses on the Human aspect of coffee
+                        growing that WeRoast cares very much about supporting. We Roast
+                        often talks about the many steps of processing coffee, well the
+                        Rainforest Alliance supports the people behind all the hard
+                        work. You can support them with donations, or simply by
+                        purchasing your coffee from a certified farm. This simple step
+                        ensures that your morning coffee isn't the product of any bad
+                        business, that the farmers and importers aren't being taken
+                        advantage of, and that their employees are treated fairly as
+                        well.
+                    </p>
+                </Card>
+            </a>
+            <a href="https://worldcoffeeresearch.org/">
+                <Card title="World Coffee Research">
+                    <img
+                        src={"/worldCoffeeResearch.png"}
+                        alt="rainforestAllianceLogo"
+                    />
+                    <p>
+                        For those interested in the science behind a healthy coffee
+                        industry, this organization needs your support. Visit the
+                        World Coffee Research page to learn more about the genetic
+                        makeup of the coffee plant, and what is being done to
+                        advantageously diversify it!
+                    </p>
+                </Card>
+            </a>
+            <List
+                dataSource={values}
+                itemLayout="vertical"
+                renderItem={({title, blurb}) => <Card title={title}>{blurb}</Card>}
+                style={{ color: "var(--titleNormal)" }}
+            />
         </Space>
         <br />
         <img
