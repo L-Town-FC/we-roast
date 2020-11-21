@@ -18,9 +18,6 @@ const contentfulOptions =
         ? contentfulConfig.development
         : contentfulConfig.production
 
-// const spaceId = process.env.GATSBY_CONTENTFUL_SPACE_ID
-// const accessToken = process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN
-
 const { spaceId } = contentfulOptions
 
 const client = contentful.createClient({
