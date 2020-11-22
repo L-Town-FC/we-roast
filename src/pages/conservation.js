@@ -16,7 +16,7 @@ const values = [
 ]
 
 const Conversation = () => (
-    <>
+    <Space direction="vertical">
         <SEO title="Conversation" />
         <h2
             style={{
@@ -91,7 +91,7 @@ const Conversation = () => (
             src="https://source.unsplash.com/featured/?coffee"
             alt="randomCoffee"
         />
-    </>
+    </Space>
 )
 
 export default Conversation

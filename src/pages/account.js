@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { graphql, useStaticQuery, navigate } from "gatsby"
-import { Button, Card, Space } from "antd"
+import { Card, Input, Space } from "antd"
 import "../../src/styles/global.css"
 import SEO from "../components/seo"
 import { useAuth0 } from "../services/auth.service"
@@ -25,7 +24,6 @@ const Account = () => {
     }, [user])
 
     if (loading || !user || !contentfulUser) {
-        console.log(contentfulUser)
         return <LoadingPour />
     }
 
@@ -35,10 +33,10 @@ const Account = () => {
                 <SEO title="Profile" />
                 <br />
                 <Card 
-                    title="Account Profile"
+                    title="Account Settings"
                     hoverable="true"
+                    loading={loading}
                     actions={[
-                        <UserOutlined />, 
                         <EditOutlined
                             onClick={() => {
                                 setIsEditing(!isEditing)
@@ -55,7 +53,7 @@ const Account = () => {
                 >
                     <Space>
                         <img
-                            style={{ borderRadius: "50%", width: "100%", height: "100%" }}
+                            style={{ borderRadius: "50%" }}
                             src={contentfulUser.fields.image.fields.file.url}
                             srcset={contentfulUser.fields.image.fields.url}
                             type={contentfulUser.fields.image.fields.file.contentType}
@@ -63,16 +61,15 @@ const Account = () => {
                         />
                         
                         <ul>
-                            <li>Name: {contentfulUser.fields.name}</li>
-                            <li>Nickname: {contentfulUser.fields.username}</li>
-                            <li>E-mail: {contentfulUser.fields.email}</li>
+                            {/* <li>Name: {contentfulUser.fields.name}</li> */}
+                            <li className="row-container">username: {isEditing ? <Input defaultValue={contentfulUser.fields.username} /> : contentfulUser.fields.username}</li>
+                            <li className="row-container">email: {isEditing ? <Input defaultValue={contentfulUser.fields.email} /> : contentfulUser.fields.email}</li>
                         </ul>
                     </Space>
                     <Space direction="vertical">
-                        <h1>{contentfulUser.fields.title}</h1>
-                        <h2>{contentfulUser.fields.shortBio}</h2>
+                        <h1>{isEditing ? <Input defaultValue={contentfulUser.fields.title} /> : contentfulUser.fields.title}</h1>
+                        <h2>{isEditing ? <Input defaultValue={contentfulUser.fields.shortBio} /> : contentfulUser.fields.shortBio}</h2>
                     </Space>
-                    {isEditing && <p>Editing</p>}
                 </Card>
                 {/* <>{getEnryById("24ibMbzD8mVXeKgVykfn6z")}</> */}
                 <img

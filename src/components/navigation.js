@@ -6,8 +6,7 @@ import { Affix, Space, Menu, Switch } from "antd"
 import {
     UserOutlined,
     CoffeeOutlined,
-    EditOutlined,
-    LogoutOutlined,
+    MenuOutlined,
 } from "@ant-design/icons"
 import logo from "../../static/wr-logo.png"
 
@@ -23,7 +22,7 @@ export const Navigation = props => {
     const [currentKey, setCurrentKey] = useState(window.location.pathname)
 
     const handleClick = e => {
-        if (e.key) {
+        if (e.key && e.key !== "/theme") {
             console.log(e.key)
             setCurrentKey(e.key)
             navigate(e.key)
@@ -66,9 +65,10 @@ export const Navigation = props => {
                                     onClick={handleClick}
                                     selectedKeys={[currentKey]}
                                     mode="horizontal"
+                                    overflowedIndicator={<MenuOutlined size="large" />}
                                     style={{
                                         display: "flex",
-                                        justifyContent: "center",
+                                        justifyContent: "space-between",
                                     }}
                                 >
                                     {props.menuLinks.map(menuItem => (
@@ -92,86 +92,30 @@ export const Navigation = props => {
                                                 Log in
                                             </Menu.Item>
                                         ) : (
-                                            <Menu.SubMenu
+                                            <Menu.Item
                                                 key="/account"
                                                 icon={<UserOutlined />}
-                                                title="Profile"
+                                                // title="Profile"
                                             >
-                                                <Menu.Item
-                                                    key="/account"
-                                                    icon={<UserOutlined />}
-                                                >
-                                                    My Profile
-                                                </Menu.Item>
-                                                <Menu.Item
-                                                    key="/editUser"
-                                                    icon={<EditOutlined />}
-                                                >
-                                                    Edit
-                                                </Menu.Item>
-                                                <Menu.Item
-                                                    icon={<LogoutOutlined />}
-                                                    onClick={() => {
-                                                        logout()
-                                                    }}
-                                                >
-                                                    Logout
-                                                </Menu.Item>
-                                            </Menu.SubMenu>
+                                                Profile
+                                            </Menu.Item>
                                         ))}
-                                    {/* {!isAuthenticated && !loading && (
                                         <Menu.Item
-                                            key="/account"
-                                            onClick={() =>
-                                                loginWithRedirect({
-                                                    appState: `${window.location.pathname}`,
-                                                })
-                                            }
+                                            key="/theme"
                                         >
-                                            Log in
-                                        </Menu.Item>
-                                    )}
-                                    {isAuthenticated && !loading && (
-                                        <Menu.SubMenu
-                                            key="/account"
-                                            icon={<UserOutlined />}
-                                            title="Profile"
-                                        >
-                                            <Menu.Item
-                                                key="/account"
-                                                icon={<UserOutlined />}
-                                            >
-                                                My Profile
-                                            </Menu.Item>
-                                            <Menu.Item
-                                                key="/editUser"
-                                                icon={<EditOutlined />}
-                                            >
-                                                Edit
-                                            </Menu.Item>
-                                            <Menu.Item
-                                                icon={<LogoutOutlined />}
-                                                onClick={() => {
-                                                    logout()
+                                            <Switch
+                                                checked={theme === "dark"}
+                                                onChange={e => {
+                                                    toggleTheme(
+                                                        theme === "dark"
+                                                            ? "light"
+                                                            : "dark"
+                                                    )
                                                 }}
-                                            >
-                                                Logout
-                                            </Menu.Item>
-                                        </Menu.SubMenu>
-                                    )} */}
-
-                                    <Switch
-                                        checked={theme === "dark"}
-                                        onChange={e => {
-                                            toggleTheme(
-                                                theme === "dark"
-                                                    ? "light"
-                                                    : "dark"
-                                            )
-                                        }}
-                                        checkedChildren="dark"
-                                        unCheckedChildren="light"
-                                    />
+                                                checkedChildren="dark"
+                                                unCheckedChildren="light"
+                                            />
+                                        </Menu.Item>
                                 </Menu>
                             )
                         }}

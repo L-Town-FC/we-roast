@@ -46,7 +46,7 @@ body {
   body.dark {
     -webkit-font-smoothing: antialiased;
   
-    --bg: rgb(3, 11, 19);
+    --bg: rgb(15, 35, 54);
     --textNormal: rgba(255, 255, 255, 0.88);
     --textTitle: white;
     --textLink: yellow;
