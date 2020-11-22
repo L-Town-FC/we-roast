@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Avatar, Button, Card, Space } from "antd"
+import { Card, Space } from "antd"
 import { Link, navigate, graphql, useStaticQuery } from "gatsby"
 
 
@@ -21,7 +21,7 @@ const TagList = (props) => {
     `
   )
   return (
-    <Space style={{width:"100%"}}>
+    <Space direction="horizontal">
       {allContentfulTag.edges.map( ({node}) => (
           <Link key={node.id} to={`/tag/${node.slug}/`}><Card hoverable>{node.title}</Card></Link>
       ))}

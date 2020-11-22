@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
                     color: "var(--textNormal)",
                 }}
             >
-                <main style={{margin: `0 auto`, maxWidth:1060}}>{children}</main>
+                <main style={{margin: `0 auto`, maxWidth:1260}}>{children}</main>
                 <br />
                 <footer style={{margin: `0 auto`, maxWidth:"90%"}}>
                     <Card>
