@@ -20,7 +20,7 @@
     "@emotion/core": "^10.0.28",
     "@mdx-js/mdx": "^1.6.21",
     "@mdx-js/react": "^1.6.21",
-    "antd": "^4.2.0",
+    "antd": "^4.13.1",
     "antd-img-crop": "^3.1.1",
     "auth0-js": "^9.13.2",
     "contentful": "^7.14.4",
