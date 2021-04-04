@@ -24,7 +24,7 @@
     "antd-img-crop": "^3.1.1",
     "auth0-js": "^9.13.2",
     "contentful": "^8.0.3",
-    "contentful-management": "^6.3.1",
+    "contentful-management": "^6.3.2",
     "gatsby": "^3.0.0",
     "gatsby-background-image": "^1.1.1",
     "gatsby-image": "^2.3.2",
