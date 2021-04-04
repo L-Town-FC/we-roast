@@ -1,7 +1,7 @@
 {
   "name": "we-roast-ui",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "Its roasted",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -20,7 +20,7 @@
     "@emotion/core": "^10.0.28",
     "@mdx-js/mdx": "^1.6.21",
     "@mdx-js/react": "^1.6.21",
-    "antd": "^4.2.0",
+    "antd": "^4.13.1",
     "antd-img-crop": "^3.1.1",
     "auth0-js": "^9.13.2",
     "contentful": "^7.14.4",
@@ -32,7 +32,7 @@
     "gatsby-plugin-dark-mode": "^1.1.1",
     "gatsby-plugin-less": "^3.2.0",
     "gatsby-plugin-manifest": "^2.3.7",
-    "gatsby-plugin-mdx": "^1.2.6",
+    "gatsby-plugin-mdx": "^1.10.1",
     "gatsby-plugin-netlify": "^2.3.3",
     "gatsby-plugin-offline": "^3.1.5",
     "gatsby-plugin-react-helmet": "^3.2.1",
@@ -45,7 +45,7 @@
     "gatsby-transformer-sharp": "^2.4.3",
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^1.8.0",
-    "less": "^3.11.1",
+    "less": "^3.13.1",
     "less-loader": "^6.0.0",
     "lodash": "^4.17.15",
     "openssl": "^1.1.0",
@@ -60,8 +60,7 @@
     "typography-theme-grand-view": "^0.16.19"
   },
   "devDependencies": {
-    "prettier": "^1.19.1",
-    "surge": "^0.21.3"
+    "prettier": "^1.19.1"
   },
   "repository": {
     "type": "git",
