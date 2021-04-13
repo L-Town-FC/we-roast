@@ -41,7 +41,7 @@
     "gatsby-remark-images": "^3.11.1",
     "gatsby-source-contentful": "^5.2.0",
     "gatsby-source-filesystem": "^2.11.1",
-    "gatsby-transformer-remark": "^2.16.1",
+    "gatsby-transformer-remark": "^4.0.0",
     "gatsby-transformer-sharp": "^2.12.1",
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^1.12.1",
