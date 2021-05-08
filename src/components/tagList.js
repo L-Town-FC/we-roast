@@ -1,7 +1,6 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { Card, Space } from "antd"
-import { Link, navigate, graphql, useStaticQuery } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 
 
 const TagList = (props) => {

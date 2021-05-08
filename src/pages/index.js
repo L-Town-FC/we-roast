@@ -2,7 +2,7 @@ import React from "react"
 import { useAuth0 } from "../services/auth.service"
 import SEO from "../components/seo"
 import { Card, Space } from "antd"
-import "../styles/global.css"
+// import "../styles/global.css"
 import LoadingPour from "../components/loadingPour"
 
 const IndexPage = ({ data }) => {

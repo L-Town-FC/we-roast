@@ -1,13 +1,13 @@
 import React from "react"
 import SEO from "../components/seo"
-import { Card, Space } from "antd"
+import { Space } from "antd"
 import { useAuth0 } from "../services/auth.service"
 import BlogForm from "../components/blogForm"
 import { ProtectedRoute } from "../components/protectedRoute"
 import LoadingPour from "../components/loadingPour"
 
 const WriteBlog = () => {
-    const { loading, user, isAuthenticated, logout } = useAuth0()
+    const { loading, user } = useAuth0()
 
     if (loading || !user) {
         return <LoadingPour />

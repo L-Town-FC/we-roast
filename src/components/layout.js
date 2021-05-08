@@ -9,7 +9,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { Navigation } from "../components/navigation"
-import { Avatar, Card } from "antd"
+import { Card } from "antd"
+import { InstagramOutlined } from "@ant-design/icons"
 
 const Layout = ({ children }) => {
     const data = useStaticQuery(graphql`
@@ -45,16 +46,18 @@ const Layout = ({ children }) => {
                     color: "var(--textNormal)",
                 }}
             >
-                <main style={{margin: `0 auto`, maxWidth:1260}}>{children}</main>
+                <main style={{ margin: `0 auto`, maxWidth: 1260 }}>
+                    {children}
+                </main>
                 <br />
-                <footer style={{margin: `0 auto`, maxWidth:"90%"}}>
+                <footer style={{ margin: `0 auto`, maxWidth: "90%" }}>
                     <Card>
-                        <a href="https://www.instagram.com/weroast.coffee/">
-                            <Avatar
-                                shape="square"
-                                href="https://www.instagram.com/weroast.coffee/"
-                                src="https://instagram-brand.com/wp-content/uploads/2016/11/Instagram_AppIcon_Aug2017.png?w=300"
-                            />
+                        <a
+                            href="https://www.instagram.com/weroastcoffeeco/"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <InstagramOutlined />
                         </a>
                         <br />
                         <div style={{ display: `flex` }}>

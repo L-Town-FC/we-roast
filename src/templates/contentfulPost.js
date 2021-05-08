@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
-import { Avatar, Card, Space } from "antd"
+import { Card } from "antd"
 import UserPreview from "../components/userPreview"
 
 export default ({ data }) => {

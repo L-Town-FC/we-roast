@@ -43,7 +43,7 @@ const Blogs = () => {
     `)
     const siteTitle = data.site.siteMetadata.title
     const blogs = data.allContentfulBlogPost.edges
-    const { loading, user, isAuthenticated } = useAuth0()
+    const { loading, isAuthenticated } = useAuth0()
     if (loading) {
         return <LoadingPour />
     }

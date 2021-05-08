@@ -1,20 +1,19 @@
 import React from "react"
 import sortBy from "lodash/sortBy"
 import { Link, graphql } from "gatsby"
-import SEO from "../components/seo"
-import Img from "gatsby-image"
+import SeoWrapper from "../components/seo"
 import { Card, Space } from "antd"
 import BlogPreview from "../components/blogPreview"
 
 const TagTemplate = ({ data }) => {
     const siteTitle = data.site.siteMetadata.title
-    const { title, slug } = data.contentfulTag
+    const { title } = data.contentfulTag
 
     const blogs = sortBy(data.contentfulTag.blog_post, "publishDate").reverse()
 
     return (
         <Space direction="vertical">
-            <SEO
+            <SeoWrapper
                 title={`${title} | ${siteTitle}`}
                 description={`${title} | ${siteTitle}`}
             />

@@ -14,9 +14,7 @@ export const Navigation = props => {
     const {
         isAuthenticated,
         loginWithRedirect,
-        loginWithPopup,
         loading,
-        logout,
     } = useAuth0()
 
     const [currentKey, setCurrentKey] = useState(window.location.pathname)

@@ -1,9 +1,8 @@
 import React from "react"
-import { Link, graphql, useStaticQuery, navigate } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import SEO from "../components/seo"
-import { Button, Card, Space } from "antd"
+import { Space } from "antd"
 import UserPreview from "../components/userPreview"
-import { useAuth0 } from "../services/auth.service"
 
 const Users = () => {
     const data = useStaticQuery(graphql`

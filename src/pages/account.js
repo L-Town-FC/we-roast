@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { Card, Input, Space } from "antd"
-import "../../src/styles/global.css"
+// import "../../src/styles/global.css"
 import SEO from "../components/seo"
 import { useAuth0 } from "../services/auth.service"
-import { EditOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons"
+import { EditOutlined, LogoutOutlined } from "@ant-design/icons"
 import { ProtectedRoute } from "../components/protectedRoute"
 import { getUserByEmail } from "../services/contentful.service"
 import LoadingPour from "../components/loadingPour"
 
 const Account = () => {
-    const { loading, user, isAuthenticated, logout, getTokenSilently } = useAuth0()
+    const { loading, user, logout, getTokenSilently } = useAuth0()
     const [contentfulUser, setContentfulUser] = useState(null)
     const [isEditing, setIsEditing] = useState(false)
     useEffect(() => {

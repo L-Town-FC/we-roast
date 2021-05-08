@@ -1,12 +1,12 @@
 import React from "react"
 import SEO from "../components/seo"
-import { Card, Space } from "antd"
+import { Space } from "antd"
 import { useAuth0 } from "../services/auth.service"
 import { ProtectedRoute } from "../components/protectedRoute"
 import LoadingPour from "../components/loadingPour"
 
 const EditUser = () => {
-    const { loading, user, isAuthenticated } = useAuth0()
+    const { loading, user } = useAuth0()
 
     if (loading || !user) {
         return <LoadingPour />

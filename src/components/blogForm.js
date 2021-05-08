@@ -2,13 +2,11 @@ import React, { useState } from "react"
 import {
     Form,
     Input,
-    InputNumber,
     Button,
     DatePicker,
     Card,
     Upload,
     message,
-    Spin,
 } from "antd"
 import moment from "moment"
 import { navigate } from "gatsby"

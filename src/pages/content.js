@@ -1,5 +1,4 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
 import { Space } from "antd"
 import SEO from "../components/seo"
 import TagList from "../components/tagList"

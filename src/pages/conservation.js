@@ -1,6 +1,6 @@
 import React from "react"
 import SEO from "../components/seo"
-import { Card, Carousel, Col, List, Row, Space } from "antd"
+import { Card, List, Space } from "antd"
 
 const bullets = [
     "The coffee we enjoy is purchased and imported using ethical business practices, making sure the world's coffee farmers are paid well for their hard work",
