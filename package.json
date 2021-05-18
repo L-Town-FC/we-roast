@@ -22,7 +22,7 @@
     "@mdx-js/react": "^1.6.21",
     "antd": "^4.15.3",
     "antd-img-crop": "^3.1.1",
-    "auth0-js": "^9.13.2",
+    "auth0-js": "^9.16.0",
     "contentful": "^8.2.0",
     "contentful-management": "^6.3.2",
     "gatsby": "^3.3.1",
